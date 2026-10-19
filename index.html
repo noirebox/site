@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NoireBox — the flight data recorder for AI agents</title>
+<meta name="description" content="NoireBox: a tamper-evident, signed, externally time-stamped journal for AI agents that anyone can verify offline. Press kit, articles, and the developer reference.">
+<meta property="og:title" content="NoireBox — the flight data recorder for AI agents">
+<meta property="og:description" content="Tamper-evident journal for AI agents, verifiable offline without trusting the operator. Press kit, articles, developer reference.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://noirebox.github.io/site/">
+<meta property="og:image" content="https://noirebox.github.io/site/assets/banner.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css?v=33">
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<button class="menu-btn" id="menu-btn" aria-label="Toggle navigation">☰</button>
+<nav class="sidebar" id="sidebar" aria-label="Table of contents">
+  <a class="brand" href="#press"><span class="cube"></span>NOIRE<span>BOX</span></a>
+  <p class="brand-sub">press &amp; communication</p>
+  <div class="toc">
+    <a href="#press">Press kit</a>
+    <a href="#articles">Articles</a>
+    <a href="#code">Code &amp; reference</a>
+    <a href="https://code.noirebox.eu/" class="toc-en"><strong>Developer reference →</strong></a>
+  </div>
+  <div class="side-foot">
+    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI ↗</a>
+    <a href="presse.html" lang="fr" title="Dossier de presse en français">🇫🇷 FR</a>
+  </div>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+
+<main id="content">
+
+<header class="head">
+  <p class="kicker">// noirebox — press &amp; communication. The technical reference lives at code.noirebox.eu.</p>
+  <h1>NoireBox <span class="ver">v0.23.0</span></h1>
+  <p class="lede">
+    The <strong>flight data recorder for AI agents</strong>: an open-source, tamper-evident
+    journal where every decision an agent takes is sealed, signed and time-stamped by
+    external witnesses — and anyone can verify the record offline,
+    <strong>without trusting the operator</strong>.
+  </p>
+  <p class="head-links mono">
+    <a href="press.html">press kit (EN)</a> ·
+    <a href="presse.html" lang="fr">dossier de presse (FR)</a> ·
+    <a href="https://code.noirebox.eu/">developer reference</a> ·
+    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">source</a>
+  </p>
+</header>
+
+<section id="press">
+<h2><a href="#press" class="anchor">§</a>Press kit</h2>
+<p>Boilerplate in three lengths, story angles with checkable sources, fact sheet, timeline, quotes, coverage, assets and the press contact — every figure sourced in the public repository.</p>
+<table>
+  <tbody>
+    <tr><td class="mono">English</td><td><a href="press.html">press.html</a></td></tr>
+    <tr><td class="mono">Français</td><td><a href="presse.html" lang="fr">presse.html</a></td></tr>
+    <tr><td class="mono">Press contact</td><td><a href="mailto:press@noirebox.eu">press@noirebox.eu</a> — Sam Labbé, creator &amp; maintainer, FR/EN</td></tr>
+    <tr><td class="mono">Assets</td><td><a href="press.html#assets">banner, architecture diagram, logo (SVG)</a></td></tr>
+  </tbody>
+</table>
+</section>
+
+<section id="articles">
+<h2><a href="#articles" class="anchor">§</a>Articles</h2>
+<p>Published on <a href="https://dev.to/slabb" target="_blank" rel="noopener">dev.to/slabb</a>. The project is built in public — the audit threads under these articles became releases.</p>
+<ul class="tight">
+  <li><a href="https://dev.to/slabb/i-built-the-flight-data-recorder-for-ai-agents-38f6" target="_blank" rel="noopener">"I built the flight data recorder for AI agents."</a> <span class="dim">22 Sep 2026 — the founding article</span></li>
+  <li><a href="https://dev.to/slabb/the-ai-act-went-live-two-months-ago-your-agents-logs-are-still-editable-46dn" target="_blank" rel="noopener">"The AI Act went live two months ago. Your agent's logs are still editable."</a> <span class="dim">30 Sep 2026</span></li>
+  <li><a href="https://dev.to/slabb/a-hash-chain-proves-the-ordering-four-attacks-prove-its-not-enough-59oe" target="_blank" rel="noopener">"A hash chain proves the ordering. Four attacks prove it's not enough."</a> <span class="dim">10 Oct 2026</span></li>
+  <li><a href="https://dev.to/slabb/we-tested-pre-training-gravity-on-open-weights-it-stayed-home-243i" target="_blank" rel="noopener">"We tested pre-training gravity on open weights. It stayed home."</a> <span class="dim">11 Oct 2026</span></li>
+  <li><a href="https://dev.to/slabb/the-authority-ladder-five-rungs-down-four-premises-standing-4p5f" target="_blank" rel="noopener">"The authority ladder: five rungs down, four premises standing"</a> <span class="dim">13 Oct 2026</span></li>
+  <li><a href="https://dev.to/slabb/ten-findings-ten-answers-publishing-the-audit-of-our-own-black-box-1d29" target="_blank" rel="noopener">"Ten findings, ten answers — publishing the audit of our own black box"</a> <span class="dim">15 Oct 2026</span></li>
+</ul>
+</section>
+
+<section id="code">
+<h2><a href="#code" class="anchor">§</a>Code &amp; reference</h2>
+<table>
+  <tbody>
+    <tr><td class="mono">Developer reference</td><td><a href="https://code.noirebox.eu/">code.noirebox.eu</a> — API, CLI, schemas, custody, verification contract, benchmarks</td></tr>
+    <tr><td class="mono">Source · MIT</td><td><a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">github.com/noirebox/noirebox</a> · mirror on <a href="https://codeberg.org/noirebox/noirebox" target="_blank" rel="noopener">Codeberg</a></td></tr>
+    <tr><td class="mono">Install</td><td><code>pip install noirebox</code> · <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a> · <a href="https://github.com/noirebox/noirebox/pkgs/container/noirebox" target="_blank" rel="noopener">Docker image on GHCR</a></td></tr>
+    <tr><td class="mono">Compliance</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a> · <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
+  </tbody>
+</table>
+</section>
+
+<footer class="foot">
+  <div><span class="cube"></span> <strong>NoireBox</strong> — the flight data recorder for AI agents.</div>
+  <div class="foot-links mono">
+    <a href="press.html">Press</a>
+    <a href="presse.html" lang="fr">Presse</a>
+    <a href="https://code.noirebox.eu/">Developer reference</a>
+    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub</a>
+    <span>MIT</span>
+  </div>
+</footer>
+
+</main>
+
+<script src="script.js?v=33"></script>
+</body>
+</html>
