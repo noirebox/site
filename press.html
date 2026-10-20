@@ -79,7 +79,7 @@
 
 <div class="boiler">
   <span class="label">Long — ~150 words</span>
-  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 21 releases, 428 automated tests, 28 public architecture decision records — each with the alternatives it rejected.</p>
+  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 21 releases, 439 automated tests, 29 public architecture decision records — each with the alternatives it rejected.</p>
   <button class="copy-btn" data-copy="bp-long" title="Copy" aria-label="Copy long boilerplate">⧉</button>
 </div>
 
@@ -150,8 +150,8 @@
     <tr><td class="mono">First release</td><td>0.1.0 — 19 September 2026</td></tr>
     <tr><td class="mono">Current version</td><td>0.23.0 — 18 October 2026</td></tr>
     <tr><td class="mono">Releases</td><td>21, every one in the <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a></td></tr>
-    <tr><td class="mono">Tests</td><td>428 automated, 0 failing (CI)</td></tr>
-    <tr><td class="mono">ADRs</td><td>28 public architecture decision records, each with the alternatives rejected</td></tr>
+    <tr><td class="mono">Tests</td><td>439 automated, 0 failing (CI)</td></tr>
+    <tr><td class="mono">ADRs</td><td>29 public architecture decision records, each with the alternatives rejected</td></tr>
     <tr><td class="mono">Sealed record families</td><td>6 — receipt/0.2.2, decision/0.1, admission/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
     <tr><td class="mono">Attack fixtures replayed</td><td>5 SCAR ids (43, 45, 89, 110, 114) — 16 tests</td></tr>
     <tr><td class="mono">Cryptography</td><td>SHA-256 hash chain · Ed25519 signatures · RFC 3161 multi-TSA + OpenTimestamps (Bitcoin); post-quantum migration path documented (ADR 027)</td></tr>

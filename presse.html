@@ -79,7 +79,7 @@
 
 <div class="boiler">
   <span class="label">Long — ~150 mots</span>
-  <p id="bp-long">NoireBox est une boîte noire open source pour agents IA, construite en solo dans les Vosges (France) et publiée sous licence MIT. Elle répond à une question : si demain quelqu'un conteste une décision prise par un agent IA, qui peut prouver ce que l'agent a exactement fait — et que le dossier n'a pas été retouché depuis ? Les outils d'observabilité servent à déboguer, et leurs journaux restent modifiables par quiconque tient le disque. NoireBox scelle chaque événement dans un journal en annexe seule, chaîné (SHA-256), signé (Ed25519) et ancré auprès d'autorités d'horodatage RFC 3161 externes, puis exporte une attestation qu'un tiers vérifie hors-ligne, sans faire confiance à l'opérateur. C'est la couche d'intégrité que l'AI Act (art. 12, journalisation automatique) et le RGPD (art. 5(2), redevabilité) supposent sans la spécifier. Depuis le 19 septembre 2026 : 21 versions, 428 tests automatisés, 28 décisions d'architecture publiques — chacune avec les alternatives écartées.</p>
+  <p id="bp-long">NoireBox est une boîte noire open source pour agents IA, construite en solo dans les Vosges (France) et publiée sous licence MIT. Elle répond à une question : si demain quelqu'un conteste une décision prise par un agent IA, qui peut prouver ce que l'agent a exactement fait — et que le dossier n'a pas été retouché depuis ? Les outils d'observabilité servent à déboguer, et leurs journaux restent modifiables par quiconque tient le disque. NoireBox scelle chaque événement dans un journal en annexe seule, chaîné (SHA-256), signé (Ed25519) et ancré auprès d'autorités d'horodatage RFC 3161 externes, puis exporte une attestation qu'un tiers vérifie hors-ligne, sans faire confiance à l'opérateur. C'est la couche d'intégrité que l'AI Act (art. 12, journalisation automatique) et le RGPD (art. 5(2), redevabilité) supposent sans la spécifier. Depuis le 19 septembre 2026 : 21 versions, 439 tests automatisés, 29 décisions d'architecture publiques — chacune avec les alternatives écartées.</p>
   <button class="copy-btn" data-copy="bp-long" title="Copier" aria-label="Copier le boilerplate long">⧉</button>
 </div>
 
@@ -150,8 +150,8 @@
     <tr><td class="mono">Première version</td><td>0.1.0 — 19 septembre 2026</td></tr>
     <tr><td class="mono">Version actuelle</td><td>0.23.0 — 18 octobre 2026</td></tr>
     <tr><td class="mono">Versions publiées</td><td>21, chacune dans le <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a></td></tr>
-    <tr><td class="mono">Tests</td><td>428 automatisés, 0 en échec (CI)</td></tr>
-    <tr><td class="mono">ADR</td><td>28 décisions d'architecture publiques, chacune avec les alternatives écartées</td></tr>
+    <tr><td class="mono">Tests</td><td>439 automatisés, 0 en échec (CI)</td></tr>
+    <tr><td class="mono">ADR</td><td>29 décisions d'architecture publiques, chacune avec les alternatives écartées</td></tr>
     <tr><td class="mono">Familles de scellés</td><td>6 — receipt/0.2.2, decision/0.1, admission/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
     <tr><td class="mono">Attaques rejouées</td><td>5 identifiants SCAR (43, 45, 89, 110, 114) — 16 tests</td></tr>
     <tr><td class="mono">Cryptographie</td><td>Chaînage SHA-256 · signatures Ed25519 · RFC 3161 multi-TSA + OpenTimestamps (Bitcoin) ; chemin de migration post-quantique documenté (ADR 027)</td></tr>
