@@ -56,6 +56,7 @@
     <a href="https://code.noirebox.eu/">developer reference</a> ·
     <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">source</a> ·
     <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a> ·
+    <a href="article-50.html" lang="fr">guide art. 50 (FR)</a> ·
     <a href="presse.html" lang="fr">dossier de presse (FR)</a>
   </p>
 </header>
@@ -79,7 +80,7 @@
 
 <div class="boiler">
   <span class="label">Long — ~150 words</span>
-  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 21 releases, 439 automated tests, 29 public architecture decision records — each with the alternatives it rejected.</p>
+  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 21 releases, 473 automated tests, 30 public architecture decision records — each with the alternatives it rejected.</p>
   <button class="copy-btn" data-copy="bp-long" title="Copy" aria-label="Copy long boilerplate">⧉</button>
 </div>
 
@@ -150,16 +151,16 @@
     <tr><td class="mono">First release</td><td>0.1.0 — 19 September 2026</td></tr>
     <tr><td class="mono">Current version</td><td>0.23.0 — 18 October 2026</td></tr>
     <tr><td class="mono">Releases</td><td>21, every one in the <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a></td></tr>
-    <tr><td class="mono">Tests</td><td>439 automated, 0 failing (CI)</td></tr>
-    <tr><td class="mono">ADRs</td><td>29 public architecture decision records, each with the alternatives rejected</td></tr>
-    <tr><td class="mono">Sealed record families</td><td>6 — receipt/0.2.2, decision/0.1, admission/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
+    <tr><td class="mono">Tests</td><td>473 automated, 0 failing (CI)</td></tr>
+    <tr><td class="mono">ADRs</td><td>30 public architecture decision records, each with the alternatives rejected</td></tr>
+    <tr><td class="mono">Sealed record families</td><td>7 — receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
     <tr><td class="mono">Attack fixtures replayed</td><td>5 SCAR ids (43, 45, 89, 110, 114) — 16 tests</td></tr>
     <tr><td class="mono">Cryptography</td><td>SHA-256 hash chain · Ed25519 signatures · RFC 3161 multi-TSA + OpenTimestamps (Bitcoin); post-quantum migration path documented (ADR 027)</td></tr>
     <tr><td class="mono">Performance</td><td>0.17 ms per sealed append (public benchmark, <code>make bench</code>)</td></tr>
     <tr><td class="mono">Guardrail detection</td><td>French + English (regex, trained micro-models, local LLM judge)</td></tr>
     <tr><td class="mono">Licence</td><td>MIT</td></tr>
     <tr><td class="mono">Distribution</td><td><a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a> (<code>pip install noirebox</code>) · <a href="https://github.com/noirebox/noirebox/pkgs/container/noirebox" target="_blank" rel="noopener">Docker image on GHCR</a> · <a href="https://marketplace.visualstudio.com/items?itemName=noirebox.noirebox" target="_blank" rel="noopener">VS Code extension</a> 0.10.1 (Marketplace + <a href="https://open-vsx.org/extension/noirebox/noirebox" target="_blank" rel="noopener">Open VSX</a>) · <a href="https://github.com/marketplace/actions/noirebox-verify" target="_blank" rel="noopener">noirebox-verify GitHub Action</a> · read-only mirror on <a href="https://codeberg.org/noirebox/noirebox" target="_blank" rel="noopener">Codeberg</a></td></tr>
-    <tr><td class="mono">Compliance mapping</td><td>GDPR art. 5(2)/15/20 · AI Act art. 12, 14(5), 55(1)(c), 73, Annex IV · eIDAS art. 41 — <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+    <tr><td class="mono">Compliance mapping</td><td>GDPR art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, Annex IV · eIDAS art. 41 — <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
     <tr><td class="mono">Memberships</td><td><a href="https://futurium.ec.europa.eu/en/apply-ai-alliance" target="_blank" rel="noopener">Apply AI Alliance</a> (European Commission, Futurium)</td></tr>
     <tr><td class="mono">Creator</td><td>Sam Labbé (<a href="https://github.com/slabbdev" target="_blank" rel="noopener">@slabbdev</a>) — built solo</td></tr>
     <tr><td class="mono">Location</td><td>Vosges, France 🇫🇷</td></tr>
@@ -182,6 +183,7 @@
     <tr><td class="mono">2026-10-13 → 14</td><td><strong>0.14.0 → 0.20.0</strong> — the custody ladder: key-holder daemon the agent is not, HSM/PKCS#11 signing, the write-race pin, the custody grade — seven releases in two days</td></tr>
     <tr><td class="mono">2026-10-15</td><td><strong>0.21.0</strong> — the external audit of 0.20.0 answered in public: ten findings, ten answers, none breaking</td></tr>
     <tr><td class="mono">2026-10-18</td><td><strong>0.23.0</strong> — decision + admission receipts: the decision itself becomes a signed event (ADR 026 / ADR 028)</td></tr>
+    <tr><td class="mono">2026-10-21</td><td><strong>marking/0.1</strong> (ADR 030) — marking receipts for AI Act art. 50(2): the proof that a generated output was marked lives in the anchored journal, bound to its digest — a label can be stripped, a log can be edited, an anchored receipt can't. Developer guide (FR): <a href="article-50.html" lang="fr">article-50.html</a></td></tr>
   </tbody>
 </table>
 </section>
