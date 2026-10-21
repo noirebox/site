@@ -45,7 +45,7 @@
 
 <header class="head">
   <p class="kicker">// noirebox.eu — press &amp; media kit. Every figure on this page is checkable in the public repository.</p>
-  <h1>Press kit <span class="ver">v0.23.0</span></h1>
+  <h1>Press kit <span class="ver">v0.24.0</span></h1>
   <p class="lede">
     NoireBox is the <strong>flight data recorder for AI agents</strong>: an open-source,
     tamper-evident journal where every decision an agent takes is sealed, signed and
@@ -80,7 +80,7 @@
 
 <div class="boiler">
   <span class="label">Long — ~150 words</span>
-  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 21 releases, 473 automated tests, 30 public architecture decision records — each with the alternatives it rejected.</p>
+  <p id="bp-long">NoireBox is an open-source black box for AI agents, built solo in the Vosges, France, and published under the MIT licence. It answers one question: if someone contests a decision made by an AI agent tomorrow, who can prove what the agent exactly did — and that the record has not been touched since? Observability tools are built for debugging, and their logs stay editable by whoever holds the disk. NoireBox seals every event into an append-only journal that is hash-chained (SHA-256), signed (Ed25519) and anchored to external RFC 3161 time-stamp authorities, then exports an attestation a third party verifies offline, without trusting the operator. It is the integrity layer that the EU AI Act (art. 12, automatic logging) and the GDPR (art. 5(2), accountability) assume but do not specify. Since 19 September 2026: 22 releases, 473 automated tests, 30 public architecture decision records — each with the alternatives it rejected.</p>
   <button class="copy-btn" data-copy="bp-long" title="Copy" aria-label="Copy long boilerplate">⧉</button>
 </div>
 
@@ -149,8 +149,8 @@
     <tr><td class="mono">What</td><td>Tamper-evident journal + guardrails + verifiable proof for AI agents</td></tr>
     <tr><td class="mono">Category</td><td>Accountability / compliance infrastructure for agentic AI (open source)</td></tr>
     <tr><td class="mono">First release</td><td>0.1.0 — 19 September 2026</td></tr>
-    <tr><td class="mono">Current version</td><td>0.23.0 — 18 October 2026</td></tr>
-    <tr><td class="mono">Releases</td><td>21, every one in the <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a></td></tr>
+    <tr><td class="mono">Current version</td><td>0.24.0 — 21 October 2026</td></tr>
+    <tr><td class="mono">Releases</td><td>22, every one in the <a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a></td></tr>
     <tr><td class="mono">Tests</td><td>473 automated, 0 failing (CI)</td></tr>
     <tr><td class="mono">ADRs</td><td>30 public architecture decision records, each with the alternatives rejected</td></tr>
     <tr><td class="mono">Sealed record families</td><td>7 — receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
@@ -183,7 +183,7 @@
     <tr><td class="mono">2026-10-13 → 14</td><td><strong>0.14.0 → 0.20.0</strong> — the custody ladder: key-holder daemon the agent is not, HSM/PKCS#11 signing, the write-race pin, the custody grade — seven releases in two days</td></tr>
     <tr><td class="mono">2026-10-15</td><td><strong>0.21.0</strong> — the external audit of 0.20.0 answered in public: ten findings, ten answers, none breaking</td></tr>
     <tr><td class="mono">2026-10-18</td><td><strong>0.23.0</strong> — decision + admission receipts: the decision itself becomes a signed event (ADR 026 / ADR 028)</td></tr>
-    <tr><td class="mono">2026-10-21</td><td><strong>marking/0.1</strong> (ADR 030) — marking receipts for AI Act art. 50(2): the proof that a generated output was marked lives in the anchored journal, bound to its digest — a label can be stripped, a log can be edited, an anchored receipt can't. Developer guide (FR): <a href="article-50.html" lang="fr">article-50.html</a></td></tr>
+    <tr><td class="mono">2026-10-21</td><td><strong>0.24.0</strong> — marking/0.1 (ADR 030) — marking receipts for AI Act art. 50(2): the proof that a generated output was marked lives in the anchored journal, bound to its digest — a label can be stripped, a log can be edited, an anchored receipt can't. Developer guide (FR): <a href="article-50.html" lang="fr">article-50.html</a></td></tr>
   </tbody>
 </table>
 </section>
