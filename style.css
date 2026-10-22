@@ -1,21 +1,21 @@
 /* NoireBox — developer reference (code.noirebox.eu).
-   Docs-site layout: sidebar TOC + dense content. Dark identity, zero dependencies. */
+   Docs-site layout: sidebar TOC + dense content. Clean light identity, zero dependencies. */
 
 :root {
-  --bg: #07060c;
-  --bg-2: #0c0a14;
-  --bg-3: #110e1c;
-  --line: rgba(255, 255, 255, .09);
-  --line-strong: rgba(255, 255, 255, .18);
-  --txt: #e9e7f2;
-  --dim: #a3a1b6;
-  --dimmer: #6d6b80;
-  --violet: #8b5cf6;
-  --violet-soft: #c4b5fd;
-  --blue: #38bdf8;
-  --green: #3fb950;
-  --amber: #f5a623;
-  --red-soft: #ff7b72;
+  --bg: #f6f7f9;
+  --bg-2: #ffffff;
+  --bg-3: #eef0f4;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --txt: #0f172a;
+  --dim: #475569;
+  --dimmer: #94a3b8;
+  --violet: #7c3aed;
+  --violet-soft: #6d28d9;
+  --blue: #0284c7;
+  --green: #15803d;
+  --amber: #b45309;
+  --red-soft: #dc2626;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
   --side-w: 252px;
@@ -31,7 +31,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
-::selection { background: rgba(139, 92, 246, .4); }
+::selection { background: rgba(124, 58, 237, .16); }
 a { color: inherit; }
 code { font-family: var(--mono); font-size: .85em; color: var(--violet-soft); background: var(--bg-3); padding: .1em .35em; border-radius: 5px; }
 pre code { background: none; padding: 0; }
@@ -124,7 +124,7 @@ pre.code {
   position: relative; background: var(--bg-2); border: 1px solid var(--line);
   border-radius: 10px; padding: 14px 16px; overflow-x: auto;
   font-family: var(--mono); font-size: 13px; line-height: 1.6;
-  color: #d8d5e8; margin: 12px 0;
+  color: #1e293b; margin: 12px 0;
 }
 pre.code .c { color: var(--dimmer); }
 pre.code code { background: none; padding: 0; }
@@ -177,7 +177,7 @@ blockquote.quote cite { display: block; font-style: normal; font-family: var(--m
 /* ── responsive ─────────────────────────────── */
 @media (max-width: 980px) {
   .sidebar { transform: translateX(-100%); transition: transform .22s ease; width: 280px; }
-  .sidebar.open { transform: translateX(0); box-shadow: 0 0 60px rgba(0, 0, 0, .6); }
+  .sidebar.open { transform: translateX(0); box-shadow: 0 0 40px rgba(15, 23, 42, .18); }
   .menu-btn { display: block; }
   main { margin-left: 0; }
   main > * { padding-left: 20px; padding-right: 20px; }
