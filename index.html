@@ -4,117 +4,299 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NoireBox — the flight data recorder for AI agents</title>
-<meta name="description" content="NoireBox: a tamper-evident, signed, externally time-stamped journal for AI agents that anyone can verify offline. Press kit, articles, and the developer reference.">
+<meta name="description" content="NoireBox: the open-source flight data recorder for AI agents. Every decision sealed, signed and time-stamped by external witnesses — verifiable offline, without trusting the operator.">
 <meta property="og:title" content="NoireBox — the flight data recorder for AI agents">
-<meta property="og:description" content="Tamper-evident journal for AI agents, verifiable offline without trusting the operator. Press kit, articles, developer reference.">
+<meta property="og:description" content="Tamper-evident journal for AI agents, verifiable offline without trusting the operator.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noirebox.eu/">
 <meta property="og:image" content="https://noirebox.eu/assets/banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="style.css?v=34">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f6f7f9;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --txt: #0f172a;
+  --dim: #475569;
+  --muted: #94a3b8;
+  --violet: #7c3aed;
+  --violet-dark: #6d28d9;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--txt);
+  font-family: var(--sans); font-size: 16px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(124, 58, 237, .16); }
+a { color: inherit; }
+.wrap { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+section { scroll-margin-top: 24px; }
+
+/* ── nav ─────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255, 255, 255, .88); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand { font-family: var(--mono); font-weight: 700; font-size: 15px; letter-spacing: .14em; text-decoration: none; }
+.brand em { font-style: normal; color: var(--violet); }
+.cube { display: inline-block; width: 10px; height: 10px; background: linear-gradient(135deg, var(--violet), #0284c7); border-radius: 3px; margin-right: 8px; }
+.nlinks { display: flex; align-items: center; gap: 26px; }
+.nlinks a { color: var(--dim); text-decoration: none; font-size: 14px; }
+.nlinks a:hover { color: var(--txt); }
+.nlinks a.cta { color: var(--violet); font-weight: 600; }
+.nlinks a.cta:hover { color: var(--violet-dark); }
+
+/* ── hero ────────────────────────────────────── */
+.hero { text-align: center; padding: 108px 0 84px; }
+.kicker {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--violet); margin-bottom: 22px;
+}
+h1 {
+  font-size: clamp(38px, 6.5vw, 66px); letter-spacing: -.025em;
+  line-height: 1.06; max-width: 820px; margin: 0 auto;
+}
+.lede {
+  color: var(--dim); font-size: 18px; max-width: 640px;
+  margin: 24px auto 34px;
+}
+.lede strong { color: var(--txt); }
+.pip {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--txt); border-radius: 10px; padding: 13px 18px;
+  margin-bottom: 26px;
+}
+.pip code { font-family: var(--mono); font-size: 14.5px; color: #f1f5f9; }
+.pip code .p { color: #a78bfa; }
+.pip button {
+  background: none; border: 1px solid rgba(255, 255, 255, .25); color: #cbd5e1;
+  font-family: var(--mono); font-size: 11px; border-radius: 6px;
+  padding: 4px 10px; cursor: pointer;
+}
+.pip button:hover { color: #fff; border-color: rgba(255, 255, 255, .5); }
+.hlinks { font-size: 14px; color: var(--muted); }
+.hlinks a { color: var(--dim); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 1px; }
+.hlinks a:hover { color: var(--violet); border-color: var(--violet); }
+
+/* ── stats ───────────────────────────────────── */
+.stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-top: 34px; padding-bottom: 34px; }
+.stat { text-align: center; }
+.stat b { display: block; font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--violet); letter-spacing: -.02em; }
+.stat span { color: var(--muted); font-size: 13px; }
+
+/* ── features ────────────────────────────────── */
+.sec { padding: 92px 0; }
+.sec-alt { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.sec-head { max-width: 560px; margin-bottom: 52px; }
+h2 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -.02em; line-height: 1.15; }
+.sec-head p { color: var(--dim); margin-top: 12px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 44px 52px; }
+.f h3 { font-size: 17px; letter-spacing: -.01em; margin-bottom: 8px; }
+.f h3 .n { font-family: var(--mono); font-size: 12px; color: var(--violet); margin-right: 10px; }
+.f p { color: var(--dim); font-size: 15px; }
+.f code { font-family: var(--mono); font-size: .85em; background: var(--bg-soft); border: 1px solid var(--line); padding: .08em .35em; border-radius: 5px; }
+.sec-alt .f code { background: #fff; }
+
+/* ── how ─────────────────────────────────────── */
+.how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.step { border-top: 2px solid var(--txt); padding-top: 18px; }
+.step .sn { font-family: var(--mono); font-size: 12px; color: var(--violet); letter-spacing: .1em; }
+.step h3 { font-size: 19px; margin: 6px 0 8px; letter-spacing: -.01em; }
+.step p { color: var(--dim); font-size: 15px; }
+
+/* ── spec table ──────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th {
+  display: none;
+}
+td { border-bottom: 1px solid var(--line); padding: 13px 18px 13px 0; vertical-align: top; }
+td:first-child {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap; width: 180px; padding-top: 15px;
+}
+td:last-child { color: var(--dim); }
+tr:last-child td { border-bottom: none; }
+
+/* ── end cta ─────────────────────────────────── */
+.end { text-align: center; padding: 96px 0 100px; }
+.end h2 { margin-bottom: 14px; }
+.end .lede { margin-bottom: 30px; }
+
+/* ── footer ──────────────────────────────────── */
+footer { border-top: 1px solid var(--line); padding: 30px 0 42px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 13.5px; }
+footer a { color: var(--dim); text-decoration: none; }
+footer a:hover { color: var(--violet); }
+.flinks { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* ── responsive ──────────────────────────────── */
+@media (max-width: 860px) {
+  .hero { padding: 72px 0 60px; }
+  .stats .wrap { grid-template-columns: repeat(2, 1fr); gap: 26px 12px; }
+  .grid4 { grid-template-columns: 1fr; gap: 34px; }
+  .how { grid-template-columns: 1fr; gap: 28px; }
+  .nlinks { gap: 16px; }
+  .nlinks a:not(.cta) { display: none; }
+  .sec { padding: 64px 0; }
+  td:first-child { width: 120px; }
+}
+</style>
 </head>
 <body>
 
-<a class="skip" href="#content">Skip to content</a>
-
-<button class="menu-btn" id="menu-btn" aria-label="Toggle navigation">☰</button>
-<nav class="sidebar" id="sidebar" aria-label="Table of contents">
-  <a class="brand" href="#press"><span class="cube"></span>NOIRE<span>BOX</span></a>
-  <p class="brand-sub">press &amp; communication</p>
-  <div class="toc">
-    <a href="#press">Press kit</a>
-    <a href="#articles">Articles</a>
-    <a href="#guides">Guides</a>
-    <a href="#code">Code &amp; reference</a>
-    <a href="https://code.noirebox.eu/" class="toc-en"><strong>Developer reference →</strong></a>
-  </div>
-  <div class="side-foot">
-    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub ↗</a>
-    <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI ↗</a>
-    <a href="presse.html" lang="fr" title="Dossier de presse en français">🇫🇷 FR</a>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/"><span class="cube"></span>NOIRE<em>BOX</em></a>
+    <div class="nlinks">
+      <a href="https://code.noirebox.eu/">Docs</a>
+      <a href="https://blog.noirebox.eu/">Blog</a>
+      <a href="press.html">Press kit</a>
+      <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="cta" href="#start">Get started</a>
+    </div>
   </div>
 </nav>
-<div class="scrim" id="scrim" hidden></div>
 
-<main id="content">
-
-<header class="head">
-  <p class="kicker">// noirebox.eu — press &amp; communication. The technical reference lives at code.noirebox.eu.</p>
-  <h1>NoireBox <span class="ver">v0.24.0</span></h1>
-  <p class="lede">
-    The <strong>flight data recorder for AI agents</strong>: an open-source, tamper-evident
-    journal where every decision an agent takes is sealed, signed and time-stamped by
-    external witnesses — and anyone can verify the record offline,
-    <strong>without trusting the operator</strong>.
-  </p>
-  <p class="head-links mono">
-    <a href="press.html">press kit (EN)</a> ·
-    <a href="presse.html" lang="fr">dossier de presse (FR)</a> ·
-    <a href="https://code.noirebox.eu/">developer reference</a> ·
-    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">source</a>
-  </p>
+<header class="hero wrap">
+  <p class="kicker">Built in the Vosges, France. Verifiable everywhere.</p>
+  <h1>Every decision your agent makes, provable.</h1>
+  <p class="lede">NoireBox is the open-source <strong>flight data recorder for AI agents</strong>: a
+    tamper-evident journal where every decision is sealed, signed and time-stamped by external
+    witnesses — and <strong>anyone can verify it offline</strong>, without trusting the operator.</p>
+  <div class="pip"><code><span class="p">$</span> pip install noirebox</code><button id="copybtn" type="button">copy</button></div>
+  <p class="hlinks"><a href="https://code.noirebox.eu/">Read the docs</a> &nbsp;·&nbsp; <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">Source</a> &nbsp;·&nbsp; <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a></p>
 </header>
 
-<section id="press">
-<h2><a href="#press" class="anchor">§</a>Press kit</h2>
-<p>Boilerplate in three lengths, story angles with checkable sources, fact sheet, timeline, quotes, coverage, assets and the press contact — every figure sourced in the public repository.</p>
-<table>
-  <tbody>
-    <tr><td class="mono">English</td><td><a href="press.html">press.html</a></td></tr>
-    <tr><td class="mono">Français</td><td><a href="presse.html" lang="fr">presse.html</a></td></tr>
-    <tr><td class="mono">Press contact</td><td><a href="mailto:press@noirebox.eu">press@noirebox.eu</a> — Sam Labbé, creator &amp; maintainer, FR/EN</td></tr>
-    <tr><td class="mono">Assets</td><td><a href="press.html#assets">banner, architecture diagram, logo (SVG)</a></td></tr>
-  </tbody>
-</table>
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b>473</b><span>automated tests, 0 failing</span></div>
+    <div class="stat"><b>30</b><span>public ADRs, rejections included</span></div>
+    <div class="stat"><b>22</b><span>releases, all in the changelog</span></div>
+    <div class="stat"><b>0.17&nbsp;ms</b><span>per sealed append</span></div>
+  </div>
 </section>
 
-<section id="articles">
-<h2><a href="#articles" class="anchor">§</a>Articles</h2>
-<p>Published on <a href="https://dev.to/slabb" target="_blank" rel="noopener">dev.to/slabb</a>. The project is built in public — the audit threads under these articles became releases.</p>
-<ul class="tight">
-  <li><a href="https://dev.to/slabb/i-built-the-flight-data-recorder-for-ai-agents-38f6" target="_blank" rel="noopener">"I built the flight data recorder for AI agents."</a> <span class="dim">22 Sep 2026 — the founding article</span></li>
-  <li><a href="https://dev.to/slabb/the-ai-act-went-live-two-months-ago-your-agents-logs-are-still-editable-46dn" target="_blank" rel="noopener">"The AI Act went live two months ago. Your agent's logs are still editable."</a> <span class="dim">30 Sep 2026</span></li>
-  <li><a href="https://dev.to/slabb/a-hash-chain-proves-the-ordering-four-attacks-prove-its-not-enough-59oe" target="_blank" rel="noopener">"A hash chain proves the ordering. Four attacks prove it's not enough."</a> <span class="dim">10 Oct 2026</span></li>
-  <li><a href="https://dev.to/slabb/we-tested-pre-training-gravity-on-open-weights-it-stayed-home-243i" target="_blank" rel="noopener">"We tested pre-training gravity on open weights. It stayed home."</a> <span class="dim">11 Oct 2026</span></li>
-  <li><a href="https://dev.to/slabb/the-authority-ladder-five-rungs-down-four-premises-standing-4p5f" target="_blank" rel="noopener">"The authority ladder: five rungs down, four premises standing"</a> <span class="dim">13 Oct 2026</span></li>
-  <li><a href="https://dev.to/slabb/ten-findings-ten-answers-publishing-the-audit-of-our-own-black-box-1d29" target="_blank" rel="noopener">"Ten findings, ten answers — publishing the audit of our own black box"</a> <span class="dim">15 Oct 2026</span></li>
-</ul>
+<section class="sec" id="proof">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Proof, not promises.</h2>
+      <p>Nothing here asks for trust. Every claim on this page maps to a mechanism you can inspect, replay or break on purpose.</p>
+    </div>
+    <div class="grid4">
+      <div class="f">
+        <h3><span class="n">01</span>Tamper-evident by construction</h3>
+        <p>Every append is sealed into a SHA-256 hash chain. Change one byte anywhere in the history and the chain breaks — visibly, on replay.</p>
+      </div>
+      <div class="f">
+        <h3><span class="n">02</span>Signed &amp; time-stamped</h3>
+        <p>Ed25519 signatures, RFC 3161 multi-TSA and OpenTimestamps (Bitcoin). The record is witnessed by the outside world, not by the operator.</p>
+      </div>
+      <div class="f">
+        <h3><span class="n">03</span>Verifiable offline</h3>
+        <p>A single Python file or a plain browser page replays the whole chain. No server, no account, no trust required — <code>verify.py</code> is stdlib-only.</p>
+      </div>
+      <div class="f">
+        <h3><span class="n">04</span>Compliance, mapped</h3>
+        <p>GDPR art. 5(2)/15/20, AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, eIDAS art. 41 — each requirement mapped to a shipped feature in <code>COMPLIANCE-EU.md</code>.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="guides">
-<h2><a href="#guides" class="anchor">§</a>Guides</h2>
-<p>The legal text read by a developer — every date verified against the Official Journal, every claim sourced. Not legal advice.</p>
-<ul class="tight">
-  <li><a href="article-50.html" lang="fr" title="Guide en français">« L'article 50 de l'AI Act pour les développeurs — marquage, divulgation, preuve »</a> <span class="dim">FR · 21 Oct 2026 — who marks what since 2 Aug 2026, what 2 Dec 2026 actually covers (Reg. (EU) 2026/1744, art. 111(4)), and how a marking proof outlives the file</span></li>
-</ul>
+<section class="sec sec-alt" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Seal. Witness. Verify.</h2>
+      <p>Three moves, in this order, every time the agent acts.</p>
+    </div>
+    <div class="how">
+      <div class="step">
+        <span class="sn">STEP 1</span>
+        <h3>Seal</h3>
+        <p>Your agent appends every decision to a hash-chained journal — 0.17&nbsp;ms per append, in process, no network round-trip needed.</p>
+      </div>
+      <div class="step">
+        <span class="sn">STEP 2</span>
+        <h3>Witness</h3>
+        <p>Signatures and external timestamps anchor the record to something nobody can rewrite later — not even the operator.</p>
+      </div>
+      <div class="step">
+        <span class="sn">STEP 3</span>
+        <h3>Verify</h3>
+        <p>Anyone replays the chain offline. A broken link is proof of tampering; an intact chain is proof of integrity. Undecidable states stay named, never folded into a green check.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="code">
-<h2><a href="#code" class="anchor">§</a>Code &amp; reference</h2>
-<table>
-  <tbody>
-    <tr><td class="mono">Developer reference</td><td><a href="https://code.noirebox.eu/">code.noirebox.eu</a> — API, CLI, schemas, custody, verification contract, benchmarks</td></tr>
-    <tr><td class="mono">Source · MIT</td><td><a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">github.com/noirebox/noirebox</a> · mirror on <a href="https://codeberg.org/noirebox/noirebox" target="_blank" rel="noopener">Codeberg</a></td></tr>
-    <tr><td class="mono">Install</td><td><code>pip install noirebox</code> · <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a> · <a href="https://github.com/noirebox/noirebox/pkgs/container/noirebox" target="_blank" rel="noopener">Docker image on GHCR</a></td></tr>
-    <tr><td class="mono">Compliance</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a> · <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
-  </tbody>
-</table>
+<section class="sec" id="spec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Product information</h2>
+    </div>
+    <table>
+      <tr><td>What</td><td>Tamper-evident journal + guardrails + verifiable proof for AI agents</td></tr>
+      <tr><td>Current version</td><td>0.24.0 — 21 October 2026 · first release 0.1.0, 19 September 2026</td></tr>
+      <tr><td>Record families</td><td>7 — receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td></tr>
+      <tr><td>Cryptography</td><td>SHA-256 hash chain · Ed25519 signatures · RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td></tr>
+      <tr><td>Post-quantum</td><td>Migration path documented (ADR 027)</td></tr>
+      <tr><td>Guardrails</td><td>French + English — regex, trained micro-models, local LLM judge</td></tr>
+      <tr><td>Adversarial testing</td><td>5 SCAR attack fixtures replayed (ids 43, 45, 89, 110, 114)</td></tr>
+      <tr><td>Compliance</td><td>GDPR art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, Annex IV · eIDAS art. 41</td></tr>
+      <tr><td>Licence</td><td>MIT — open source, no strings</td></tr>
+      <tr><td>Distribution</td><td>PyPI · Docker on GHCR · VS Code extension · noirebox-verify GitHub Action · Codeberg mirror</td></tr>
+      <tr><td>Memberships</td><td>Apply AI Alliance (European Commission, Futurium)</td></tr>
+    </table>
+  </div>
 </section>
 
-<footer class="foot">
-  <div><span class="cube"></span> <strong>NoireBox</strong> — the flight data recorder for AI agents.</div>
-  <div class="foot-links mono">
-    <a href="press.html">Press</a>
-    <a href="presse.html" lang="fr">Presse</a>
-    <a href="article-50.html" lang="fr">Guide art. 50 (FR)</a>
-    <a href="https://code.noirebox.eu/">Developer reference</a>
-    <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub</a>
-    <span>MIT</span>
+<section class="end sec-alt" id="start">
+  <div class="wrap">
+    <h2>Start sealing.</h2>
+    <p class="lede">One pip install. Your agent's first sealed decision is one line of code away.</p>
+    <div class="pip"><code><span class="p">$</span> pip install noirebox</code><button id="copybtn2" type="button">copy</button></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>NoireBox — built solo by <a href="https://slabb.dev" target="_blank" rel="noopener">Sam Labbé</a>, Vosges, France. MIT.</span>
+    <span class="flinks">
+      <a href="https://code.noirebox.eu/">Docs</a>
+      <a href="https://blog.noirebox.eu/">Blog</a>
+      <a href="press.html">Press kit</a>
+      <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a>
+    </span>
   </div>
 </footer>
+<a class="skip" href="#proof">Skip to content</a>
+<style>.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:99;background:var(--violet);color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none}</style>
 
-</main>
-
-<script src="script.js?v=33"></script>
+<script>
+(function(){
+  function bind(id){
+    var b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener('click',function(){
+      var t='pip install noirebox';
+      function done(){b.textContent='copied';setTimeout(function(){b.textContent='copy'},1400);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}
+      else done();
+    });
+  }
+  bind('copybtn');bind('copybtn2');
+})();
+</script>
 </body>
 </html>
