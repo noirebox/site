@@ -60,9 +60,11 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .nlinks > a { color: var(--dim); text-decoration: none; font-size: 13.5px; font-weight: 500; }
 .nlinks > a:hover { color: var(--violet); }
 .nright { display: flex; align-items: center; gap: 10px; }
-.lang { display: inline-flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); padding: 2px; font-family: var(--mono); font-size: 11px; }
-.lang button { border: 0; background: none; padding: 4px 10px; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; }
-.lang button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(15,23,42,.08); }
+.lang { display: inline-flex; align-items: center; gap: 3px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 3px; }
+.lang button { border: 0; background: none; padding: 3px 5px; cursor: pointer; opacity: .35; filter: grayscale(1); border-radius: 6px; line-height: 0; transition: opacity .15s, filter .15s; }
+.lang button:hover { opacity: .7; }
+.lang button.on { opacity: 1; filter: none; box-shadow: 0 0 0 2px rgba(109,40,217,.28); }
+.lang svg { width: 21px; height: 14px; border-radius: 2px; display: block; }
 .btn-cta { display: inline-block; text-decoration: none; font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 8px 14px; background: var(--ink); color: #fff; border: 1px solid var(--ink); }
 .btn-cta:hover { background: var(--violet-dark); border-color: var(--violet-dark); }
 
@@ -256,8 +258,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     </div>
     <div class="nright">
       <div class="lang" role="group" aria-label="Language">
-        <button id="lang-en" class="on" onclick="setLang('en')">EN</button>
-        <button id="lang-fr" onclick="setLang('fr')">FR</button>
+        <button id="lang-en" class="on" onclick="setLang('en')" title="English" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></button>
+        <button id="lang-fr" onclick="setLang('fr')" title="Français" aria-label="Français"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ED2939"/></svg></button>
       </div>
       <a class="btn-cta" href="#use" data-i18n="nav.cta">Start sealing</a>
       <a class="btn-out" href="client.html" data-i18n="nav.plain">Plain-words version</a>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NoireBox — votre agent IA décide tout seul. Désormais, vous pouvez le prouver.</title>
-<meta name="description" content="La boîte noire des agents IA pour les entreprises européennes : chaque décision scellée, signée, horodatée — vérifiable par un auditeur sans vous croire sur parole. AI Act art. 12, RGPD, open source.">
+<title>NoireBox — your AI agent decides on its own. Now you can prove it.</title>
+<meta name="description" content="The black box for AI agents, for European companies using AI: every decision sealed, signed, time-stamped — auditable without trusting anyone. AI Act art. 12, GDPR, open source.">
 <meta property="og:title" content="NoireBox — prove what your AI agents decide">
 <meta property="og:description" content="The black box for AI agents: every decision sealed, signed, time-stamped — auditable without trusting anyone. Built in the EU.">
 <meta property="og:type" content="website">
@@ -30,7 +30,6 @@ a{color:inherit}
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
 .mono{font-family:var(--mono)}
 
-/* nav */
 nav{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
 .brand{font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.16em;text-decoration:none;display:flex;align-items:center}
@@ -39,10 +38,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 .nright{display:flex;align-items:center;gap:10px}
 .pillb{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--dim);border:1px solid var(--line-strong);background:#fff;padding:7px 13px;border-radius:999px;text-decoration:none}
 .pillb:hover{color:var(--violet);border-color:var(--violet)}
-.langb{font-family:var(--mono);font-size:11.5px;color:var(--dim);border:1px solid var(--line-strong);background:#fff;padding:7px 13px;border-radius:999px;cursor:pointer}
-.langb:hover{color:var(--violet);border-color:var(--violet)}
+.langb{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line-strong);background:#fff;border-radius:999px;padding:3px}
+.langb button{border:0;background:none;padding:3px 5px;cursor:pointer;opacity:.35;filter:grayscale(1);border-radius:6px;line-height:0;transition:opacity .15s,filter .15s}
+.langb button:hover{opacity:.7}
+.langb button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(109,40,217,.28)}
+.langb svg{width:21px;height:14px;border-radius:2px;display:block}
 
-/* hero */
 .hero{position:relative;text-align:center;padding:96px 0 84px;border-bottom:1px solid var(--line);background-size:40px 40px;background-image:linear-gradient(to right,rgba(226,232,240,.5) 1px,transparent 1px),linear-gradient(to bottom,rgba(226,232,240,.5) 1px,transparent 1px);overflow:hidden}
 .hero::before{content:"";position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:820px;height:520px;background:radial-gradient(closest-side,rgba(109,40,217,.13),transparent 70%);pointer-events:none}
 .hero .wrap{position:relative;z-index:2}
@@ -58,7 +59,6 @@ h1 .p{color:var(--violet)}
 .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
 .btn.primary:hover{background:var(--violet-dark);border-color:var(--violet-dark)}
 
-/* bandes */
 .band{padding:74px 0;border-bottom:1px solid var(--line)}
 .band.alt{background:#fff}
 .sec-kicker{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);margin-bottom:12px}
@@ -66,7 +66,6 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .sec-lede{color:var(--dim);max-width:660px;margin-top:14px;font-size:17px}
 .sec-lede strong{color:var(--ink);font-weight:600}
 
-/* ai act band */
 .act{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
 .act .fine{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:16px}
 .act .fine a{color:var(--muted)}
@@ -76,9 +75,8 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .finecard b{font-family:var(--mono);font-size:26px;color:var(--violet);letter-spacing:-.02em;white-space:nowrap}
 .finecard span{color:var(--dim);font-size:14.5px}
 
-/* chaîne interactive */
-.chain{margin:44px auto 0;max-width:860px;display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center}
-.linkn{background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:16px 14px;width:150px;position:relative;transition:all .35s}
+.chain{margin:44px auto 0;max-width:900px;display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center}
+.linkn{background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:16px 14px;width:152px;position:relative;transition:all .35s}
 .linkn .n{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.1em}
 .linkn .ic{font-size:24px;margin:6px 0}
 .linkn .t{font-size:13.5px;font-weight:600;line-height:1.3;min-height:2.6em}
@@ -88,10 +86,9 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .linkn.broke{border-color:#fb7185;background:var(--bad-bg)}
 .linkn.broke .t{text-decoration:line-through;color:var(--bad)}
 .linkn.broke .h{color:var(--bad)}
-.linkn.broke::after,.linkn.broke+.linkn::before{background:#fb7185}
 .linkn.down{border-color:#fb7185;background:var(--bad-bg)}
 .linkn.down .h{color:var(--bad)}
-.linkn.down::after{background:#fb7185}
+.linkn.down::after,.linkn.broke::after{background:#fb7185}
 .linkn.fixed{border-color:var(--good-line);background:var(--good-bg)}
 .linkn.fixed .h{color:var(--good)}
 .linkn.fixed::after{background:var(--good-line)}
@@ -107,7 +104,6 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .demonote{text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:18px}
 .demonote a{color:var(--muted)}
 
-/* cartes */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 24px}
 .card .ic{font-size:28px}
@@ -115,30 +111,25 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .card p{color:var(--dim);font-size:14.5px}
 .card p strong{color:var(--ink);font-weight:600}
 
-/* chiffres */
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
 .num{text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 12px}
 .num b{display:block;font-family:var(--mono);font-size:clamp(26px,3.4vw,38px);font-weight:700;color:var(--violet);letter-spacing:-.02em}
 .num span{color:var(--muted);font-size:13px}
 
-/* souveraineté */
 .sov{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .sovtag{font-family:var(--mono);font-size:12.5px;background:#fff;border:1px solid var(--line-strong);border-radius:999px;padding:9px 18px;color:var(--dim)}
 .sovtag b{color:var(--violet);font-weight:600}
 
-/* cta final */
 .end{text-align:center;padding:88px 0}
 .end .lede{margin-bottom:30px}
 .endnote{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:20px}
 .endnote a{color:var(--dim)}
 
-/* footer */
 footer{border-top:1px solid var(--line);padding:26px 0 34px;font-family:var(--mono);font-size:.76rem;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 footer a{color:var(--dim);border-bottom:1px solid var(--line)}
 footer a:hover{color:var(--violet);border-color:var(--violet)}
 
-/* reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .reveal.on{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
@@ -159,20 +150,23 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
   <div class="wrap">
     <a class="brand" href="index.html"><span class="cube"></span>NOIRE<em>BOX</em></a>
     <div class="nright">
-      <button class="langb" id="langBtn" aria-pressed="false">EN</button>
-      <a class="pillb" href="tech.html" data-en="I am tech →">Je suis tech →</a>
+      <div class="langb" id="langBtn" role="group" aria-label="Language">
+        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></button>
+        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ED2939"/></svg></button>
+      </div>
+      <a class="pillb" href="tech.html" data-fr="Je suis tech →">I am tech →</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <p class="kicker" data-en="For European companies that use AI">Pour les entreprises européennes qui utilisent l’IA</p>
-    <h1 data-en-html="Your AI agent decides on its own.<br><span class='p'>Now you can prove it.</span>">Votre agent IA décide tout seul.<br><span class="p">Désormais, vous pouvez le prouver.</span></h1>
-    <p class="lede" data-en-html="NoireBox is the black box for AI agents: every decision is <strong>sealed, signed and time-stamped</strong> — like a plane’s flight recorder. Anyone can check the record, <strong>without trusting anyone</strong>.">NoireBox est la boîte noire des agents IA : chaque décision est <strong>scellée, signée et horodatée</strong> — comme l’enregistreur de vol d’un avion. N’importe qui peut contrôler la trace, <strong>sans devoir faire confiance à personne</strong>.</p>
+    <p class="kicker" data-fr="Pour les entreprises européennes qui utilisent l’IA">For European companies that use AI</p>
+    <h1 data-fr-html="Votre agent IA décide tout seul.<br><span class='p'>Désormais, vous pouvez le prouver.</span>">Your AI agent decides on its own.<br><span class="p">Now you can prove it.</span></h1>
+    <p class="lede" data-fr-html="NoireBox est la boîte noire des agents IA : chaque décision est <strong>scellée, signée et horodatée</strong> — comme l’enregistreur de vol d’un avion. N’importe qui peut contrôler la trace, <strong>sans devoir faire confiance à personne</strong>.">NoireBox is the black box for AI agents: every decision is <strong>sealed, signed and time-stamped</strong> — like a plane’s flight recorder. Anyone can check the record, <strong>without trusting anyone</strong>.</p>
     <div class="ctas">
-      <a class="btn primary" href="#demo" data-en="Try to cheat — 30 seconds">Essayez de tricher — 30 secondes</a>
-      <a class="btn" href="tech.html" data-en="I am tech — show me the mechanics">Je suis tech — montrez-moi la mécanique</a>
+      <a class="btn primary" href="#demo" data-fr="Essayez de tricher — 30 secondes">Try to cheat — 30 seconds</a>
+      <a class="btn" href="tech.html" data-fr="Je suis tech — montrez-moi la mécanique">I am tech — show me the mechanics</a>
     </div>
   </div>
 </header>
@@ -181,15 +175,15 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
   <div class="wrap">
     <div class="act reveal">
       <div>
-        <p class="sec-kicker" data-en="The rule, stated plainly">La règle, dite simplement</p>
-        <h2 data-en-html="Europe now requires proof — not checkboxes.">L’Europe exige maintenant des preuves — pas des cases cochées.</h2>
-        <p class="sec-lede" data-en-html="The EU AI Act requires <strong>automatic logging of every decision</strong> your AI makes (art. 12). A log file is not proof: anyone with the disk can edit it. NoireBox makes the record <strong>impossible to rewrite silently</strong> — that is what turns an obligation into evidence.">Le règlement européen sur l’IA impose la <strong>journalisation automatique de chaque décision</strong> de vos IA (art. 12). Un fichier de log n’est pas une preuve : quiconque tient le disque peut le modifier. NoireBox rend la trace <strong>impossible à réécrire discrètement</strong> — c’est ce qui transforme une obligation en preuve.</p>
-        <p class="fine" data-en-html="Sources: AI Act art. 12 · GDPR art. 5(2) · the full mapping is public — <a href='https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md' target='_blank' rel='noopener'>COMPLIANCE-EU.md</a>">Sources : AI Act art. 12 · RGPD art. 5(2) · le mapping complet est public — <a href='https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md' target='_blank' rel='noopener'>COMPLIANCE-EU.md</a></p>
+        <p class="sec-kicker" data-fr="La règle, dite simplement">The rule, stated plainly</p>
+        <h2 data-fr-html="L’Europe exige maintenant des preuves — pas des cases cochées.">Europe now requires proof — not checkboxes.</h2>
+        <p class="sec-lede" data-fr-html="Le règlement européen sur l’IA impose la <strong>journalisation automatique de chaque décision</strong> de vos IA (art. 12). Un fichier de log n’est pas une preuve : quiconque tient le disque peut le modifier. NoireBox rend la trace <strong>impossible à réécrire discrètement</strong> — c’est ce qui transforme une obligation en preuve.">The EU AI Act requires <strong>automatic logging of every decision</strong> your AI makes (art. 12). A log file is not proof: anyone with the disk can edit it. NoireBox makes the record <strong>impossible to rewrite silently</strong> — that is what turns an obligation into evidence.</p>
+        <p class="fine" data-fr-html="Sources : AI Act art. 12 · RGPD art. 5(2) · le mapping complet est public — <a href='https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md' target='_blank' rel='noopener'>COMPLIANCE-EU.md</a>">Sources: AI Act art. 12 · GDPR art. 5(2) · the full mapping is public — <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
       </div>
       <div class="bigfine">
-        <div class="finecard"><b>35&nbsp;M€</b><span data-en="or 7% of worldwide turnover — the maximum fine under the EU AI Act.">ou 7&nbsp;% du chiffre d’affaires mondial — l’amende maximale prévue par l’AI Act.</span></div>
-        <div class="finecard"><b>art.&nbsp;12</b><span data-en="automatic logging of decisions — already in force for the highest-risk systems.">journalisation automatique des décisions — déjà en vigueur pour les systèmes les plus à risque.</span></div>
-        <div class="finecard"><b>6&nbsp;mois</b><span data-en="minimum retention of the logs you must be able to produce.">de conservation minimale des journaux que vous devez savoir produire.</span></div>
+        <div class="finecard"><b>35&nbsp;M€</b><span data-fr="ou 7&nbsp;% du chiffre d’affaires mondial — l’amende maximale prévue par l’AI Act.">or 7% of worldwide turnover — the maximum fine under the EU AI Act.</span></div>
+        <div class="finecard"><b>art.&nbsp;12</b><span data-fr="journalisation automatique des décisions — déjà en vigueur pour les systèmes les plus à risque.">automatic logging of decisions — already in force for the highest-risk systems.</span></div>
+        <div class="finecard"><b>6&nbsp;mois</b><span data-fr="de conservation minimale des journaux que vous devez savoir produire.">minimum retention of the logs you must be able to produce.</span></div>
       </div>
     </div>
   </div>
@@ -197,66 +191,66 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 
 <section class="band alt" id="demo">
   <div class="wrap">
-    <p class="sec-kicker reveal" data-en="A demo you can break">Une démo que vous pouvez casser</p>
-    <h2 class="reveal" data-en="Try to cheat.">Essayez de tricher.</h2>
-    <p class="sec-lede reveal" data-en="Below: one morning of an AI agent’s work, sealed link by link — like a chain. Press “modify a step” and watch what the chain shows.">Ci-dessous : une matinée de travail d’un agent IA, scellée maillon par maillon — comme une chaîne. Appuyez sur « modifiez une étape » et regardez ce que la chaîne raconte.</p>
+    <p class="sec-kicker reveal" data-fr="Une démo que vous pouvez casser">A demo you can break</p>
+    <h2 class="reveal" data-fr="Essayez de tricher.">Try to cheat.</h2>
+    <p class="sec-lede reveal" data-fr="Ci-dessous : une matinée de travail d’un agent IA, scellée maillon par maillon — comme une chaîne. Appuyez sur « modifiez une étape » et regardez ce que la chaîne raconte.">Below: one morning of an AI agent’s work, sealed link by link — like a chain. Press “modify a step” and watch what the chain shows.</p>
 
     <div class="chain reveal" id="chain">
       <div class="linkn" data-i="0">
         <div class="n">01</div><div class="ic">📥</div>
-        <div class="t" data-en="Request received — client asks for a quote">Demande reçue — le client veut un devis</div>
+        <div class="t" data-fr="Demande reçue — le client veut un devis">Request received — client asks for a quote</div>
         <div class="h">sha256:9f2a41…c81e</div>
       </div>
       <div class="linkn" data-i="1">
         <div class="n">02</div><div class="ic">📚</div>
-        <div class="t" data-en="Documents read — 12 catalogue pages">Documents consultés — 12 pages du catalogue</div>
+        <div class="t" data-fr="Documents consultés — 12 pages du catalogue">Documents read — 12 catalogue pages</div>
         <div class="h">sha256:4c77be…09d3</div>
       </div>
       <div class="linkn" data-i="2">
         <div class="n">03</div><div class="ic">🧮</div>
-        <div class="t" data-en="Quote computed — €14,200 excl. VAT">Proposition calculée — 14&nbsp;200&nbsp;€ HT</div>
+        <div class="t" data-fr="Proposition calculée — 14&nbsp;200&nbsp;€ HT">Quote computed — €14,200 excl. VAT</div>
         <div class="h">sha256:b31f0a…7742</div>
       </div>
       <div class="linkn" data-i="3">
         <div class="n">04</div><div class="ic">✉️</div>
-        <div class="t" data-en="Quote sent — e-mail at 15:42">Proposition envoyée — e-mail à 15:42</div>
+        <div class="t" data-fr="Proposition envoyée — e-mail à 15:42">Quote sent — e-mail at 15:42</div>
         <div class="h">sha256:7d90cc…e2af</div>
       </div>
       <div class="linkn" data-i="4">
         <div class="n">05</div><div class="ic">📓</div>
-        <div class="t" data-en="Decision sealed — time-stamped by NoireBox">Décision scellée — horodatée par NoireBox</div>
+        <div class="t" data-fr="Décision scellée — horodatée par NoireBox">Decision sealed — time-stamped by NoireBox</div>
         <div class="h">sha256:e518d2…33b9</div>
       </div>
     </div>
 
     <div class="ctl">
-      <button class="dbtn" id="btnBreak" data-en="Modify a step — and lie">Modifiez une étape — et mentez</button>
-      <button class="dbtn fix" id="btnFix" data-en="Repair the chain">Réparez la chaîne</button>
+      <button class="dbtn" id="btnBreak" data-fr="Modifiez une étape — et mentez">Modify a step — and lie</button>
+      <button class="dbtn fix" id="btnFix" data-fr="Réparez la chaîne">Repair the chain</button>
     </div>
     <div class="verdict" id="verdict"></div>
-    <p class="demonote" data-en-html="This demo runs in your browser. On the blog, the same proof runs on real files — <a href='tech.html#inspector'>see the technical version</a>.">Cette démo tourne dans votre navigateur. Sur le blog, la même preuve tourne sur de vrais fichiers — <a href="tech.html#inspector">voyez la version technique</a>.</p>
+    <p class="demonote" data-fr-html="Cette démo tourne dans votre navigateur. Sur le blog, la même preuve tourne sur de vrais fichiers — <a href='tech.html#inspector'>voyez la version technique</a>.">This demo runs in your browser. On the blog, the same proof runs on real files — <a href="tech.html#inspector">see the technical version</a>.</p>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <p class="sec-kicker reveal" data-en="What it changes for you">Ce que ça change pour vous</p>
-    <h2 class="reveal" data-en="One tool, three jobs it makes easier.">Un outil, trois métiers qu’il simplifie.</h2>
+    <p class="sec-kicker reveal" data-fr="Ce que ça change pour vous">What it changes for you</p>
+    <h2 class="reveal" data-fr="Un outil, trois métiers qu’il simplifie.">One tool, three jobs it makes easier.</h2>
     <div class="cards">
       <div class="card reveal">
         <div class="ic">🏛️</div>
-        <h3 data-en="Leadership, DPO & CISO">Direction, DPO &amp; RSSI</h3>
-        <p data-en-html="Answer an audit with a dossier the auditor <strong>verifies alone</strong> — no trust required, no screenshots. AI Act art. 12 and GDPR accountability: covered, and provable.">Répondez à un audit avec un dossier que le vérificateur <strong>contrôle tout seul</strong> — sans vous croire sur parole, sans captures d’écran. AI Act art. 12 et redevabilité RGPD : couverts, et prouvables.</p>
+        <h3 data-fr="Direction, DPO &amp; RSSI">Leadership, DPO &amp; CISO</h3>
+        <p data-fr-html="Répondez à un audit avec un dossier que le vérificateur <strong>contrôle tout seul</strong> — sans vous croire sur parole, sans captures d’écran. AI Act art. 12 et redevabilité RGPD : couverts, et prouvables.">Answer an audit with a dossier the auditor <strong>verifies alone</strong> — no trust required, no screenshots. AI Act art. 12 and GDPR accountability: covered, and provable.</p>
       </div>
       <div class="card reveal">
         <div class="ic">🤝</div>
-        <h3 data-en="Sales & client trust">Commercial &amp; confiance client</h3>
-        <p data-en-html="Show your clients that what the AI decided for them <strong>was not rewritten afterwards</strong>. In a market where everyone promises, the one who proves wins the deal.">Montrez à vos clients que ce que l’IA a décidé pour eux <strong>n’a pas été réécrit après coup</strong>. Dans un marché où tout le monde promet, celui qui prouve gagne le contrat.</p>
+        <h3 data-fr="Commercial &amp; confiance client">Sales &amp; client trust</h3>
+        <p data-fr-html="Montrez à vos clients que ce que l’IA a décidé pour eux <strong>n’a pas été réécrit après coup</strong>. Dans un marché où tout le monde promet, celui qui prouve gagne le contrat.">Show your clients that what the AI decided for them <strong>was not rewritten afterwards</strong>. In a market where everyone promises, the one who proves wins the deal.</p>
       </div>
       <div class="card reveal">
         <div class="ic">⚙️</div>
-        <h3 data-en="The teams building the AI">Les équipes qui construisent l’IA</h3>
-        <p data-en-html="One line of code seals every decision: <strong>0.17&nbsp;ms</strong>, no slowdown, no data sent anywhere. Your logs stay on your machines — the method is open source.">Une ligne de code scelle chaque décision : <strong>0,17&nbsp;ms</strong>, aucun ralentissement, aucune donnée envoyée ailleurs. Vos journaux restent chez vous — la méthode est open source.</p>
+        <h3 data-fr="Les équipes qui construisent l’IA">The teams building the AI</h3>
+        <p data-fr-html="Une ligne de code scelle chaque décision : <strong>0,17&nbsp;ms</strong>, aucun ralentissement, aucune donnée envoyée ailleurs. Vos journaux restent chez vous — la méthode est open source.">One line of code seals every decision: <strong>0.17&nbsp;ms</strong>, no slowdown, no data sent anywhere. Your logs stay on your machines — the method is open source.</p>
       </div>
     </div>
   </div>
@@ -264,13 +258,13 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 
 <section class="band alt">
   <div class="wrap">
-    <p class="sec-kicker reveal" data-en="Numbers, not adjectives">Des chiffres, pas des adjectifs</p>
-    <h2 class="reveal" data-en="What the box already proves today.">Ce que la boîte prouve déjà aujourd’hui.</h2>
+    <p class="sec-kicker reveal" data-fr="Des chiffres, pas des adjectifs">Numbers, not adjectives</p>
+    <h2 class="reveal" data-fr="Ce que la boîte prouve déjà aujourd’hui.">What the box already proves today.</h2>
     <div class="nums reveal">
-      <div class="num"><b><span class="count" data-to="0.17" data-dec="2">0</span>&nbsp;ms</b><span data-en="to seal a decision">pour sceller une décision</span></div>
-      <div class="num"><b><span class="count" data-to="473">0</span></b><span data-en="automated tests, 0 failing">tests automatisés, 0 en échec</span></div>
-      <div class="num"><b><span class="count" data-to="30">0</span></b><span data-en="public architecture decisions">décisions d’architecture publiques</span></div>
-      <div class="num"><b><span class="count" data-to="0">0</span></b><span data-en="personal data collected — by design">donnée personnelle collectée — par conception</span></div>
+      <div class="num"><b><span class="count" data-to="0.17" data-dec="2">0</span>&nbsp;ms</b><span data-fr="pour sceller une décision">to seal a decision</span></div>
+      <div class="num"><b><span class="count" data-to="473">0</span></b><span data-fr="tests automatisés, 0 en échec">automated tests, 0 failing</span></div>
+      <div class="num"><b><span class="count" data-to="30">0</span></b><span data-fr="décisions d’architecture publiques">public architecture decisions</span></div>
+      <div class="num"><b><span class="count" data-to="0">0</span></b><span data-fr="donnée personnelle collectée — par conception">personal data collected — by design</span></div>
     </div>
   </div>
 </section>
@@ -279,15 +273,15 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
   <div class="wrap">
     <div class="act reveal">
       <div>
-        <p class="sec-kicker" data-en="European by design">Européen par conception</p>
-        <h2 data-en-html="Built in the EU. Verifiable everywhere. Your data stays yours.">Conçu dans l’UE. Vérifiable partout. Vos données restent chez vous.</h2>
-        <p class="sec-lede" data-en-html="NoireBox is open source (MIT), made in France for the European market: nothing phones home, no cloud is required, and the verification runs on your own laptop. The project is a member of the Apply AI Alliance (European Commission, Futurium).">NoireBox est open source (MIT), fabriqué en France pour le marché européen : rien ne « téléphone » à l’extérieur, aucun cloud n’est imposé, et la vérification tourne sur votre propre machine. Le projet est membre de l’Apply AI Alliance (Commission européenne, Futurium).</p>
+        <p class="sec-kicker" data-fr="Européen par conception">European by design</p>
+        <h2 data-fr-html="Conçu dans l’UE. Vérifiable partout. Vos données restent chez vous.">Built in the EU. Verifiable everywhere. Your data stays yours.</h2>
+        <p class="sec-lede" data-fr-html="NoireBox est open source (MIT), fabriqué en France pour le marché européen : rien ne « téléphone » à l’extérieur, aucun cloud n’est imposé, et la vérification tourne sur votre propre machine. Le projet est membre de l’Apply AI Alliance (Commission européenne, Futurium).">NoireBox is open source (MIT), made in France for the European market: nothing phones home, no cloud is required, and the verification runs on your own laptop. The project is a member of the Apply AI Alliance (European Commission, Futurium).</p>
       </div>
       <div class="sov">
-        <span class="sovtag"><b>🇪🇺</b> <span data-en="Built in the EU">Conçu dans l’UE</span></span>
-        <span class="sovtag"><b>MIT</b> <span data-en="open source">open source</span></span>
-        <span class="sovtag"><b>0</b> <span data-en="data sent outside">donnée envoyée à l’extérieur</span></span>
-        <span class="sovtag"><b>✓</b> <span data-en="offline verification">vérification hors-ligne</span></span>
+        <span class="sovtag"><b>🇪🇺</b> <span data-fr="Conçu dans l’UE">Built in the EU</span></span>
+        <span class="sovtag"><b>MIT</b> open source</span>
+        <span class="sovtag"><b>0</b> <span data-fr="donnée envoyée à l’extérieur">data sent outside</span></span>
+        <span class="sovtag"><b>✓</b> <span data-fr="vérification hors-ligne">offline verification</span></span>
         <span class="sovtag"><b>Apply AI Alliance</b></span>
       </div>
     </div>
@@ -296,41 +290,46 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 
 <section class="band alt end">
   <div class="wrap">
-    <p class="sec-kicker" data-en="Start today">Commencez aujourd’hui</p>
-    <h2 data-en-html="Your first sealed decision is one line away.">Votre première décision scellée est à une ligne.</h2>
-    <p class="lede" data-en="Install it with your team, seal a first agent, and show the proof to whoever asks — auditor, client or insurer.">Installez-la avec votre équipe, scellez un premier agent, et montrez la preuve à qui la demande — auditeur, client ou assureur.</p>
+    <p class="sec-kicker" data-fr="Commencez aujourd’hui">Start today</p>
+    <h2 data-fr-html="Votre première décision scellée est à une ligne.">Your first sealed decision is one line away.</h2>
+    <p class="lede" data-fr="Installez-la avec votre équipe, scellez un premier agent, et montrez la preuve à qui la demande — auditeur, client ou assureur.">Install it with your team, seal a first agent, and show the proof to whoever asks — auditor, client or insurer.</p>
     <div class="ctas">
       <a class="btn primary mono" href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">$ pip install noirebox</a>
-      <a class="btn" href="https://code.noirebox.eu/" data-en="Read the documentation">Lire la documentation</a>
+      <a class="btn" href="https://code.noirebox.eu/" data-fr="Lire la documentation">Read the documentation</a>
     </div>
-    <p class="endnote" data-en-html="A question? A human answers: <a href='mailto:sam@slabb.dev'>sam@slabb.dev</a>">Une question ? Un humain répond : <a href="mailto:sam@slabb.dev">sam@slabb.dev</a></p>
+    <p class="endnote" data-fr-html="Une question ? Un humain répond : <a href='mailto:sam@slabb.dev'>sam@slabb.dev</a>">A question? A human answers: <a href="mailto:sam@slabb.dev">sam@slabb.dev</a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-en="legal &amp; privacy">mentions légales &amp; rgpd</a></span>
-    <span data-en="© 2026 Sam LABBE · whichever door — the proof is live">© 2026 Sam LABBE · peu importe la porte — la preuve est en direct</span>
+    <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-fr="mentions légales &amp; rgpd">legal &amp; privacy</a></span>
+    <span data-fr="© 2026 Sam LABBE · peu importe la porte — la preuve est en direct">© 2026 Sam LABBE · whichever door — the proof is live</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  /* ── i18n : FR par défaut, EN via data-en ── */
-  var en=false, lb=document.getElementById('langBtn');
+  /* ── i18n : EN par défaut dans le HTML ; FR via data-fr, appliqué immédiatement ── */
+  var fr=/^fr/i.test(navigator.language||'');
+  var langGroup=document.getElementById('langBtn');
+
   function apply(){
-    var nodes=document.querySelectorAll('[data-en],[data-en-html]');
+    var nodes=document.querySelectorAll('[data-fr],[data-fr-html]');
     for(var i=0;i<nodes.length;i++){
-      var n=nodes[i], k=n.getAttribute('data-en-html')!==null?'data-en-html':'data-en';
-      var key=k;
-      if(en){ if(!n.getAttribute('data-fr')) n.setAttribute('data-fr',n.innerHTML); n.innerHTML=n.getAttribute(key); }
-      else{ n.innerHTML=n.getAttribute('data-fr'); }
+      var n=nodes[i], k=n.hasAttribute('data-fr-html')?'data-fr-html':'data-fr';
+      if(fr){ if(!n.getAttribute('data-en')) n.setAttribute('data-en',n.innerHTML); n.innerHTML=n.getAttribute(k); }
+      else{ var d=n.getAttribute('data-en'); if(d!==null) n.innerHTML=d; }
     }
-    document.documentElement.lang=en?'en':'fr';
-    lb.textContent=en?'FR':'EN'; lb.setAttribute('aria-pressed',en?'true':'false');
+    document.documentElement.lang=fr?'fr':'en';
+    var bs=langGroup.querySelectorAll('button');
+    for(var j=0;j<bs.length;j++) bs[j].className=(bs[j].getAttribute('data-l')===(fr?'fr':'en'))?'on':'';
   }
-  lb.addEventListener('click',function(){en=!en;apply();});
-  if(!/^fr/i.test(navigator.language||'fr')) setTimeout(function(){lb.click()},900);
+  var bs0=langGroup.querySelectorAll('button');
+  for(var q=0;q<bs0.length;q++){
+    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); apply(); resetTamperBtn(); });
+  }
+  if(fr) apply();
 
   /* ── reveals au scroll ── */
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -373,6 +372,11 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
   var ORIG=[];
   for(var m=0;m<links.length;m++) ORIG.push(links[m].querySelector('.h').textContent);
 
+  function resetTamperBtn(){
+    bBreak.textContent = fr ? 'Modifiez une étape — et mentez' : 'Modify a step — and lie';
+    bFix.textContent = fr ? 'Réparez la chaîne' : 'Repair the chain';
+  }
+
   function clearStates(){
     for(var i=0;i<links.length;i++){ links[i].classList.remove('broke','down','fixed'); links[i].querySelector('.h').textContent=ORIG[i]; }
   }
@@ -384,7 +388,7 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
     clearStates();
     var second=links[1];
     second.querySelector('.t').setAttribute('data-tmp',second.querySelector('.t').textContent);
-    second.querySelector('.t').textContent = en ? 'Documents read — “modified afterwards”' : 'Documents consultés — « modifiée après coup »';
+    second.querySelector('.t').textContent = fr ? 'Documents consultés — « modifiée après coup »' : 'Documents read — “modified afterwards”';
     second.querySelector('.h').textContent=BROKEN_HASH;
     setTimeout(function(){ second.classList.add('broke'); },300);
     setTimeout(function(){ links[2].classList.add('down'); links[2].querySelector('.h').textContent='sha256:UNVERIFIABLE'; },620);
@@ -392,9 +396,9 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
     setTimeout(function(){ links[4].classList.add('down'); links[4].querySelector('.h').textContent='sha256:UNVERIFIABLE'; },1180);
     setTimeout(function(){
       v.className='verdict bad show';
-      v.textContent = en
-        ? '✗ ALTERED — one modified step invalidates everything downstream. The chain makes cheating visible. That is exactly what NoireBox does to real logs.'
-        : '✗ ALTÉRÉ — une seule étape modifiée invalide tout ce qui suit. La chaîne rend la triche visible. C’est exactement ce que NoireBox fait aux vrais journaux.';
+      v.textContent = fr
+        ? '✗ ALTÉRÉ — une seule étape modifiée invalide tout ce qui suit. La chaîne rend la triche visible. C’est exactement ce que NoireBox fait aux vrais journaux.'
+        : '✗ ALTERED — one modified step invalidates everything downstream. The chain makes cheating visible. That is exactly what NoireBox does to real logs.';
     },1500);
   });
   bFix.addEventListener('click',function(){
@@ -415,9 +419,9 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
     }
     setTimeout(function(){
       v.className='verdict good show';
-      v.textContent = en
-        ? '✓ INTACT — the chain proves that nothing moved. Anyone can re-run this check, anytime, without asking permission.'
-        : '✓ INTÈGRE — la chaîne prouve que rien n’a bougé. N’importe qui peut relancer ce contrôle, à tout moment, sans demander la permission.';
+      v.textContent = fr
+        ? '✓ INTÈGRE — la chaîne prouve que rien n’a bougé. N’importe qui peut relancer ce contrôle, à tout moment, sans demander la permission.'
+        : '✓ INTACT — the chain proves that nothing moved. Anyone can re-run this check, anytime, without asking permission.';
     }, links.length*220+150);
   });
 })();

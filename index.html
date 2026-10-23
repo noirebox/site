@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NoireBox — la boîte noire des agents IA. Deux portes, une seule preuve.</title>
-<meta name="description" content="Le enregistreur de vol pour agents IA. Entrez par la porte tech (inspector du sceau, benchmarks, docs) ou par la porte humaine (zéro jargon, ce que ça change pour votre boîte).">
+<title>NoireBox — the flight data recorder for AI agents. Two doors, one proof.</title>
+<meta name="description" content="The flight data recorder for AI agents. Enter through the tech door (live seal inspector, benchmarks, docs) or the plain-words door (what it changes for your business).">
 <meta property="og:title" content="NoireBox — the flight data recorder for AI agents">
 <meta property="og:description" content="Two doors, one proof: the cryptographic inspector or plain words for everyone else.">
 <meta property="og:type" content="website">
@@ -31,13 +31,16 @@ a{color:var(--fg);text-decoration:none}
 header{border-bottom:1px solid var(--line);position:relative;z-index:5}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
 .brand{font-family:var(--mono);font-size:.95rem;font-weight:700;letter-spacing:.14em;display:flex;align-items:center}
-.brand em{font-style:normal;color:var(--violet-soft)}
+.brand em{font-style:normal;color:var(--violet)}
 .cube{display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7c3aed,#0284c7);border-radius:5px;margin-right:9px}
 .barright{display:flex;align-items:center;gap:10px}
 .pillhead{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);padding:6px 13px;border-radius:999px}
-.pillhead b{color:var(--violet-soft);font-weight:400}
-.langbtn{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);background:none;padding:6px 13px;border-radius:999px;cursor:pointer}
-.langbtn:hover{color:var(--violet-soft);border-color:var(--violet)}
+.pillhead b{color:var(--violet);font-weight:400}
+.langbtn{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px}
+.langbtn button{border:0;background:none;padding:3px 5px;cursor:pointer;opacity:.35;filter:grayscale(1);border-radius:6px;line-height:0;transition:opacity .15s,filter .15s}
+.langbtn button:hover{opacity:.7}
+.langbtn button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(109,40,217,.28)}
+.langbtn svg{width:21px;height:14px;border-radius:2px;display:block}
 
 .gate{flex:1;position:relative;padding:44px 0 64px}
 #rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
@@ -57,7 +60,7 @@ h1{font-size:clamp(2.5rem,7.5vw,4.8rem);font-weight:600;letter-spacing:-.03em;li
 .door h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.02em;margin:96px 0 14px;max-width:14ch}
 .door p{color:var(--dim);max-width:36ch;font-size:.96rem}
 .dfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px dashed var(--line);padding-top:18px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
-.door:hover .dfoot span:last-child,.door:focus-visible .dfoot span:last-child{color:var(--violet-soft)}
+.door:hover .dfoot span:last-child,.door:focus-visible .dfoot span:last-child{color:var(--violet)}
 .kbd{border:1px solid var(--line);padding:1px 7px;border-radius:4px;font-size:.66rem;color:var(--dim)}
 .hintline{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:18px}
 @media (max-width:860px){.doors{grid-template-columns:1fr}.door + .door{border-left:none;border-top:1px solid var(--line)}.door{min-height:0;padding:36px 30px 30px}.door h2{margin-top:64px}}
@@ -65,7 +68,7 @@ h1{font-size:clamp(2.5rem,7.5vw,4.8rem);font-weight:600;letter-spacing:-.03em;li
 footer{border-top:1px solid var(--line);position:relative;z-index:2}
 .foot{padding:26px 0 32px;font-family:var(--mono);font-size:.76rem;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .foot a{border-bottom:1px solid var(--line);transition:color .15s,border-color .15s}
-.foot a:hover{color:var(--violet-soft);border-color:var(--violet)}
+.foot a:hover{color:var(--violet);border-color:var(--violet)}
 </style>
 </head>
 <body>
@@ -74,8 +77,11 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   <div class="wrap bar">
     <a class="brand" href="index.html"><span class="cube"></span>NOIRE<em>BOX</em></a>
     <div class="barright">
-      <span class="pillhead"><span data-en="sealed · Ed25519 ✓">scellé · Ed25519 ✓</span> · <b id="pillhead">blog-noirebox…</b></span>
-      <button class="langbtn" id="langBtn" aria-pressed="false">EN</button>
+      <span class="pillhead"><span data-fr="sealed · Ed25519 ✓">sealed · Ed25519 ✓</span> · <b id="pillhead">blog-noirebox…</b></span>
+      <div class="langbtn" id="langBtn" role="group" aria-label="Language">
+        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></button>
+        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ED2939"/></svg></button>
+      </div>
     </div>
   </div>
 </header>
@@ -84,68 +90,95 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   <canvas id="rain" aria-hidden="true"></canvas>
   <div class="wrap">
     <p class="bootlog" id="boot"></p>
-    <p class="kicker" data-en="// noirebox.eu — the flight data recorder for AI agents">// noirebox.eu — l’enregistreur de vol des agents IA</p>
-    <h1 id="title" data-txt="Vous êtes plutôt…">Vous êtes plutôt…</h1>
+    <p class="kicker" data-fr="// noirebox.eu — l’enregistreur de vol des agents IA">// noirebox.eu — the flight data recorder for AI agents</p>
+    <h1 id="title" data-txt="Which one are you…" data-fr="Vous êtes plutôt…">Which one are you…</h1>
 
     <div class="doors">
       <a class="door" href="tech.html">
         <span class="ghost" aria-hidden="true">01</span>
         <div class="door-top"><span>PORT_01 // FOR_ENGINEERS</span></div>
         <div>
-          <h2 data-en="I am tech">Je suis tech</h2>
-          <p data-en="Dev, CTO, DPO, curious hacker — the live cryptographic seal inspector, the 0.17 ms benchmark, 30 public ADRs and the EU compliance mapping. Show me the mechanics.">Dev, CTO, DPO, hacker curieux — l’inspector du sceau en direct, le benchmark 0,17 ms, 30 ADR publics et le mapping conformité UE. Montrez-moi la mécanique.</p>
+          <h2 data-fr="Je suis tech">I am tech</h2>
+          <p data-fr="Dev, CTO, DPO, hacker curieux — l’inspector du sceau en direct, le benchmark 0,17 ms, 30 ADR publics et le mapping conformité UE. Montrez-moi la mécanique.">Dev, CTO, DPO, curious hacker — the live cryptographic seal inspector, the 0.17 ms benchmark, 30 public ADRs and the EU compliance mapping. Show me the mechanics.</p>
         </div>
         <div class="dfoot">
           <span>SHA-256 · ED25519 · AI ACT</span>
-          <span data-en="[ enter <span class='kbd'>1</span> ]">[ entrer <span class="kbd">1</span> ]</span>
+          <span data-fr="[ entrer <span class='kbd'>1</span> ]">[ enter <span class="kbd">1</span> ]</span>
         </div>
       </a>
       <a class="door" href="client.html">
         <span class="ghost" aria-hidden="true">02</span>
         <div class="door-top"><span>PORT_02 // FOR_EVERYONE_ELSE</span></div>
         <div>
-          <h2 data-en="Not tech at all">Pas du tout tech</h2>
-          <p data-en="Perfect. Zero jargon: what a black box for AI agents changes for your business, your clients and your audits — in plain words, with a demo you can try yourself.">Parfait. Zéro jargon : ce qu’une boîte noire pour agents IA change pour votre boîte, vos clients et vos audits — en mots simples, avec une démo à essayer vous-même.</p>
+          <h2 data-fr="Pas du tout tech">Not tech at all</h2>
+          <p data-fr="Parfait. Zéro jargon : ce qu’une boîte noire pour agents IA change pour votre boîte, vos clients et vos audits — en mots simples, avec une démo à essayer vous-même.">Perfect. Zero jargon: what a black box for AI agents changes for your business, your clients and your audits — in plain words, with a demo you can try yourself.</p>
         </div>
         <div class="dfoot">
-          <span data-en="TRUST · AUDITS · PROOF">CONFIANCE · AUDITS · PREUVES</span>
-          <span data-en="[ enter <span class='kbd'>2</span> ]">[ entrer <span class="kbd">2</span> ]</span>
+          <span>TRUST · AUDITS · PROOF</span>
+          <span data-fr="[ entrer <span class='kbd'>2</span> ]">[ enter <span class="kbd">2</span> ]</span>
         </div>
       </a>
     </div>
-    <p class="hintline" data-en="or press 1 / 2 — both doors lead to proof.">ou appuyez sur 1 ou 2 — les deux portes mènent à la preuve.</p>
+    <p class="hintline" data-fr="ou appuyez sur 1 ou 2 — les deux portes mènent à la preuve.">or press 1 / 2 — both doors lead to proof.</p>
   </div>
 </main>
 
 <footer>
   <div class="wrap foot">
-    <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-en="legal &amp; privacy">mentions légales &amp; rgpd</a></span>
-    <span data-en="whichever door — the proof is live · © 2026 Sam LABBE">peu importe la porte — la preuve est en direct · © 2026 Sam LABBE</span>
+    <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-fr="mentions légales &amp; rgpd">legal &amp; privacy</a></span>
+    <span data-fr="peu importe la porte — la preuve est en direct · © 2026 Sam LABBE">whichever door — the proof is live · © 2026 Sam LABBE</span>
   </div>
 </footer>
 
 <script>
 (function(){
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── i18n : EN par défaut dans le HTML ; FR via data-fr ── */
+  var fr=/^fr/i.test(navigator.language||'');
+  var lb=document.getElementById('langBtn');
+  function apply(){
+    var nodes=document.querySelectorAll('[data-fr],[data-fr-html]');
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i], k=n.hasAttribute('data-fr-html')?'data-fr-html':'data-fr';
+      if(fr){ if(!n.getAttribute('data-en')) n.setAttribute('data-en',n.innerHTML); n.innerHTML=n.getAttribute(k); }
+      else{ var d=n.getAttribute('data-en'); if(d!==null) n.innerHTML=d; }
+    }
+    document.documentElement.lang=fr?'fr':'en';
+    var bs=lb.querySelectorAll('button');
+    for(var j=0;j<bs.length;j++) bs[j].className=(bs[j].getAttribute('data-l')===(fr?'fr':'en'))?'on':'';
+    if(bootDone) renderBootLines(flines());
+  }
+  var bs0=lb.querySelectorAll('button');
+  for(var q=0;q<bs0.length;q++){
+    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); apply(); });
+  }
+
   /* head réel du sceau du blog */
   fetch('https://blog.noirebox.eu/manifest.json').then(function(r){return r.json()}).then(function(m){
     var el=document.getElementById('pillhead'); if(el) el.textContent=m.head.slice(0,10)+'…';
     window.NBFILES=m.files.length;
+    redrawBoot();
   }).catch(function(){});
 
-  /* boot log — les vraies lignes du sceau */
-  var boot=document.getElementById('boot');
+  /* boot log — EN toujours (c'est un terminal) */
+  var boot=document.getElementById('boot'), bootDone=false;
   function flines(){
     var n=(window.NBFILES||39);
     return [
       '$ noirebox --verify blog.noirebox.eu',
-      '✓ '+n+' fichiers hachés · SHA-256',
-      '✓ chaîne valide · genesis blog-noirebox-genesis',
-      '@✓ sceau Ed25519 · fingerprint sha256:7a513360… — vérifié dans votre navigateur'
+      '✓ '+n+' files hashed · SHA-256',
+      '✓ chain valid · genesis blog-noirebox-genesis',
+      '@✓ Ed25519 seal · fingerprint sha256:7a513360… — verified in your browser'
     ];
   }
+  function renderBootLines(ls){
+    boot.innerHTML=ls.map(function(l){return l.replace(/^@/,'').replace(/^✓/,'<span class="ok">✓</span>')}).join('<br>');
+  }
+  function redrawBoot(){ if(bootDone) renderBootLines(flines()); }
   if(reduced){
-    boot.innerHTML=flines().map(function(l){return l.replace(/^@/,'').replace(/^✓/,'<span class="ok">✓</span>')}).join('<br>');
+    bootDone=true;
+    renderBootLines(flines());
   }else{
     var lines=flines(),li=0,ci=0,out='';
     setTimeout(function type(){
@@ -156,22 +189,23 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
       }else{
         li++;ci=0;out+='\n';
         if(li<lines.length) setTimeout(type,110);
-        else boot.innerHTML=out.split('\n').map(function(x){return x.replace(/^✓/,'<span class="ok">✓</span>')}).join('<br>');
+        else{ renderBootLines(flines()); bootDone=true; }
       }
     },350);
   }
 
   /* décodage hex du titre */
   var t=document.getElementById('title');
-  if(t&&t.dataset.txt&&!reduced){
-    var fin=t.dataset.txt,CH='0123456789abcdef',f=0;
+  function titleText(){ return fr ? (t.getAttribute('data-fr')||'Vous êtes plutôt…') : t.getAttribute('data-txt'); }
+  if(t&&!reduced){
+    var CH='0123456789abcdef',f=0;
     (function dec(){
-      f++;var p=f/46,o='';
+      f++;var fin=titleText(),p=f/46,o='';
       for(var j=0;j<fin.length;j++){var c=fin[j];o+=(c===' '||j<p*fin.length)?c:CH[Math.floor(Math.random()*16)];}
       t.textContent=o;
       if(p<1)requestAnimationFrame(dec);else t.textContent=fin;
     })();
-  }
+  }else if(t){ t.textContent=titleText(); }
 
   /* pluie de hex violette */
   var cv=document.getElementById('rain');
@@ -191,20 +225,8 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     },66);
   }
 
-  /* toggle FR/EN + auto-détection */
-  var en=false,lb=document.getElementById('langBtn');
-  lb.addEventListener('click',function(){
-    en=!en;
-    var nodes=document.querySelectorAll('[data-en]');
-    for(var i=0;i<nodes.length;i++){
-      var n=nodes[i];
-      if(en){ if(!n.getAttribute('data-fr')) n.setAttribute('data-fr',n.innerHTML); n.innerHTML=n.getAttribute('data-en'); }
-      else{ n.innerHTML=n.getAttribute('data-fr'); }
-    }
-    document.documentElement.lang=en?'en':'fr';
-    lb.textContent=en?'FR':'EN';lb.setAttribute('aria-pressed',en?'true':'false');
-  });
-  if(!/^fr/i.test(navigator.language||'fr')) setTimeout(function(){lb.click()},1400);
+  /* FR si le navigateur est français — appliqué immédiatement, sans flash */
+  if(fr) apply();
 
   /* raccourcis clavier 1 / 2 */
   window.addEventListener('keydown',function(e){
