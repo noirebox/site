@@ -74,13 +74,13 @@
 
 <div class="boiler">
   <span class="label">Court — ~70 mots</span>
-  <p id="bp-short">NoireBox est une boîte noire open source (MIT) pour agents IA. Chaque décision d'un agent — appel de modèle, usage d'outil, événement de vérification — est scellée dans un journal en annexe seule : chaînage SHA-256, signature Ed25519, ancrage auprès d'autorités d'horodatage RFC 3161 externes. Un vérificateur autonome permet à un auditeur, un DPO ou un client de recontrôler l'intégralité du dossier hors-ligne, sans faire confiance à l'opérateur. Conçu dans les Vosges, en France.</p>
+  <p id="bp-short">NoireBox est une boîte noire open source (MIT) pour agents IA. Chaque décision d'un agent — appel de modèle, usage d'outil, événement de vérification — est scellée dans un journal en annexe seule : chaînage SHA-256, signature Ed25519, ancrage auprès d'autorités d'horodatage RFC 3161 externes. Un vérificateur autonome permet à un auditeur, un DPO ou un client de recontrôler l'intégralité du dossier hors-ligne, sans faire confiance à l'opérateur. Conçu dans l'Union européenne.</p>
   <button class="copy-btn" data-copy="bp-short" title="Copier" aria-label="Copier le boilerplate court">⧉</button>
 </div>
 
 <div class="boiler">
   <span class="label">Long — ~150 mots</span>
-  <p id="bp-long">NoireBox est une boîte noire open source pour agents IA, construite en solo dans les Vosges (France) et publiée sous licence MIT. Elle répond à une question : si demain quelqu'un conteste une décision prise par un agent IA, qui peut prouver ce que l'agent a exactement fait — et que le dossier n'a pas été retouché depuis ? Les outils d'observabilité servent à déboguer, et leurs journaux restent modifiables par quiconque tient le disque. NoireBox scelle chaque événement dans un journal en annexe seule, chaîné (SHA-256), signé (Ed25519) et ancré auprès d'autorités d'horodatage RFC 3161 externes, puis exporte une attestation qu'un tiers vérifie hors-ligne, sans faire confiance à l'opérateur. C'est la couche d'intégrité que l'AI Act (art. 12, journalisation automatique) et le RGPD (art. 5(2), redevabilité) supposent sans la spécifier. Depuis le 19 septembre 2026 : 22 versions, 473 tests automatisés, 30 décisions d'architecture publiques — chacune avec les alternatives écartées.</p>
+  <p id="bp-long">NoireBox est une boîte noire open source pour agents IA, construite dans l'Union européenne et publiée sous licence MIT. Elle répond à une question : si demain quelqu'un conteste une décision prise par un agent IA, qui peut prouver ce que l'agent a exactement fait — et que le dossier n'a pas été retouché depuis ? Les outils d'observabilité servent à déboguer, et leurs journaux restent modifiables par quiconque tient le disque. NoireBox scelle chaque événement dans un journal en annexe seule, chaîné (SHA-256), signé (Ed25519) et ancré auprès d'autorités d'horodatage RFC 3161 externes, puis exporte une attestation qu'un tiers vérifie hors-ligne, sans faire confiance à l'opérateur. C'est la couche d'intégrité que l'AI Act (art. 12, journalisation automatique) et le RGPD (art. 5(2), redevabilité) supposent sans la spécifier. Depuis le 19 septembre 2026 : 22 versions, 473 tests automatisés, 30 décisions d'architecture publiques — chacune avec les alternatives écartées.</p>
   <button class="copy-btn" data-copy="bp-long" title="Copier" aria-label="Copier le boilerplate long">⧉</button>
 </div>
 
@@ -128,7 +128,7 @@
 <span class="dim">Sources : <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a>, <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>, decision receipts (ADR 028 dans <a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">ADRs.md</a>).</span></p>
 
 <h3>2 — Les journaux des agents IA sont modifiables — et l'AI Act en exige</h3>
-<p>L'omnibus numérique sur l'IA (règlement (UE) 2026/1744, en vigueur le 27 juillet 2026) a fixé au 2 décembre 2027 les obligations haut risque (annexe III) — dont la journalisation de l'art. 12 et la rétention des journaux ≥ 6 mois. Il n'a ni reporté l'art. 12 ni le RGPD art. 5(2). Les amendes montent à 35 M€ ou 7 % du chiffre d'affaires mondial. Et aucun standard ne dit encore ce que veut dire « intégrité des journaux » — un développeur solo a livré une réponse qui marche sous licence MIT, quatorze mois avant l'échéance.
+<p>L'omnibus numérique sur l'IA (règlement (UE) 2026/1744, en vigueur le 27 juillet 2026) a fixé au 2 décembre 2027 les obligations haut risque (annexe III) — dont la journalisation de l'art. 12 et la rétention des journaux ≥ 6 mois. Il n'a ni reporté l'art. 12 ni le RGPD art. 5(2). Les amendes montent à 35 M€ ou 7 % du chiffre d'affaires mondial. Et aucun standard ne dit encore ce que veut dire « intégrité des journaux » — une réponse qui marche livrée sous licence MIT, quatorze mois avant l'échéance.
 <span class="dim">Sources : <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a> (vérifié contre les textes consolidés, recontrôlé le 17 oct. 2026), <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a>, l'essai <a href="https://dev.to/slabb/the-ai-act-went-live-two-months-ago-your-agents-logs-are-still-editable-46dn" target="_blank" rel="noopener">« The AI Act went live two months ago. Your agent's logs are still editable. »</a></span></p>
 
 <h3>3 — Audité en public, par ses critiques</h3>
@@ -162,8 +162,8 @@
     <tr><td class="mono">Distribution</td><td><a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a> (<code>pip install noirebox</code>) · <a href="https://github.com/noirebox/noirebox/pkgs/container/noirebox" target="_blank" rel="noopener">image Docker sur GHCR</a> · <a href="https://marketplace.visualstudio.com/items?itemName=noirebox.noirebox" target="_blank" rel="noopener">extension VS Code</a> 0.10.1 (Marketplace + <a href="https://open-vsx.org/extension/noirebox/noirebox" target="_blank" rel="noopener">Open VSX</a>) · <a href="https://github.com/marketplace/actions/noirebox-verify" target="_blank" rel="noopener">GitHub Action noirebox-verify</a> · miroir en lecture seule sur <a href="https://codeberg.org/noirebox/noirebox" target="_blank" rel="noopener">Codeberg</a></td></tr>
     <tr><td class="mono">Mapping conformité</td><td>RGPD art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, annexe IV · eIDAS art. 41 — <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
     <tr><td class="mono">Adhésions</td><td><a href="https://futurium.ec.europa.eu/en/apply-ai-alliance" target="_blank" rel="noopener">Apply AI Alliance</a> (Commission européenne, Futurium)</td></tr>
-    <tr><td class="mono">Créateur</td><td>Sam LABBE (<a href="https://github.com/slabbdev" target="_blank" rel="noopener">@slabbdev</a>) — construit en solo</td></tr>
-    <tr><td class="mono">Localisation</td><td>Vosges, France 🇫🇷</td></tr>
+    <tr><td class="mono">Créateur</td><td>Sam LABBE (<a href="https://github.com/slabbdev" target="_blank" rel="noopener">@slabbdev</a>)</td></tr>
+    <tr><td class="mono">Localisation</td><td>Union européenne</td></tr>
     <tr><td class="mono">Site · source</td><td><a href="https://noirebox.eu/">noirebox.eu</a> · <a href="https://code.noirebox.eu/">code.noirebox.eu</a> · <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">github.com/noirebox/noirebox</a></td></tr>
   </tbody>
 </table>
@@ -277,7 +277,7 @@
     <tr><td class="mono">Contact presse</td><td><a href="mailto:press@noirebox.eu">press@noirebox.eu</a></td></tr>
     <tr><td class="mono">Porte-parole</td><td>Sam LABBE — créateur &amp; mainteneur</td></tr>
     <tr><td class="mono">Langues</td><td>Français, anglais</td></tr>
-    <tr><td class="mono">Localisation</td><td>Vosges, France (CET)</td></tr>
+    <tr><td class="mono">Localisation</td><td>Union européenne (CET)</td></tr>
     <tr><td class="mono">Ailleurs</td><td><a href="https://github.com/slabbdev" target="_blank" rel="noopener">GitHub @slabbdev</a> · <a href="https://dev.to/slabb" target="_blank" rel="noopener">dev.to @slabb</a></td></tr>
   </tbody>
 </table>
