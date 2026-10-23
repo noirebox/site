@@ -174,6 +174,16 @@ h2 { font-size: clamp(25px, 3.6vw, 34px); font-weight: 700; letter-spacing: -.01
 .calc-out .co strong { font-family: var(--mono); font-size: 19px; color: var(--ink); letter-spacing: -.01em; }
 .calc-out .co strong.g { color: var(--good); }
 .calc-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 18px; border-top: 1px solid var(--line); padding-top: 12px; }
+.benchcard { background: #fff; border: 1px solid var(--line-strong); border-radius: 12px; padding: 34px 38px; margin-top: 34px; }
+.benchhead { display: grid; grid-template-columns: auto 1fr; gap: 38px; align-items: center; padding-bottom: 26px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+.benchhead .bignum { margin: 0; }
+.benchhead .bignum b { font-size: clamp(58px, 8vw, 100px); }
+.bh { font-size: 18px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; margin-bottom: 8px; line-height: 1.35; }
+.bs { color: var(--dim); font-size: 14.5px; max-width: 620px; }
+.bs strong { color: var(--ink); font-family: var(--mono); }
+.bs code { font-family: var(--mono); background: var(--paper-2); border: 1px solid var(--line); padding: .05em .35em; border-radius: 4px; }
+.benchcard table { margin-top: 14px; }
+@media (max-width: 900px) { .benchcard { padding: 22px 18px; } .benchhead { grid-template-columns: 1fr; gap: 14px; } }
 .bignum { display: flex; align-items: baseline; gap: 20px; margin: 38px 0 8px; }
 .bignum b { font-family: var(--mono); font-weight: 700; font-size: clamp(46px, 7vw, 78px); letter-spacing: -.03em; color: var(--violet); }
 .bignum span { color: var(--dim); font-size: 15px; max-width: 380px; }
@@ -384,11 +394,15 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
   <div class="wrap">
     <p class="kicker" data-i18n="s2.kicker">02 / Performance &amp; overhead</p>
     <h2 data-i18n="s2.title">Fast enough to seal everything.</h2>
-    <div class="bignum">
-      <b>0.17&nbsp;ms</b>
-      <span data-i18n-html="s2.lede">per sealed append — public benchmark, reproducible with <b class="mono" style="font-size:13px">make bench</b>. Your agent seals every decision, not just the ones it remembers.</span>
-    </div>
-    <table>
+    <div class="benchcard">
+      <div class="benchhead">
+        <div class="bignum"><b>0.17&nbsp;ms</b></div>
+        <div>
+          <p class="bh" data-i18n="s2.bh">Median time to seal one event — hash + Ed25519 signature + SQLite commit.</p>
+          <p class="bs" data-i18n-html="s2.bs">A typical LLM call takes <strong>450–2,500&nbsp;ms</strong> to produce its first token. Sealing the decision costs <strong>~0.04&nbsp;%</strong> of that — and it happens on <strong>every</strong> decision, not just the ones anyone remembers. Reproducible with <code>make bench</code>, on your own hardware.</p>
+        </div>
+      </div>
+      <table>
       <thead><tr><th data-i18n="s2.th1">Verified number</th><th data-i18n="s2.th2">Value</th><th data-i18n="s2.th3">What it covers</th><th data-i18n="s2.th4">How to check</th></tr></thead>
       <tbody>
         <tr><td class="m" data-i18n="s2.r1m">Sealed append</td><td class="v">0.17 ms</td><td data-i18n="s2.r1c">Hash-chain write, in process</td><td><a href="https://github.com/noirebox/noirebox/blob/main/Makefile" target="_blank" rel="noopener">make bench</a></td></tr>
@@ -400,7 +414,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         <tr><td class="m" data-i18n="s2.r7m">Cryptography</td><td class="v">SHA-256 · Ed25519</td><td data-i18n="s2.r7c">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
       </tbody>
     </table>
-    <p class="tfoot" data-i18n="s2.foot">// every row points at the artifact, not at a claim about the artifact.</p>
+      <p class="tfoot" data-i18n="s2.foot">// every row points at the artifact, not at a claim about the artifact.</p>
+    </div>
 
     <div class="calc">
       <label for="calc-slider" data-i18n-html="s2.calcLabel">Fleet overhead estimator: <b id="calc-events">1,000,000</b> events / day</label>
@@ -566,6 +581,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     's1.r3d':'Les auditeurs rejouent n’importe quel dossier sur un <strong>laptop air-gapped</strong> : <code>verify.py</code> ne dépend que de la stdlib, la page navigateur ci-dessus est sans dépendance. Zéro appel réseau pour vérifier, zéro dépendance à l’infrastructure NoireBox.',
     's1.r4t':'Un périmètre honnête, mappé au droit UE',
     's1.r4d':'NoireBox prouve qu’un dossier n’a <strong>pas été altéré</strong> et <strong>quand il a existé</strong>. Il ne prouve pas que le dossier était vrai au moment de l’écriture — <em>indécidable</em> est un résultat de première classe, jamais fondu dans un check vert. Chaque exigence UE est mappée à une fonctionnalité livrée dans <strong>COMPLIANCE-EU.md</strong>.',
+    's2.bh':'Temps médian pour sceller un événement — hachage + signature Ed25519 + commit SQLite.',
+    's2.bs':'Un appel LLM typique prend <strong>450–2&nbsp;500&nbsp;ms</strong> avant son premier token. Sceller la décision coûte <strong>~0,04&nbsp;%</strong> de ça — et ça se produit sur <strong>chaque</strong> décision, pas seulement celles dont quelqu’un se souvient. Reproductible avec <code>make bench</code>, sur votre matériel.',
     's2.kicker':'02 / Performance &amp; overhead','s2.title':'Assez rapide pour tout sceller.',
     's2.lede':'par appendice scellé — benchmark public, reproductible avec <b class="mono" style="font-size:13px">make bench</b>. Votre agent scelle chaque décision, pas seulement celles dont il se souvient.',
     's2.th1':'Chiffre vérifié','s2.th2':'Valeur','s2.th3':'Ce que ça couvre','s2.th4':'Comment vérifier',
