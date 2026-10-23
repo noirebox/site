@@ -211,7 +211,7 @@ td a:hover { color: var(--violet); }
 .lm p { color: var(--dim); font-size: 14.5px; margin-top: 6px; }
 
 footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid var(--line); }
-.fgrid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
+.fgrid { display: grid; grid-template-columns: 1.3fr .9fr 1.2fr .9fr .9fr; gap: 28px; }
 .fcol h4 { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 13px; }
 .fcol a, .fcol span { display: block; color: var(--dim); text-decoration: none; font-size: 13.5px; margin-bottom: 7px; }
 .fcol a:hover { color: var(--violet); }
@@ -376,13 +376,13 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     <table>
       <thead><tr><th data-i18n="s2.th1">Verified number</th><th data-i18n="s2.th2">Value</th><th data-i18n="s2.th3">What it covers</th><th data-i18n="s2.th4">How to check</th></tr></thead>
       <tbody>
-        <tr><td class="m" data-i18n="s2.r1m">Sealed append</td><td class="v">0.17 ms</td><td data-i18n="s2.r1c">Hash-chain write, in process</td><td><a href="https://github.com/noirebox/noirebox#bench" target="_blank" rel="noopener">make bench</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r1m">Sealed append</td><td class="v">0.17 ms</td><td data-i18n="s2.r1c">Hash-chain write, in process</td><td><a href="https://github.com/noirebox/noirebox/blob/main/Makefile" target="_blank" rel="noopener">make bench</a></td></tr>
         <tr><td class="m" data-i18n="s2.r2m">Automated tests</td><td class="v">473</td><td data-i18n="s2.r2c">CI on every push — 0 failing</td><td><a href="https://github.com/noirebox/noirebox/actions" target="_blank" rel="noopener">CI runs</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r3m">Architecture decisions</td><td class="v">30 ADRs</td><td data-i18n="s2.r3c">Public, each with rejected alternatives</td><td><a href="https://github.com/noirebox/noirebox/tree/main/docs/adr" target="_blank" rel="noopener">docs/adr</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r3m">Architecture decisions</td><td class="v">30 ADRs</td><td data-i18n="s2.r3c">Public, each with rejected alternatives</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">docs/adr</a></td></tr>
         <tr><td class="m" data-i18n="s2.r4m">Releases</td><td class="v">22</td><td data-i18n="s2.r4c">Every one in the changelog since 0.1.0</td><td><a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r5m">Attack fixtures replayed</td><td class="v">5 SCAR ids</td><td data-i18n="s2.r5c">Ids 43, 45, 89, 110, 114 — 16 tests</td><td><a href="https://code.noirebox.eu/#scar-bench" target="_blank" rel="noopener">SCAR-BENCH</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r5m">Attack fixtures replayed</td><td class="v">5 SCAR ids</td><td data-i18n="s2.r5c">Ids 43, 45, 89, 110, 114 — 16 tests</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a></td></tr>
         <tr><td class="m" data-i18n="s2.r6m">Record families</td><td class="v">7</td><td>receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td><td><a href="https://code.noirebox.eu/" target="_blank" rel="noopener">reference</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r7m">Cryptography</td><td class="v">SHA-256 · Ed25519</td><td data-i18n="s2.r7c">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r7m">Cryptography</td><td class="v">SHA-256 · Ed25519</td><td data-i18n="s2.r7c">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
       </tbody>
     </table>
     <p class="tfoot" data-i18n="s2.foot">// every row points at the artifact, not at a claim about the artifact.</p>
@@ -421,21 +421,28 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
   </div>
 </section>
 
-<section class="sec sec-alt use" id="use">
+<section class="sec sec-alt" id="use">
   <div class="wrap">
-    <p class="kicker" data-i18n="s4.kicker">05 / Use NoireBox — EU compliance</p>
-    <h2 data-i18n="s4.title">Start sealing.</h2>
-    <p class="sec-lede" data-i18n-html="s4.lede">Your agent’s first sealed decision is one line of code away — and the compliance mapping is public, clause by clause.</p>
-    <div class="maptags">
-      <span class="maptag"><b>AI Act</b> art. 12 · 14(5) · 50(2) · 55(1)(c) · 73</span>
-      <span class="maptag"><b>GDPR</b> art. 5(2) · 15 · 20</span>
-      <span class="maptag"><b>eIDAS</b> art. 41</span>
-    </div>
-    <div class="ctas2">
+    <p class="kicker" data-i18n="s4.kicker">05 / EU compliance — clause by clause</p>
+    <h2 data-i18n="s4.title">Compliance you can check.</h2>
+    <p class="sec-lede" data-i18n-html="s4.lede">The mapping is public and maintained line by line: <strong>every clause points at a shipped mechanism</strong> — and what NoireBox cannot prove is stated in the same document, not in a footnote.</p>
+    <table style="margin-top:32px">
+      <thead><tr><th data-i18n="s4.th1">Clause</th><th data-i18n="s4.th2">What it demands</th><th data-i18n="s4.th3">What NoireBox ships</th><th data-i18n="s4.th4">Evidence</th></tr></thead>
+      <tbody>
+        <tr><td class="m">AI Act art. 12</td><td data-i18n="s4.r1d">Automatic logging of every decision — tamper-proof, retained</td><td data-i18n="s4.r1s">Hash-chained journal, 0.17&nbsp;ms sealed append, external timestamps</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
+        <tr><td class="m">AI Act art. 14(5) · 50(2)</td><td data-i18n="s4.r2d">Human-oversight and transparency records</td><td data-i18n="s4.r2s">receipt / decision / admission record families</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m">AI Act art. 55(1)(c) · Annex IV</td><td data-i18n="s4.r3d">Technical documentation of the system</td><td data-i18n="s4.r3s">Verifiable attestation exports, replayable offline</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m">GDPR art. 5(2)</td><td data-i18n="s4.r4d">Accountability — be able to demonstrate compliance</td><td data-i18n="s4.r4s">Ed25519-signed journal, witnessed by TSA / Bitcoin</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m">GDPR art. 15 · 20</td><td data-i18n="s4.r5d">Access to, and portability of, the records</td><td data-i18n="s4.r5s">Self-contained exports a third party can re-verify alone</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m">eIDAS art. 41</td><td data-i18n="s4.r6d">Trusted timestamping</td><td data-i18n="s4.r6s">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+      </tbody>
+    </table>
+    <p class="tfoot" data-i18n="s4.foot">// six clauses, six shipped mechanisms — the mapping document names the gaps too.</p>
+    <div class="ctas2" style="margin-top:38px">
       <a class="btn2 primary" href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">$ pip install noirebox</a>
       <a class="btn2" href="https://code.noirebox.eu/">Read the docs</a>
     </div>
-    <p class="usenote" data-i18n-html="s4.note">MIT licence, no signup, no phone-home · full mapping in <a href="https://github.com/noirebox/noirebox/blob/main/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
+    <p class="usenote" data-i18n-html="s4.note">MIT licence, no signup, no phone-home · full mapping in <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
   </div>
 </section>
 
@@ -449,7 +456,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         <h3 data-i18n="s5.c1t">The blog — every page hash-chained</h3>
         <p data-i18n="s5.c1d">What we build, break and measure — AI agents in production, security, and provable compliance. The same seal the inspector above just verified.</p>
       </a>
-      <a class="lm" href="https://github.com/noirebox/noirebox/blob/main/COMPLIANCE-EU.md" target="_blank" rel="noopener">
+      <a class="lm" href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">
         <span class="cat"><span data-i18n="s5.c2cat">Regulatory mapping • clause by clause</span><span>↗</span></span>
         <h3 data-i18n="s5.c2t">COMPLIANCE-EU.md</h3>
         <p data-i18n="s5.c2d">From GDPR, AI Act and eIDAS requirements to shipped features — with what NoireBox cannot prove stated just as plainly.</p>
@@ -472,6 +479,14 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         <a href="https://blog.noirebox.eu/">Blog</a>
         <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub</a>
         <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a>
+      </div>
+      <div class="fcol">
+        <h4 data-i18n="f.comp">Compliance &amp; trust</h4>
+        <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>
+        <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">Art. 12 mapping</a>
+        <a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">30 public ADRs</a>
+        <a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a>
+        <a href=".well-known/security.txt">security.txt</a>
       </div>
       <div class="fcol">
         <h4 data-i18n="f.press">Press</h4>
@@ -543,16 +558,30 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     'q2':'Un DAG de Makefile prouve un ordre topologique, pas l’authenticité d’une preuve — un agent ne peut jamais être le notaire de sa propre écriture.',
     'q3':'NoireBox prouve qu’un dossier n’a pas été altéré et quand il a existé. Il ne prouve pas que le dossier était vrai au moment de l’écriture. Un outil de preuve, pas un talisman.',
     'q4':'Le journal reste local — le dépôt livre la méthode. La vérification reste gratuite, pour toujours.',
-    's4.kicker':'05 / Utiliser NoireBox — conformité UE','s4.title':'Commencez à sceller.',
-    's4.lede':'La première décision scellée de votre agent est à une ligne de code — et le mapping de conformité est public, article par article.',
-    's4.note':'Licence MIT, sans inscription, sans téléphone à la maison · mapping complet dans <a href="https://github.com/noirebox/noirebox/blob/main/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>',
+    's4.kicker':'05 / Conformité UE — article par article','s4.title':'Une conformité vérifiable.',
+    's4.lede':'Le mapping est public et tenu ligne par ligne : <strong>chaque article pointe vers un mécanisme livré</strong> — et ce que NoireBox ne peut pas prouver est énoncé dans le même document, pas dans une note de bas de page.',
+    's4.th1':'Article','s4.th2':'Ce qu’il exige','s4.th3':'Ce que NoireBox livre','s4.th4':'Preuve',
+    's4.r1d':'Journalisation automatique de chaque décision — infalsifiable, conservée',
+    's4.r1s':'Journal chaîné SHA-256, appendice scellé en 0,17&nbsp;ms, horodatage externe',
+    's4.r2d':'Records de supervision humaine et de transparence',
+    's4.r2s':'Familles de records receipt / decision / admission',
+    's4.r3d':'Documentation technique du système',
+    's4.r3s':'Exports d’attestation vérifiables, rejouables hors-ligne',
+    's4.r4d':'Redevabilité — pouvoir démontrer la conformité',
+    's4.r4s':'Journal signé Ed25519, témoigné par TSA / Bitcoin',
+    's4.r5d':'Accès aux dossiers et portabilité',
+    's4.r5s':'Exports autonomes qu’un tiers peut re-vérifier seul',
+    's4.r6d':'Horodatage qualifié',
+    's4.r6s':'RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)',
+    's4.foot':'// six articles, six mécanismes livrés — le document de mapping nomme aussi les manques.',
+    's4.note':'Licence MIT, sans inscription, sans téléphone à la maison · mapping complet dans <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>',
     's5.kicker':'06 / Aller plus loin','s5.title':'Publications &amp; sources.',
     's5.c1cat':'Journal d’équipe • scellé &amp; vérifiable','s5.c1t':'Le blog — chaque page chaînée',
     's5.c1d':'Ce qu’on construit, casse et mesure — les agents IA en production, la sécurité et la conformité prouvable. Le même sceau que l’inspecteur ci-dessus vient de vérifier.',
     's5.c2cat':'Mapping réglementaire • article par article','s5.c2t':'COMPLIANCE-EU.md',
     's5.c2d':'Des exigences RGPD, AI Act et eIDAS vers les fonctionnalités livrées — avec ce que NoireBox ne peut pas prouver énoncé aussi clairement.',
     'f.note':'Des boîtes noires pour les systèmes envers qui personne ne peut avoir pleinement confiance. Conçu dans l’UE. Vérifiable partout.',
-    'f.project':'Projet','f.press':'Presse','f.legal':'Légal',
+    'f.project':'Projet','f.comp':'Conformité &amp; confiance','f.press':'Presse','f.legal':'Légal',
     'f.alliance':'Membre de l’Apply AI Alliance (Commission européenne, Futurium)'
   };
   var LANG='en';
