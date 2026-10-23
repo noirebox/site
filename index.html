@@ -490,13 +490,13 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       </div>
       <div class="fcol">
         <h4 data-i18n="f.press">Press</h4>
-        <a href="press.html">Press kit (EN)</a>
-        <a href="presse.html">Dossier de presse (FR)</a>
-        <a href="article-50.html">The Article 50 story</a>
+        <a class="l-en" href="press.html">Press kit</a>
+        <a class="l-fr" href="presse.html" style="display:none">Dossier de presse</a>
+        <a href="article-50.html" data-i18n="f.pressArt">The Article 50 story</a>
       </div>
       <div class="fcol">
         <h4 data-i18n="f.legal">Legal</h4>
-        <a href="legal.html">Legal &amp; privacy</a>
+        <a href="legal.html" data-i18n="f.legalLink">Legal &amp; privacy</a>
         <a href="https://github.com/noirebox/noirebox/blob/main/LICENSE" target="_blank" rel="noopener">Licence MIT</a>
         <a href="mailto:sam@slabb.dev">sam@slabb.dev</a>
       </div>
@@ -582,6 +582,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     's5.c2d':'Des exigences RGPD, AI Act et eIDAS vers les fonctionnalités livrées — avec ce que NoireBox ne peut pas prouver énoncé aussi clairement.',
     'f.note':'Des boîtes noires pour les systèmes envers qui personne ne peut avoir pleinement confiance. Conçu dans l’UE. Vérifiable partout.',
     'f.project':'Projet','f.comp':'Conformité &amp; confiance','f.press':'Presse','f.legal':'Légal',
+    'f.pressArt':'L’histoire de l’Article 50','f.legalLink':'Mentions légales &amp; confidentialité',
     'f.alliance':'Membre de l’Apply AI Alliance (Commission européenne, Futurium)'
   };
   var LANG='en';
@@ -597,6 +598,9 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       if(el.getAttribute('data-en-orig')===null){ el.setAttribute('data-en-orig', el.innerHTML); }
       if(FR[k]!==undefined){ el.innerHTML=FR[k]; }
     }
+    var lf=document.querySelectorAll('.l-fr'), ln=document.querySelectorAll('.l-en');
+    for(var j=0;j<lf.length;j++) lf[j].style.display = (l==='fr')?'':'none';
+    for(var m=0;m<ln.length;m++) ln[m].style.display = (l==='fr')?'none':'';
     var tb=document.getElementById('tamper-btn');
     tb.textContent = tampered ? 'Restaurer & revérifier' : 'Simuler une altération d’1 octet';
     if(MANIFEST){
