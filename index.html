@@ -32,7 +32,10 @@ header{border-bottom:1px solid var(--line);position:relative;z-index:5}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
 .brand{font-family:var(--mono);font-size:.95rem;font-weight:700;letter-spacing:.14em;display:flex;align-items:center}
 .brand em{font-style:normal;color:var(--violet)}
-.cube{display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7c3aed,#0284c7);border-radius:5px;margin-right:9px}
+.cube{display:inline-block;width:20px;height:20px;background:var(--ink);margin-right:9px;position:relative;flex:none}
+.cube::after{content:"";position:absolute;inset:5px;border:2px solid #fff}
+.cube::before{content:"";position:absolute;left:50%;top:3px;bottom:3px;width:2px;margin-left:-1px;background:#fff}
+.brand:hover .cube{background:var(--violet)}
 .barright{display:flex;align-items:center;gap:10px}
 .pillhead{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);padding:6px 13px;border-radius:999px}
 .pillhead b{color:var(--violet);font-weight:400}
@@ -135,12 +138,15 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ── i18n : EN par défaut dans le HTML ; FR via data-fr ── */
-  var fr=/^fr/i.test(navigator.language||'');
+  var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
+  var fr = savedL ? savedL==='fr' : /^fr/i.test(navigator.language||'');
   var lb=document.getElementById('langBtn');
   function apply(){
     var nodes=document.querySelectorAll('[data-fr],[data-fr-html]');
     for(var i=0;i<nodes.length;i++){
-      var n=nodes[i], k=n.hasAttribute('data-fr-html')?'data-fr-html':'data-fr';
+      var n=nodes[i];
+      if(n.id==='title') continue; /* le titre passe par decodeTitle() */
+      var k=n.hasAttribute('data-fr-html')?'data-fr-html':'data-fr';
       if(fr){ if(!n.getAttribute('data-en')) n.setAttribute('data-en',n.innerHTML); n.innerHTML=n.getAttribute(k); }
       else{ var d=n.getAttribute('data-en'); if(d!==null) n.innerHTML=d; }
     }
@@ -148,10 +154,11 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     var bs=lb.querySelectorAll('button');
     for(var j=0;j<bs.length;j++) bs[j].className=(bs[j].getAttribute('data-l')===(fr?'fr':'en'))?'on':'';
     if(bootDone) renderBootLines(flines());
+    decodeTitle();
   }
   var bs0=lb.querySelectorAll('button');
   for(var q=0;q<bs0.length;q++){
-    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); apply(); });
+    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); try{ localStorage.setItem('nblang', fr?'fr':'en'); }catch(e){} apply(); });
   }
 
   /* head réel du sceau du blog */
@@ -194,18 +201,24 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     },350);
   }
 
-  /* décodage hex du titre */
-  var t=document.getElementById('title');
-  function titleText(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Vous pouvez le prouver.') : t.getAttribute('data-txt'); }
-  if(t&&!reduced){
-    var CH='0123456789abcdef',f=0;
-    (function dec(){
-      f++;var fin=titleText(),p=f/46,o='';
+  /* décodage hex du titre — annulable, relancé à chaque changement de langue */
+  var t=document.getElementById('title'), animId=0;
+  function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI decides. You can prove it.'); }
+  function decodeTitle(){
+    animId++; var my=animId, fin=titleFor();
+    if(reduced||!fin){ t.textContent=fin; return; }
+    var CH='0123456789abcdef', dur=900, t0=null;
+    function step(ts){
+      if(my!==animId) return; /* une nouvelle animation a pris le relais */
+      if(t0===null) t0=ts;
+      var p=Math.min(1,(ts-t0)/dur), o='';
       for(var j=0;j<fin.length;j++){var c=fin[j];o+=(c===' '||j<p*fin.length)?c:CH[Math.floor(Math.random()*16)];}
       t.textContent=o;
-      if(p<1)requestAnimationFrame(dec);else t.textContent=fin;
-    })();
-  }else if(t){ t.textContent=titleText(); }
+      if(p<1)requestAnimationFrame(step);else t.textContent=fin;
+    }
+    requestAnimationFrame(step);
+  }
+  decodeTitle();
 
   /* pluie de hex violette */
   var cv=document.getElementById('rain');

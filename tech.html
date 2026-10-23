@@ -443,7 +443,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       <div class="dl-row"><dt data-i18n="s3.d6k">Integrations</dt><dd data-i18n-html="s3.d6v">CLI · Python API · MCP server · <strong>noirebox-verify</strong> GitHub Action · VS Code extension (Marketplace + Open VSX)</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d7k">Distribution</dt><dd data-i18n-html="s3.d7v">PyPI (<strong>pip install noirebox</strong>) · Docker on GHCR · read-only mirror on Codeberg</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d8k">Licence</dt><dd data-i18n-html="s3.d8v"><strong>MIT</strong> — open source, no strings</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d9k">Memberships</dt><dd data-i18n-html="s3.d9v">Apply AI Alliance (European Commission, Futurium)</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d9k">Presented at</dt><dd data-i18n-html="s3.d9v">Apply AI Alliance (European Commission, Futurium) — project presented, not a membership</dd></div>
     </dl>
   </div>
 </section>
@@ -553,7 +553,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     <div class="fbase">
       <span>© 2026 Sam LABBE — noirebox.eu</span>
       <span id="f-fp">root fingerprint: —</span>
-      <span data-i18n="f.alliance">Member of the Apply AI Alliance (European Commission, Futurium)</span>
+      <span data-i18n="f.alliance">Project presented at the Apply AI Alliance (European Commission, Futurium)</span>
     </div>
   </div>
 </footer>
@@ -606,7 +606,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     's3.d6k':'Intégrations','s3.d6v':'CLI · API Python · serveur MCP · <strong>noirebox-verify</strong> GitHub Action · extension VS Code (Marketplace + Open VSX)',
     's3.d7k':'Distribution','s3.d7v':'PyPI (<strong>pip install noirebox</strong>) · Docker sur GHCR · miroir en lecture seule sur Codeberg',
     's3.d8k':'Licence','s3.d8v':'<strong>MIT</strong> — open source, sans condition',
-    's3.d9k':'Membres','s3.d9v':'Apply AI Alliance (Commission européenne, Futurium)',
+    's3.d9k':'Présenté à','s3.d9v':'Apply AI Alliance (Commission européenne, Futurium) — projet présenté, pas une adhésion',
     'sq.kicker':'04 / Presse — citations','sq.title':'Citez librement.','sq.lede':'Quatre lignes, déjà publiques. Attribution telle quelle.',
     'q1':'La prévention varie selon la stack. La preuve est universelle.',
     'q2':'Un DAG de Makefile prouve un ordre topologique, pas l’authenticité d’une preuve — un agent ne peut jamais être le notaire de sa propre écriture.',
@@ -639,10 +639,11 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     'f.note':'Des boîtes noires pour les systèmes envers qui personne ne peut avoir pleinement confiance. Conçu dans l’UE. Vérifiable partout.',
     'f.project':'Projet','f.comp':'Conformité &amp; confiance','f.press':'Presse','f.legal':'Légal',
     'f.pressArt':'L’histoire de l’Article 50','f.legalLink':'Mentions légales &amp; confidentialité',
-    'f.alliance':'Membre de l’Apply AI Alliance (Commission européenne, Futurium)'
+    'f.alliance':'Projet présenté à l’Apply AI Alliance (Commission européenne, Futurium)'
   };
   var LANG='en';
   window.setLang=function(l){
+    try{ localStorage.setItem('nblang', l); }catch(e){}
     if(window.updateCalc) setTimeout(window.updateCalc,0);
     LANG=l;
     document.documentElement.lang=l;
@@ -665,7 +666,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       if(b.indexOf('SEAL LOADED')===0) setBadge('', 'SCEAU CHARGÉ • '+MANIFEST.files.length+' FICHIERS SCELLÉS — vérifiez pour confirmer');
     }
   };
-  if(/^fr/i.test(navigator.language||'')) setLang('fr');
+  var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
+  setLang(savedL ? savedL : (/^fr/i.test(navigator.language||'') ? 'fr' : 'en'));
 
   /* ── install selector ─────────────────────── */
   var CMDS={pip:'pip install noirebox', docker:'docker pull ghcr.io/noirebox/noirebox', action:'uses: noirebox/noirebox-verify@v1'};

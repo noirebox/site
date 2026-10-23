@@ -34,7 +34,10 @@ nav{position:sticky;top:0;z-index:30;background:rgba(248,250,252,.92);backdrop-f
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
 .brand{font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.16em;text-decoration:none;display:flex;align-items:center}
 .brand em{font-style:normal;color:var(--violet)}
-.cube{display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7c3aed,#0284c7);border-radius:5px;margin-right:9px}
+.cube{display:inline-block;width:20px;height:20px;background:var(--ink);margin-right:9px;position:relative;flex:none}
+.cube::after{content:"";position:absolute;inset:5px;border:2px solid #fff}
+.cube::before{content:"";position:absolute;left:50%;top:3px;bottom:3px;width:2px;margin-left:-1px;background:#fff}
+.brand:hover .cube{background:var(--violet)}
 .nright{display:flex;align-items:center;gap:10px}
 .pillb{display:inline-block;font-family:var(--mono);font-size:11.5px;color:var(--dim);border:1px solid var(--line-strong);background:#fff;padding:7px 13px;border-radius:999px;text-decoration:none}
 .pillb:hover{color:var(--violet);border-color:var(--violet)}
@@ -316,14 +319,14 @@ log:    coverage_advised = "theft_included"</pre>
       <div>
         <p class="sec-kicker" data-fr="Européen par conception">European by design</p>
         <h2 data-fr-html="Conçu dans l’UE. Vérifiable partout. Vos données restent chez vous.">Built in the EU. Verifiable everywhere. Your data stays yours.</h2>
-        <p class="sec-lede" data-fr-html="NoireBox est open source (MIT), fabriqué en France pour le marché européen : rien ne « téléphone » à l’extérieur, aucun cloud n’est imposé, et la vérification tourne sur votre propre machine. Le projet est membre de l’Apply AI Alliance (Commission européenne, Futurium).">NoireBox is open source (MIT), made in France for the European market: nothing phones home, no cloud is required, and the verification runs on your own laptop. The project is a member of the Apply AI Alliance (European Commission, Futurium).</p>
+        <p class="sec-lede" data-fr-html="NoireBox est open source (MIT), fabriqué en France pour le marché européen : rien ne « téléphone » à l’extérieur, aucun cloud n’est imposé, et la vérification tourne sur votre propre machine. Le projet a été présenté à l’Apply AI Alliance (Commission européenne, Futurium).">NoireBox is open source (MIT), made in France for the European market: nothing phones home, no cloud is required, and the verification runs on your own laptop. The project was presented at the Apply AI Alliance (European Commission, Futurium).</p>
       </div>
       <div class="sov">
         <span class="sovtag"><b>🇪🇺</b> <span data-fr="Conçu dans l’UE">Built in the EU</span></span>
         <span class="sovtag"><b>MIT</b> open source</span>
         <span class="sovtag"><b>0</b> <span data-fr="donnée envoyée à l’extérieur">data sent outside</span></span>
         <span class="sovtag"><b>✓</b> <span data-fr="vérification hors-ligne">offline verification</span></span>
-        <span class="sovtag"><b>Apply AI Alliance</b></span>
+        <span class="sovtag"><b>✦</b> <span data-fr="présenté à l’Apply AI Alliance">presented at the Apply AI Alliance</span></span>
       </div>
     </div>
   </div>
@@ -352,7 +355,8 @@ log:    coverage_advised = "theft_included"</pre>
 <script>
 (function(){
   /* ── i18n : EN par défaut dans le HTML ; FR via data-fr, appliqué immédiatement ── */
-  var fr=/^fr/i.test(navigator.language||'');
+  var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
+  var fr = savedL ? savedL==='fr' : /^fr/i.test(navigator.language||'');
   var langGroup=document.getElementById('langBtn');
 
   function apply(){
@@ -368,7 +372,7 @@ log:    coverage_advised = "theft_included"</pre>
   }
   var bs0=langGroup.querySelectorAll('button');
   for(var q=0;q<bs0.length;q++){
-    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); apply(); resetTamperBtn(); });
+    bs0[q].addEventListener('click',function(){ fr=(this.getAttribute('data-l')==='fr'); try{ localStorage.setItem('nblang', fr?'fr':'en'); }catch(e){} apply(); resetTamperBtn(); });
   }
   if(fr) apply();
 
