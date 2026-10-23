@@ -99,8 +99,13 @@ td a { color: var(--dim); }
 td a:hover { color: var(--violet); }
 .tfoot { color: var(--muted); font-size: 12.5px; font-family: var(--mono); margin-top: 10px; }
 
-/* product information — definition list, Kolibri style */
-.dl { margin-top: 40px; }
+/* quotes */
+.q { padding: 26px 0; border-top: 1px solid var(--line); }
+.q:last-child { border-bottom: 1px solid var(--line); }
+.q p { font-size: clamp(18px, 2.4vw, 22px); font-weight: 500; letter-spacing: -.01em; line-height: 1.4; max-width: 760px; }
+.q cite { display: block; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+/* product information — definition list, Kolibri style */.dl { margin-top: 40px; }
 .dl-row { display: grid; grid-template-columns: 220px 1fr; gap: 26px; padding: 13px 0; border-top: 1px solid var(--line); }
 .dl-row:last-child { border-bottom: 1px solid var(--line); }
 .dl-row dt { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
@@ -240,6 +245,32 @@ footer { padding: 54px 0 40px; }
   </div>
 </section>
 
+<section class="sec" id="quotes">
+  <div class="wrap">
+    <p class="sec-kicker">Press — quotes</p>
+    <h2>Quote freely.</h2>
+    <p class="sec-lede">Four lines, already public. Attributed as shown.</p>
+    <div class="qs" style="margin-top:40px">
+      <blockquote class="q">
+        <p>Prevention varies per stack. Proof is universal.</p>
+        <cite>— Sam LABBE, README</cite>
+      </blockquote>
+      <blockquote class="q">
+        <p>A Makefile DAG proves topological ordering, not evidence authenticity — an agent can never be the notary of its own handwriting.</p>
+        <cite>— Sam LABBE; the line Randal L. Schwartz named “Sam LABBE’s Corollary”</cite>
+      </blockquote>
+      <blockquote class="q">
+        <p>NoireBox proves a record was not altered and when it existed. It does not prove the record was true when written. A proof tool, not a talisman.</p>
+        <cite>— Sam LABBE, project positioning</cite>
+      </blockquote>
+      <blockquote class="q">
+        <p>The journal stays local — the repo ships the method. Verification stays free, forever.</p>
+        <cite>— Sam LABBE, project motto</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="information">
   <div class="wrap">
     <p class="sec-kicker">Product information</p>
@@ -254,7 +285,6 @@ footer { padding: 54px 0 40px; }
       <div class="dl-row"><dt>Distribution</dt><dd>PyPI (<strong>pip install noirebox</strong>) · Docker image on GHCR · read-only mirror on Codeberg</dd></div>
       <div class="dl-row"><dt>Licence</dt><dd><strong>MIT</strong> — open source, no strings</dd></div>
       <div class="dl-row"><dt>Memberships</dt><dd>Apply AI Alliance (European Commission, Futurium)</dd></div>
-      <div class="dl-row"><dt>Who</dt><dd>Built solo by <strong>Sam Labbé</strong> — independent developer, Vosges, France 🇫🇷</dd></div>
     </dl>
   </div>
 </section>
@@ -318,7 +348,7 @@ footer { padding: 54px 0 40px; }
       </div>
     </div>
     <div class="fbase">
-      <span>© 2026 Sam Labbé — noirebox.eu</span>
+      <span>© 2026 Sam LABBE — noirebox.eu</span>
       <span>Member of the Apply AI Alliance (European Commission, Futurium)</span>
     </div>
   </div>
