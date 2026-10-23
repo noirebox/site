@@ -75,6 +75,20 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .finecard b{font-family:var(--mono);font-size:26px;color:var(--violet);letter-spacing:-.02em;white-space:nowrap}
 .finecard span{color:var(--dim);font-size:14.5px}
 
+.wswitch{display:flex;justify-content:center;gap:0;margin:36px auto 26px;max-width:560px;border:1px solid var(--line-strong);border-radius:999px;padding:4px;background:#fff}
+.wtab{flex:1;border:0;background:none;font-family:var(--mono);font-size:13px;font-weight:700;padding:11px 10px;border-radius:999px;cursor:pointer;color:var(--muted);transition:all .2s}
+.wtab.on{background:var(--bad);color:#fff}
+.wtab.on.good{background:var(--good)}
+.ticket{max-width:640px;margin:0 auto 20px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;padding:16px 20px}
+.ticket .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.ticket p{font-size:15.5px;color:var(--ink);margin:0}
+.logbox{max-width:760px;margin:0 auto;background:var(--ink);border-radius:12px;padding:18px 22px;text-align:left}
+.logh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:10px}
+.logp{font-family:var(--mono);font-size:12px;line-height:1.7;color:#e2e8f0;white-space:pre-wrap;margin:0}
+.logp .chg{color:#fb7185;font-weight:700}
+.logp .okl{color:#34d399}
+.sealedbox{max-width:760px;margin:14px auto 0;background:var(--good-bg);border:1px solid var(--good-line);border-radius:10px;padding:12px 18px;font-size:11.5px;line-height:1.8;color:var(--good);text-align:left}
+.sealedbox .bad2{color:var(--bad)}
 .chain{margin:44px auto 0;max-width:900px;display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center}
 .linkn{background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:16px 14px;width:152px;position:relative;transition:all .35s}
 .linkn .n{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.1em}
@@ -191,11 +205,38 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 
 <section class="band alt" id="demo">
   <div class="wrap">
-    <p class="sec-kicker reveal" data-fr="Une démo que vous pouvez casser">A demo you can break</p>
-    <h2 class="reveal" data-fr="Essayez de tricher.">Try to cheat.</h2>
-    <p class="sec-lede reveal" data-fr="Ci-dessous : une matinée de travail d’un agent IA, scellée maillon par maillon — comme une chaîne. Appuyez sur « modifiez une étape » et regardez ce que la chaîne raconte.">Below: one morning of an AI agent’s work, sealed link by link — like a chain. Press “modify a step” and watch what the chain shows.</p>
+    <p class="sec-kicker reveal" data-fr="Une vraie réclamation, deux fins">A real dispute, two endings</p>
+    <h2 class="reveal" data-fr="Une réclamation. Deux fins.">One complaint. Two endings.</h2>
+    <p class="sec-lede reveal" data-fr="Sans trace scellée, « l’agent a dit / le client a dit » finit toujours pareil. Avec, ça se règle en un coup de fil. Basculez, puis jouez le scénario.">Without a sealed record, “the agent said / the client said” ends the same way every time. With one, it ends in one phone call. Flip the switch, play the scene.</p>
 
-    <div class="chain reveal" id="chain">
+    <div class="wswitch reveal">
+      <button type="button" class="wtab on" id="tabWithout" data-fr="SANS NoireBox">WITHOUT NoireBox</button>
+      <button type="button" class="wtab" id="tabWith" data-fr="AVEC NoireBox">WITH NoireBox</button>
+    </div>
+
+    <div class="ticket reveal">
+      <div class="who" data-fr="👤 client — le 12 oct, 09:14">👤 CLIENT — Oct 12, 09:14</div>
+      <p data-fr="« Votre chatbot m’a dit que le vol était couvert. Ma réclamation a été rejetée. C’est faux. »">“Your chatbot told me theft was covered. My claim was rejected. That's false.”</p>
+    </div>
+
+    <div class="logbox reveal">
+      <div class="logh" data-fr="la seule preuve existante : le log de l’agent">the only evidence that exists: the agent's log</div>
+      <pre class="logp" id="scnLog">Oct 12 14:02:11 · chat-conv-8841
+user:   "does the basic plan cover theft?"
+agent:  "Yes — theft is included in the basic plan."
+log:    coverage_advised = "theft_included"</pre>
+    </div>
+    <div class="sealedbox mono" id="scnSeal" style="display:none"></div>
+
+    <div class="ctl reveal"><button class="dbtn" id="scnBtn"></button></div>
+    <div class="verdict" id="scnVerdict"></div>
+
+    <div style="margin-top:76px">
+      <p class="sec-kicker reveal" data-fr="Le mécanisme, maillon par maillon">The mechanism, link by link</p>
+      <h2 class="reveal" data-fr="Essayez de tricher.">Try to cheat.</h2>
+      <p class="sec-lede reveal" data-fr="Une matinée de travail d’un agent IA, scellée maillon par maillon — comme une chaîne. Appuyez sur « modifiez une étape » et regardez ce que la chaîne raconte.">One morning of an AI agent’s work, sealed link by link — like a chain. Press “modify a step” and watch what the chain shows.</p>
+
+      <div class="chain reveal" id="chain">
       <div class="linkn" data-i="0">
         <div class="n">01</div><div class="ic">📥</div>
         <div class="t" data-fr="Demande reçue — le client veut un devis">Request received — client asks for a quote</div>
@@ -424,6 +465,72 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
         : '✓ INTACT — the chain proves that nothing moved. Anyone can re-run this check, anytime, without asking permission.';
     }, links.length*220+150);
   });
+
+  /* ── la dispute : avec / sans ── */
+  var tabW=document.getElementById('tabWithout'),
+      tabV=document.getElementById('tabWith'),
+      scnLog=document.getElementById('scnLog'),
+      scnSeal=document.getElementById('scnSeal'),
+      scnBtn=document.getElementById('scnBtn'),
+      scnV=document.getElementById('scnVerdict'),
+      scnMode='without', scnStep=0;
+
+  var LOG_ORIG='Oct 12 14:02:11 · chat-conv-8841\nuser:   "does the basic plan cover theft?"\nagent:  "Yes — theft is included in the basic plan."\nlog:    coverage_advised = "theft_included"';
+  var LOG_EDITED='Oct 12 14:02:11 · chat-conv-8841\nuser:   "does the basic plan cover theft?"\nagent:  "Yes — theft is included in the basic plan."\nlog:    coverage_advised = <span class="chg">"theft — NOT included"</span>   <span class="chg">← edited by admin, 09:41</span>';
+
+  function scnRender(){
+    scnStep=0; scnV.className='verdict'; scnV.style.display='none';
+    scnLog.innerHTML=LOG_ORIG;
+    scnSeal.style.display='none';
+    tabW.className='wtab'+(scnMode==='without'?' on':'');
+    tabV.className='wtab'+(scnMode==='with'?' on good':'');
+    scnBtn.style.display='inline-block';
+    if(scnMode==='without') scnBtn.textContent = fr ? 'Ouvrir l’admin et modifier le log' : 'Open the admin panel & edit the log';
+    else scnBtn.textContent = fr ? 'Tenter la même modification sur le log scellé' : 'Try the same edit on the sealed log';
+  }
+  tabW.addEventListener('click',function(){ scnMode='without'; scnRender(); });
+  tabV.addEventListener('click',function(){ scnMode='with'; scnRender(); });
+
+  scnBtn.addEventListener('click',function(){
+    scnStep++;
+    if(scnMode==='without'){
+      if(scnStep===1){
+        scnLog.innerHTML=LOG_EDITED;
+        scnBtn.textContent = fr ? 'Continuer — le client se plaint' : 'Continue — the client complains';
+        scnV.className='verdict show';
+        v.className='verdict';
+        scnV.style.display='block';
+        scnV.style.borderColor='var(--line-strong)'; scnV.style.background='#fff'; scnV.style.color='var(--dim)';
+        scnV.textContent = fr ? 'Enregistré. Aucune trace. Aucune alarme. Le log dit maintenant ce qui arrange — personne ne peut le savoir.' : 'Saved. No trace. No alarm. The log now says whatever is convenient — and nobody can tell.';
+      }else{
+        scnBtn.style.display='none';
+        scnV.className='verdict bad show';
+        scnV.textContent = fr
+          ? '❌ IMPOSSIBLE À PROUVER. Le log dit ce qui arrange l’entreprise, la capture d’écran du client dit le contraire. Une parole contre l’autre : remboursement par défaut, ou le tribunal. Dans tous les cas — la confiance est morte.'
+          : '❌ UNPROVABLE. The log now says whatever serves the company, and the client’s screenshot says the opposite. One word against the other: refund by default, or court. Either way — trust is gone.';
+      }
+    }else{
+      if(scnStep===1){
+        scnLog.innerHTML=LOG_EDITED;
+        scnSeal.style.display='block';
+        scnSeal.innerHTML = fr
+          ? 'copie scellée · ancree le 12 oct 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intacte</span><br>rejeu après modification → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence détectée</span>'
+          : 'sealed copy · anchored Oct 12 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intact</span><br>replay after edit → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence detected</span>';
+        scnBtn.textContent = fr ? 'Vérifier le sceau' : 'Verify the seal';
+        scnV.className='verdict show';
+        scnV.style.display='block';
+        scnV.style.borderColor='var(--line-strong)'; scnV.style.background='#fff'; scnV.style.color='var(--dim)';
+        scnV.textContent = fr ? 'La modification a bien été tentée. Le sceau, lui, n’a pas bougé — et il le crie.' : 'The edit went through on the live copy. The seal did not move — and it shows.';
+      }else{
+        scnBtn.style.display='none';
+        scnV.className='verdict good show';
+        scnV.textContent = fr
+          ? '✓ PROUVÉ. La frame scellée de 14:02:11 dit toujours exactement ce que l’agent a dit — signée, horodatée, revérifiable par n’importe qui. Le litige se règle en un coup de fil.'
+          : '✓ PROVEN. The sealed frame from 14:02:11 still says exactly what the agent said — signed, time-stamped, re-verifiable by anyone. The dispute ends in one phone call.';
+      }
+    }
+  });
+  scnRender();
 })();
 </script>
 </body>
