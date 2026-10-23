@@ -1,779 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NoireBox — the flight data recorder for AI agents | EU AI Act compliance</title>
-<meta name="description" content="NoireBox: the open-source flight data recorder for AI agents. Every decision sealed, signed and time-stamped by external witnesses — verifiable offline, without trusting the operator.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoireBox — la boîte noire des agents IA. Deux portes, une seule preuve.</title>
+<meta name="description" content="Le enregistreur de vol pour agents IA. Entrez par la porte tech (inspector du sceau, benchmarks, docs) ou par la porte humaine (zéro jargon, ce que ça change pour votre boîte).">
 <meta property="og:title" content="NoireBox — the flight data recorder for AI agents">
-<meta property="og:description" content="Tamper-evident journal for AI agents, verifiable offline without trusting the operator.">
+<meta property="og:description" content="Two doors, one proof: the cryptographic inspector or plain words for everyone else.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noirebox.eu/">
 <meta property="og:image" content="https://noirebox.eu/assets/banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <style>
-:root {
-  --paper: #f8fafc; --paper-2: #f1f5f9; --line: #e2e8f0; --line-strong: #cbd5e1;
-  --ink: #0f172a; --ink-950: #090d16; --dim: #334155; --muted: #64748b; --faint: #94a3b8;
-  --violet: #6d28d9; --violet-dark: #5b21b6; --violet-deep: #4c1d95; --violet-soft: #ede9fe;
-  --good: #047857; --good-bg: #ecfdf5; --good-line: #a7f3d0;
-  --bad: #be123c; --bad-bg: #fff1f2; --bad-line: #fecdd3;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+:root{
+  --bg:#f8fafc; --surface:#ffffff; --surface2:#f1f5f9; --fg:#0f172a; --dim:#475569; --muted:#94a3b8;
+  --line:#e2e8f0; --violet:#6d28d9; --violet-dark:#5b21b6; --violet-soft:#6d28d9;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-::selection { background: var(--violet-soft); color: var(--violet-deep); }
-a { color: inherit; }
-.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-.mono { font-family: var(--mono); }
-section { scroll-margin-top: 18px; }
-.swiss-grid { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(226,232,240,.55) 1px, transparent 1px), linear-gradient(to bottom, rgba(226,232,240,.55) 1px, transparent 1px); }
-.crosshair { position: relative; }
-.crosshair::before, .crosshair::after { content: '+'; position: absolute; font-family: var(--mono); font-size: 12px; color: var(--faint); pointer-events: none; }
-.crosshair::before { top: -7px; left: -5px; }
-.crosshair::after { bottom: -7px; right: -5px; }
-.pulse { animation: pl 2.2s cubic-bezier(.4,0,.6,1) infinite; }
-@keyframes pl { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:60;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+::selection{background:rgba(109,40,217,.16)}
+a{color:var(--fg);text-decoration:none}
+:focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px;width:100%}
 
-/* ── ticker topbar ───────────────────────────── */
-.topbar { background: var(--ink-950); color: #e2e8f0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid #1e293b; }
-.topbar-track { display: inline-block; padding: 7px 0; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; animation: tick 42s linear infinite; }
-.topbar:hover .topbar-track { animation-play-state: paused; }
-.topbar-track b { color: #a78bfa; font-weight: 400; }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+header{border-bottom:1px solid var(--line);position:relative;z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.brand{font-family:var(--mono);font-size:.95rem;font-weight:700;letter-spacing:.14em;display:flex;align-items:center}
+.brand em{font-style:normal;color:var(--violet-soft)}
+.cube{display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7c3aed,#0284c7);border-radius:5px;margin-right:9px}
+.barright{display:flex;align-items:center;gap:10px}
+.pillhead{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);padding:6px 13px;border-radius:999px}
+.pillhead b{color:var(--violet-soft);font-weight:400}
+.langbtn{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);background:none;padding:6px 13px;border-radius:999px;cursor:pointer}
+.langbtn:hover{color:var(--violet-soft);border-color:var(--violet)}
 
-/* ── nav ─────────────────────────────────────── */
-nav { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
-.brand { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .16em; text-decoration: none; display: flex; align-items: center; }
-.brand em { font-style: normal; color: var(--violet); }
-.cube { display: inline-block; width: 20px; height: 20px; background: var(--ink); margin-right: 9px; position: relative; flex: none; }
-.cube::after { content: ''; position: absolute; inset: 5px; border: 2px solid #fff; }
-.cube::before { content: ''; position: absolute; left: 50%; top: 3px; bottom: 3px; width: 2px; margin-left: -1px; background: #fff; }
-.brand:hover .cube { background: var(--violet); }
-.ver { font-family: var(--mono); font-size: 9.5px; font-weight: 500; padding: 2px 6px; background: var(--paper-2); border: 1px solid var(--line); color: var(--muted); margin-left: 8px; letter-spacing: .04em; }
-.nlinks { display: flex; align-items: center; gap: 24px; }
-.nlinks > a { color: var(--dim); text-decoration: none; font-size: 13.5px; font-weight: 500; }
-.nlinks > a:hover { color: var(--violet); }
-.nright { display: flex; align-items: center; gap: 10px; }
-.lang { display: inline-flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); padding: 2px; font-family: var(--mono); font-size: 11px; }
-.lang button { border: 0; background: none; padding: 4px 10px; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; }
-.lang button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(15,23,42,.08); }
-.btn-cta { display: inline-block; text-decoration: none; font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 8px 14px; background: var(--ink); color: #fff; border: 1px solid var(--ink); }
-.btn-cta:hover { background: var(--violet-dark); border-color: var(--violet-dark); }
+.gate{flex:1;position:relative;padding:44px 0 64px}
+#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+.gate .wrap{position:relative;z-index:2}
+.bootlog{font-family:var(--mono);font-size:.74rem;color:var(--muted);min-height:96px;white-space:pre-line;margin-bottom:34px}
+.bootlog .ok{color:var(--violet);font-weight:600}
+.kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);margin-bottom:16px}
+h1{font-size:clamp(2.5rem,7.5vw,4.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.05}
 
-/* ── hero ────────────────────────────────────── */
-.hero { border-bottom: 1px solid var(--line); padding: 64px 0 56px; text-align: center; }
-.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fff; border: 1px solid var(--line); font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 26px; }
-.eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
-.wordmark { font-family: var(--mono); font-weight: 700; letter-spacing: .1em; font-size: clamp(38px, 8.5vw, 88px); line-height: 1; }
-.wordmark em { font-style: normal; color: var(--violet); }
-h1 { font-size: clamp(20px, 3.2vw, 29px); font-weight: 700; letter-spacing: -.01em; margin-top: 22px; }
-.lede { color: var(--dim); font-size: 16.5px; max-width: 660px; margin: 18px auto 26px; }
-.lede strong { color: var(--ink); font-weight: 600; }
-.lede code { font-family: var(--mono); font-size: .85em; font-weight: 600; color: var(--ink); background: var(--paper-2); border: 1px solid var(--line); padding: .1em .4em; }
-.pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--dim); margin-bottom: 30px; }
-.pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 1px solid var(--line); }
-.pill svg { width: 13px; height: 13px; color: var(--violet); }
-.ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-@media (min-width: 720px) { .ctas { flex-direction: row; justify-content: center; } }
-.btn-hero { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--ink); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
-.btn-hero:hover { background: var(--violet-dark); }
-.install { display: flex; align-items: stretch; background: #fff; border: 1px solid var(--line-strong); }
-.install select { border: 0; border-right: 1px solid var(--line); background: transparent; font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--violet); padding: 0 10px; cursor: pointer; outline: none; }
-.install code { font-family: var(--mono); font-size: 12px; color: var(--ink); align-self: center; padding: 10px 6px 10px 12px; user-select: all; }
-.install button { border: 0; background: none; color: var(--faint); font-family: var(--mono); font-size: 11px; padding: 0 12px; cursor: pointer; }
-.install button:hover { color: var(--ink); }
+.doors{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:52px;background:rgba(255,255,255,.75);backdrop-filter:blur(4px)}
+.door{position:relative;min-height:400px;padding:52px 48px 44px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+.door + .door{border-left:1px solid var(--line)}
+.door:hover,.door:focus-visible{background:var(--surface)}
+.door-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.ghost{position:absolute;top:88px;right:44px;font-family:var(--mono);font-size:clamp(3.4rem,7vw,5.4rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--line);transition:opacity .3s,-webkit-text-stroke-color .3s;pointer-events:none}
+.door:hover .ghost,.door:focus-visible .ghost{-webkit-text-stroke-color:var(--violet);opacity:.45}
+.door h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.02em;margin:96px 0 14px;max-width:14ch}
+.door p{color:var(--dim);max-width:36ch;font-size:.96rem}
+.dfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px dashed var(--line);padding-top:18px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.door:hover .dfoot span:last-child,.door:focus-visible .dfoot span:last-child{color:var(--violet-soft)}
+.kbd{border:1px solid var(--line);padding:1px 7px;border-radius:4px;font-size:.66rem;color:var(--dim)}
+.hintline{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:18px}
+@media (max-width:860px){.doors{grid-template-columns:1fr}.door + .door{border-left:none;border-top:1px solid var(--line)}.door{min-height:0;padding:36px 30px 30px}.door h2{margin-top:64px}}
 
-/* ── inspector ───────────────────────────────── */
-.inspect { margin: 8px 0 0; }
-.ibar { background: var(--paper-2); border-bottom: 1px solid var(--line); padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-.badge { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; font-weight: 600; padding: 4px 10px; border: 1px solid var(--good-line); background: var(--good-bg); color: var(--good); }
-.badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; }
-.badge.broken { border-color: var(--bad-line); background: var(--bad-bg); color: var(--bad); }
-.badge.broken .dot { background: #f43f5e; }
-.badge.wait { border-color: var(--line-strong); background: #fff; color: var(--muted); }
-.badge.wait .dot { background: var(--faint); }
-.imeta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-.imeta strong { color: var(--ink); font-weight: 600; }
-.ibtns { display: flex; gap: 8px; flex-wrap: wrap; }
-.ibtn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11.5px; font-weight: 500; padding: 6px 11px; border: 1px solid var(--bad-line); background: #fff; color: var(--bad); cursor: pointer; }
-.ibtn:hover { background: var(--bad-bg); }
-.ibtn.go { border-color: var(--violet); background: var(--violet); color: #fff; font-weight: 600; }
-.ibtn.go:hover { background: var(--violet-dark); }
-.ibody { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); background: #fff; }
-@media (max-width: 900px) { .ibody { grid-template-columns: minmax(0,1fr); } }
-.ilist { border-right: 1px solid var(--line); background: rgba(248,250,252,.6); padding: 14px; max-height: 560px; overflow-y: auto; min-width: 0; }
-@media (max-width: 900px) { .ilist { border-right: 0; border-bottom: 1px solid var(--line); max-height: 300px; } }
-.ilist-h { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-.ievt { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; text-align: left; background: rgba(255,255,255,.7); border: 1px solid var(--line); padding: 9px 11px; margin-bottom: 7px; cursor: pointer; font: inherit; }
-.ievt:hover { background: #fff; border-color: var(--line-strong); }
-.ievt.sel { background: #fff; border-color: var(--violet); box-shadow: 0 0 0 1px var(--violet); }
-.ievt.brok { background: var(--bad-bg); border-color: #fb7185; }
-.ievt .nm { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ievt .hs { font-family: var(--mono); font-size: 10.5px; color: var(--muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ievt.brok .hs, .ievt.brok .nm { color: var(--bad); }
-.ievt .sz { font-family: var(--mono); font-size: 10.5px; color: var(--muted); flex: none; background: var(--paper-2); padding: 2px 6px; }
-.idetail { padding: 18px; min-width: 0; }
-.idetail-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
-.idetail-h .seq { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 3px 8px; background: var(--ink); color: #fff; }
-.idetail-h .tt { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); margin-left: 8px; }
-.idetail-h .art { font-family: var(--mono); font-size: 10.5px; padding: 3px 9px; background: var(--violet-soft); color: var(--violet-deep); border: 1px solid #ddd6fe; }
-.hashes { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; margin-bottom: 12px; }
-@media (max-width: 640px) { .hashes { grid-template-columns: minmax(0,1fr); } }
-.hbox { padding: 9px 11px; background: var(--paper); border: 1px solid var(--line); }
-.hbox .lbl { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 3px; }
-.hbox .hv { font-family: var(--mono); font-size: 11px; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hbox.ok { border-color: var(--good-line); background: var(--good-bg); }
-.hbox.ok .hv { color: var(--good); font-weight: 600; }
-.hbox.ko { border-color: #fb7185; background: var(--bad-bg); }
-.hbox.ko .hv { color: var(--bad); font-weight: 600; }
-.verdict { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
-.vbadge { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 5px 11px; }
-.vbadge.ok { background: var(--good-bg); color: var(--good); border: 1px solid var(--good-line); }
-.vbadge.ko { background: var(--bad-bg); color: var(--bad); border: 1px solid #fb7185; }
-.vbadge .t { color: var(--muted); font-weight: 400; }
-.payload-lbl { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-.payload { font-family: var(--mono); font-size: 11px; line-height: 1.55; background: var(--ink-950); color: #e2e8f0; padding: 13px 15px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; max-height: 150px; overflow-y: auto; }
-.ifoot { padding-top: 12px; margin-top: 4px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
-.ifoot b { color: var(--dim); font-weight: 500; }
-.inote { text-align: center; font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 10px 16px 14px; background: #fff; border-top: 1px solid var(--line); }
-.inote b { color: var(--violet); font-weight: 600; }
-
-/* ── sections ────────────────────────────────── */
-.sec { padding: 84px 0; border-bottom: 1px solid var(--line); }
-.sec-alt { background: #fff; }
-.kicker { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--violet); margin-bottom: 12px; }
-h2 { font-size: clamp(25px, 3.6vw, 34px); font-weight: 700; letter-spacing: -.015em; }
-.sec-lede { color: var(--dim); max-width: 640px; margin-top: 12px; font-size: 16px; }
-.sec-lede strong { color: var(--ink); font-weight: 600; }
-
-.rows { margin-top: 46px; border-top: 1px solid var(--line-strong); }
-.row { display: grid; grid-template-columns: 250px 1fr; gap: 26px; padding: 26px 12px; border-bottom: 1px solid var(--line); }
-.row:hover { background: rgba(241,245,249,.6); }
-.row .n { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--violet); display: block; margin-bottom: 5px; }
-.row h3 { font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
-.row p { color: var(--dim); font-size: 14.5px; }
-.row p strong { color: var(--ink); font-weight: 600; }
-.formula { display: inline-flex; font-family: var(--mono); font-size: 11.5px; color: var(--muted); background: var(--paper-2); border: 1px solid var(--line); padding: 6px 11px; margin-top: 12px; }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.tag { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 4px 10px; background: var(--violet-soft); color: var(--violet-deep); border: 1px solid #ddd6fe; }
-
-.bignum { display: flex; align-items: baseline; gap: 20px; margin: 38px 0 8px; }
-.bignum b { font-family: var(--mono); font-weight: 700; font-size: clamp(46px, 7vw, 78px); letter-spacing: -.03em; color: var(--violet); }
-.bignum span { color: var(--dim); font-size: 15px; max-width: 380px; }
-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 14px; }
-th { text-align: left; font-family: var(--mono); font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); border-bottom: 1px solid var(--line-strong); padding: 0 16px 9px 0; }
-td { border-bottom: 1px solid var(--line); padding: 11px 16px 11px 0; vertical-align: top; color: var(--dim); }
-td.m { font-family: var(--mono); color: var(--ink); white-space: nowrap; }
-td.v { font-family: var(--mono); color: var(--violet-dark); font-weight: 600; white-space: nowrap; }
-td a { color: var(--dim); }
-td a:hover { color: var(--violet); }
-.tfoot { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 10px; }
-
-.dl { margin-top: 38px; }
-.dl-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; padding: 13px 0; border-top: 1px solid var(--line); }
-.dl-row:last-child { border-bottom: 1px solid var(--line); }
-.dl-row dt { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
-.dl-row dd { color: var(--dim); font-size: 15px; }
-.dl-row dd strong { color: var(--ink); font-weight: 600; }
-
-.qs { margin-top: 40px; }
-.q { padding: 24px 0; border-top: 1px solid var(--line); }
-.q:last-child { border-bottom: 1px solid var(--line); }
-.q p { font-size: clamp(17px, 2.3vw, 21px); font-weight: 500; letter-spacing: -.01em; line-height: 1.4; max-width: 780px; }
-.q cite { display: block; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 9px; }
-
-.use { text-align: center; }
-.use .sec-lede { margin-left: auto; margin-right: auto; }
-.maptags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 30px 0 34px; }
-.maptag { font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 7px 14px; background: #fff; border: 1px solid var(--line-strong); color: var(--dim); }
-.maptag b { color: var(--violet-deep); font-weight: 600; }
-.ctas2 { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-.btn2 { display: inline-block; text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 13px 26px; border: 1px solid var(--line-strong); background: #fff; color: var(--ink); }
-.btn2:hover { border-color: var(--ink); }
-.btn2.primary { background: var(--ink); border-color: var(--ink); color: #fff; font-family: var(--mono); font-size: 13px; }
-.btn2.primary:hover { background: var(--violet-dark); border-color: var(--violet-dark); }
-.usenote { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 20px; }
-.usenote a { color: var(--dim); }
-
-.learn { display: grid; grid-template-columns: 1fr 1fr; margin-top: 42px; border-top: 1px solid var(--line-strong); }
-.lm { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); text-decoration: none; display: block; }
-.lm + .lm { padding-left: 24px; border-left: 1px solid var(--line); }
-.lm .cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; margin-bottom: 10px; }
-.lm h3 { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
-.lm:hover h3 { color: var(--violet-dark); }
-.lm h3::after { content: ' →'; color: var(--violet); }
-.lm p { color: var(--dim); font-size: 14.5px; margin-top: 6px; }
-
-footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid var(--line); }
-.fgrid { display: grid; grid-template-columns: 1.3fr .9fr 1.2fr .9fr .9fr; gap: 28px; }
-.fcol h4 { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 13px; }
-.fcol a, .fcol span { display: block; color: var(--dim); text-decoration: none; font-size: 13.5px; margin-bottom: 7px; }
-.fcol a:hover { color: var(--violet); }
-.fbrand { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: .16em; margin-bottom: 10px; }
-.fbrand em { font-style: normal; color: var(--violet); }
-.fnote { color: var(--muted); font-size: 13.5px; margin-bottom: 14px; max-width: 300px; }
-.fstatus { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; color: var(--good); background: var(--good-bg); border: 1px solid var(--good-line); padding: 5px 10px; }
-.fbase { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 18px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--faint); }
-.fbase b { color: var(--dim); font-weight: 500; }
-
-@media (max-width: 900px) {
-  .hero { padding: 48px 0 44px; }
-  .nlinks { display: none; }
-  .row { grid-template-columns: 1fr; gap: 8px; padding: 20px 4px; }
-  .dl-row { grid-template-columns: 1fr; gap: 4px; }
-  .learn { grid-template-columns: 1fr; }
-  .lm + .lm { padding-left: 0; border-left: none; }
-  .fgrid { grid-template-columns: 1fr 1fr; }
-  .sec { padding: 56px 0; }
-  th:nth-child(4), td:nth-child(4) { display: none; }
-}
+footer{border-top:1px solid var(--line);position:relative;z-index:2}
+.foot{padding:26px 0 32px;font-family:var(--mono);font-size:.76rem;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.foot a{border-bottom:1px solid var(--line);transition:color .15s,border-color .15s}
+.foot a:hover{color:var(--violet-soft);border-color:var(--violet)}
 </style>
 </head>
 <body>
 
-<div class="topbar" aria-hidden="true">
-  <div class="topbar-track">
-    <b>+++</b> EU AI Act art. 12 — automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0 — 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below — in your browser, right now <b>+++</b>&nbsp;
-    <b>+++</b> EU AI Act art. 12 — automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0 — 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below — in your browser, right now <b>+++</b>&nbsp;
-  </div>
-</div>
-
-<nav>
-  <div class="wrap">
-    <a class="brand" href="#"><span class="cube"></span>NOIRE<em>BOX</em><span class="ver">v0.24.0</span></a>
-    <div class="nlinks">
-      <a href="#proof" data-i18n="nav.proof">Architecture</a>
-      <a href="#performance" data-i18n="nav.bench">Benchmarks (0.17 ms)</a>
-      <a href="#information" data-i18n="nav.specs">Specifications</a>
-      <a href="#use" data-i18n="nav.compliance">EU compliance</a>
-      <a href="https://code.noirebox.eu/">Docs ↗</a>
-    </div>
-    <div class="nright">
-      <div class="lang" role="group" aria-label="Language">
-        <button id="lang-en" class="on" onclick="setLang('en')">EN</button>
-        <button id="lang-fr" onclick="setLang('fr')">FR</button>
-      </div>
-      <a class="btn-cta" href="#use" data-i18n="nav.cta">Start sealing</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero swiss-grid">
-  <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Cryptographic audit trail • EU AI Act art. 12 mapped</span></div>
-    <div class="wordmark">NOIRE<em>BOX</em></div>
-    <h1 data-i18n="hero.h1">The flight data recorder for AI agents.</h1>
-    <p class="lede" data-i18n-html="hero.lede">A tamper-evident journal where every decision an agent takes is <strong>sealed, signed and time-stamped by external witnesses</strong> — and anyone can replay the proof <strong>offline, without trusting the operator</strong>, for <code>0.17&nbsp;ms</code> per sealed event.</p>
-    <div class="pills">
-      <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.6-4A11.96 11.96 0 0112 2.9 11.96 11.96 0 013 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-3"/></svg><span data-i18n="hero.pill1">Ed25519 signed</span></span>
-      <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.8 10.2a4 4 0 00-5.6 0l-4 4a4 4 0 105.6 5.6l1.1-1.1m-.7-4.9a4 4 0 005.6 0l4-4a4 4 0 00-5.6-5.6l-1.1 1.1"/></svg><span data-i18n="hero.pill2">SHA-256 hash-chained</span></span>
-      <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span data-i18n="hero.pill3">Offline verifiable</span></span>
-      <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-width="2" d="M12 7v5l3 3"/></svg><span data-i18n="hero.pill4">RFC 3161 + Bitcoin timestamps</span></span>
-    </div>
-    <div class="ctas">
-      <a class="btn-hero" href="#inspector"><span data-i18n="hero.cta1">Inspect the live seal</span> ↓</a>
-      <div class="install">
-        <select id="sdk" aria-label="Install source" onchange="updInstall()">
-          <option value="pip">PyPI</option>
-          <option value="docker">Docker</option>
-          <option value="action">GitHub Action</option>
-        </select>
-        <code id="install-cmd">pip install noirebox</code>
-        <button id="copybtn" onclick="copyInstall()">copy</button>
-      </div>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="cube"></span>NOIRE<em>BOX</em></a>
+    <div class="barright">
+      <span class="pillhead"><span data-en="sealed · Ed25519 ✓">scellé · Ed25519 ✓</span> · <b id="pillhead">blog-noirebox…</b></span>
+      <button class="langbtn" id="langBtn" aria-pressed="false">EN</button>
     </div>
   </div>
 </header>
 
-<section class="wrap" id="inspector" style="padding:40px 24px 64px">
-  <div class="inspect crosshair" style="border:1px solid var(--line-strong)">
-    <div class="ibar">
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span class="badge wait" id="chain-badge"><span class="dot pulse"></span><span id="chain-text">LOADING LIVE MANIFEST…</span></span>
-        <span class="imeta" id="chain-meta"></span>
-      </div>
-      <div class="ibtns">
-        <button class="ibtn" id="tamper-btn" onclick="toggleTamper()">Simulate 1-byte tamper</button>
-        <button class="ibtn go" onclick="verifyAll()">Verify offline (SHA-256)</button>
-      </div>
-    </div>
-    <div class="ibody">
-      <div class="ilist">
-        <div class="ilist-h"><span data-i18n="ins.listTitle">Sealed files — click to inspect</span><span>seal v1</span></div>
-        <div id="evt-list"></div>
-      </div>
-      <div class="idetail">
-        <div class="idetail-h">
-          <div><span class="seq" id="d-seq">—</span><span class="tt" id="d-name">no file selected</span></div>
-          <span class="art" id="d-art">SHA-256 hash chain</span>
+<main class="gate">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="bootlog" id="boot"></p>
+    <p class="kicker" data-en="// noirebox.eu — the flight data recorder for AI agents">// noirebox.eu — l’enregistreur de vol des agents IA</p>
+    <h1 id="title" data-txt="Vous êtes plutôt…">Vous êtes plutôt…</h1>
+
+    <div class="doors">
+      <a class="door" href="tech.html">
+        <span class="ghost" aria-hidden="true">01</span>
+        <div class="door-top"><span>PORT_01 // FOR_ENGINEERS</span></div>
+        <div>
+          <h2 data-en="I am tech">Je suis tech</h2>
+          <p data-en="Dev, CTO, DPO, curious hacker — the live cryptographic seal inspector, the 0.17 ms benchmark, 30 public ADRs and the EU compliance mapping. Show me the mechanics.">Dev, CTO, DPO, hacker curieux — l’inspector du sceau en direct, le benchmark 0,17 ms, 30 ADR publics et le mapping conformité UE. Montrez-moi la mécanique.</p>
         </div>
-        <div class="hashes">
-          <div class="hbox"><div class="lbl" data-i18n="ins.manifestHash">Sealed hash (manifest)</div><div class="hv" id="d-sealed">—</div></div>
-          <div class="hbox" id="d-comp-box"><div class="lbl" data-i18n="ins.computedHash">Recomputed here, now (SHA-256)</div><div class="hv" id="d-comp">—</div></div>
+        <div class="dfoot">
+          <span>SHA-256 · ED25519 · AI ACT</span>
+          <span data-en="[ enter <span class='kbd'>1</span> ]">[ entrer <span class="kbd">1</span> ]</span>
         </div>
-        <div class="verdict">
-          <span class="vbadge" id="d-verdict"><span class="t">verdict:</span> —</span>
-          <span class="mono" style="font-size:10.5px;color:var(--muted)" id="d-timing"></span>
-        </div>
-        <div class="payload-lbl"><span data-i18n="ins.excerpt">First bytes of the live file</span><span id="d-size"></span></div>
-        <pre class="payload" id="d-payload">Select a sealed file on the left.</pre>
-        <div class="ifoot">
-          <span>head: <b id="d-head">—</b></span>
-          <span>sig: <b>ed25519</b> <span id="d-fp"></span></span>
-        </div>
-      </div>
-    </div>
-    <div class="inote" data-i18n-html="ins.note">This is not a mockup. The files are fetched live from <b>blog.noirebox.eu</b> and hashed in <b>your browser</b> — nothing is sent anywhere, no account, no trust required. Change one byte anywhere in a file and the recomputed hash diverges from the sealed one.</div>
-  </div>
-</section>
-
-<section class="sec sec-alt" id="proof">
-  <div class="wrap">
-    <p class="kicker" data-i18n="s1.kicker">01 / Architecture &amp; trust</p>
-    <h2 data-i18n="s1.title">Proof, not promises.</h2>
-    <p class="sec-lede" data-i18n-html="s1.lede">Nothing here asks for trust. Every claim on this page maps to an artifact you can inspect, replay, or break on purpose — <strong>the inspector above is the product, running live</strong>.</p>
-    <div class="rows">
-      <div class="row">
-        <div><span class="n">01</span><h3 data-i18n="s1.r1t">Tamper-evident by construction</h3></div>
-        <div><p data-i18n-html="s1.r1d">Every sealed append extends a <strong>SHA-256 hash chain</strong>. Change one byte anywhere in the history and the chain breaks — visibly, on replay. No configuration, no option to disable.</p>
-        <span class="formula">H(n) = SHA256( H(n-1) ‖ SHA256(bytes_n) )</span></div>
-      </div>
-      <div class="row">
-        <div><span class="n">02</span><h3 data-i18n="s1.r2t">Witnessed from the outside</h3></div>
-        <div><p data-i18n-html="s1.r2d"><strong>Ed25519 signatures</strong>, RFC 3161 multi-TSA and OpenTimestamps (Bitcoin). The record is anchored to something nobody — including the operator — can rewrite later.</p>
-        <span class="formula">RFC 8032 Ed25519 • RFC 3161 • OpenTimestamps → Bitcoin L1</span></div>
-      </div>
-      <div class="row">
-        <div><span class="n">03</span><h3 data-i18n="s1.r3t">Verifiable offline, forever</h3></div>
-        <div><p data-i18n-html="s1.r3d">Auditors replay any record on an <strong>air-gapped laptop</strong>: <code>verify.py</code> is stdlib-only, the browser page above is dependency-free. Zero network calls to verify, zero dependency on NoireBox infrastructure.</p>
-        <span class="formula">$ python3 verify.py https://blog.noirebox.eu</span></div>
-      </div>
-      <div class="row">
-        <div><span class="n">04</span><h3 data-i18n="s1.r4t">An honest scope, mapped to EU law</h3></div>
-        <div><p data-i18n-html="s1.r4d">NoireBox proves a record was <strong>not altered</strong> and <strong>when it existed</strong>. It does not prove the record was true when written — <em>undecidable</em> is a first-class outcome, never folded into a green check. Every EU requirement is mapped to a shipped feature in <strong>COMPLIANCE-EU.md</strong>.</p>
-        <div class="tags">
-          <span class="tag">AI Act art. 12</span><span class="tag">art. 14(5)</span><span class="tag">art. 50(2)</span><span class="tag">art. 55(1)(c)</span><span class="tag">art. 73</span><span class="tag">GDPR art. 5(2)/15/20</span><span class="tag">eIDAS art. 41</span>
-        </div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="performance">
-  <div class="wrap">
-    <p class="kicker" data-i18n="s2.kicker">02 / Performance &amp; overhead</p>
-    <h2 data-i18n="s2.title">Fast enough to seal everything.</h2>
-    <div class="bignum">
-      <b>0.17&nbsp;ms</b>
-      <span data-i18n-html="s2.lede">per sealed append — public benchmark, reproducible with <b class="mono" style="font-size:13px">make bench</b>. Your agent seals every decision, not just the ones it remembers.</span>
-    </div>
-    <table>
-      <thead><tr><th data-i18n="s2.th1">Verified number</th><th data-i18n="s2.th2">Value</th><th data-i18n="s2.th3">What it covers</th><th data-i18n="s2.th4">How to check</th></tr></thead>
-      <tbody>
-        <tr><td class="m" data-i18n="s2.r1m">Sealed append</td><td class="v">0.17 ms</td><td data-i18n="s2.r1c">Hash-chain write, in process</td><td><a href="https://github.com/noirebox/noirebox/blob/main/Makefile" target="_blank" rel="noopener">make bench</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r2m">Automated tests</td><td class="v">473</td><td data-i18n="s2.r2c">CI on every push — 0 failing</td><td><a href="https://github.com/noirebox/noirebox/actions" target="_blank" rel="noopener">CI runs</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r3m">Architecture decisions</td><td class="v">30 ADRs</td><td data-i18n="s2.r3c">Public, each with rejected alternatives</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">docs/adr</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r4m">Releases</td><td class="v">22</td><td data-i18n="s2.r4c">Every one in the changelog since 0.1.0</td><td><a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r5m">Attack fixtures replayed</td><td class="v">5 SCAR ids</td><td data-i18n="s2.r5c">Ids 43, 45, 89, 110, 114 — 16 tests</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r6m">Record families</td><td class="v">7</td><td>receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td><td><a href="https://code.noirebox.eu/" target="_blank" rel="noopener">reference</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r7m">Cryptography</td><td class="v">SHA-256 · Ed25519</td><td data-i18n="s2.r7c">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-      </tbody>
-    </table>
-    <p class="tfoot" data-i18n="s2.foot">// every row points at the artifact, not at a claim about the artifact.</p>
-  </div>
-</section>
-
-<section class="sec sec-alt" id="information">
-  <div class="wrap">
-    <p class="kicker" data-i18n="s3.kicker">03 / Technical specification</p>
-    <h2 data-i18n="s3.title">The whole box, on one page.</h2>
-    <dl class="dl">
-      <div class="dl-row"><dt data-i18n="s3.d1k">What</dt><dd data-i18n-html="s3.d1v"><strong>Tamper-evident journal + guardrails + verifiable proof</strong> for AI agents — accountability infrastructure for agentic AI, open source</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d2k">Status</dt><dd data-i18n-html="s3.d2v">Generally available — current version <strong>0.24.0</strong> (21 October 2026); first release 0.1.0 on 19 September 2026</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d3k">Guardrails</dt><dd data-i18n-html="s3.d3v">French + English — regex, trained micro-models, local LLM judge</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d4k">Post-quantum</dt><dd data-i18n-html="s3.d4v">Migration path documented (ADR 027)</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d5k">Compliance</dt><dd data-i18n-html="s3.d5v">GDPR art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, Annex IV · eIDAS art. 41</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d6k">Integrations</dt><dd data-i18n-html="s3.d6v">CLI · Python API · MCP server · <strong>noirebox-verify</strong> GitHub Action · VS Code extension (Marketplace + Open VSX)</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d7k">Distribution</dt><dd data-i18n-html="s3.d7v">PyPI (<strong>pip install noirebox</strong>) · Docker on GHCR · read-only mirror on Codeberg</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d8k">Licence</dt><dd data-i18n-html="s3.d8v"><strong>MIT</strong> — open source, no strings</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d9k">Memberships</dt><dd data-i18n-html="s3.d9v">Apply AI Alliance (European Commission, Futurium)</dd></div>
-    </dl>
-  </div>
-</section>
-
-<section class="sec" id="quotes">
-  <div class="wrap">
-    <p class="kicker" data-i18n="sq.kicker">04 / Press — quotes</p>
-    <h2 data-i18n="sq.title">Quote freely.</h2>
-    <p class="sec-lede" data-i18n="sq.lede">Four lines, already public. Attributed as shown.</p>
-    <div class="qs">
-      <blockquote class="q"><p data-i18n="q1">Prevention varies per stack. Proof is universal.</p><cite>— Sam LABBE, README</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q2">A Makefile DAG proves topological ordering, not evidence authenticity — an agent can never be the notary of its own handwriting.</p><cite>— Sam LABBE; the line Randal L. Schwartz named “Sam LABBE’s Corollary”</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q3">NoireBox proves a record was not altered and when it existed. It does not prove the record was true when written. A proof tool, not a talisman.</p><cite>— Sam LABBE, project positioning</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q4">The journal stays local — the repo ships the method. Verification stays free, forever.</p><cite>— Sam LABBE, project motto</cite></blockquote>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-alt" id="use">
-  <div class="wrap">
-    <p class="kicker" data-i18n="s4.kicker">05 / EU compliance — clause by clause</p>
-    <h2 data-i18n="s4.title">Compliance you can check.</h2>
-    <p class="sec-lede" data-i18n-html="s4.lede">The mapping is public and maintained line by line: <strong>every clause points at a shipped mechanism</strong> — and what NoireBox cannot prove is stated in the same document, not in a footnote.</p>
-    <table style="margin-top:32px">
-      <thead><tr><th data-i18n="s4.th1">Clause</th><th data-i18n="s4.th2">What it demands</th><th data-i18n="s4.th3">What NoireBox ships</th><th data-i18n="s4.th4">Evidence</th></tr></thead>
-      <tbody>
-        <tr><td class="m">AI Act art. 12</td><td data-i18n="s4.r1d">Automatic logging of every decision — tamper-proof, retained</td><td data-i18n="s4.r1s">Hash-chained journal, 0.17&nbsp;ms sealed append, external timestamps</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
-        <tr><td class="m">AI Act art. 14(5) · 50(2)</td><td data-i18n="s4.r2d">Human-oversight and transparency records</td><td data-i18n="s4.r2s">receipt / decision / admission record families</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-        <tr><td class="m">AI Act art. 55(1)(c) · Annex IV</td><td data-i18n="s4.r3d">Technical documentation of the system</td><td data-i18n="s4.r3s">Verifiable attestation exports, replayable offline</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-        <tr><td class="m">GDPR art. 5(2)</td><td data-i18n="s4.r4d">Accountability — be able to demonstrate compliance</td><td data-i18n="s4.r4s">Ed25519-signed journal, witnessed by TSA / Bitcoin</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-        <tr><td class="m">GDPR art. 15 · 20</td><td data-i18n="s4.r5d">Access to, and portability of, the records</td><td data-i18n="s4.r5s">Self-contained exports a third party can re-verify alone</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-        <tr><td class="m">eIDAS art. 41</td><td data-i18n="s4.r6d">Trusted timestamping</td><td data-i18n="s4.r6s">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-      </tbody>
-    </table>
-    <p class="tfoot" data-i18n="s4.foot">// six clauses, six shipped mechanisms — the mapping document names the gaps too.</p>
-    <div class="ctas2" style="margin-top:38px">
-      <a class="btn2 primary" href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">$ pip install noirebox</a>
-      <a class="btn2" href="https://code.noirebox.eu/">Read the docs</a>
-    </div>
-    <p class="usenote" data-i18n-html="s4.note">MIT licence, no signup, no phone-home · full mapping in <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
-  </div>
-</section>
-
-<section class="sec" id="deeper">
-  <div class="wrap">
-    <p class="kicker" data-i18n="s5.kicker">06 / Go deeper</p>
-    <h2 data-i18n="s5.title">Publications &amp; sources.</h2>
-    <div class="learn">
-      <a class="lm" href="https://blog.noirebox.eu/">
-        <span class="cat"><span data-i18n="s5.c1cat">Team journal • sealed &amp; verifiable</span><span>↗</span></span>
-        <h3 data-i18n="s5.c1t">The blog — every page hash-chained</h3>
-        <p data-i18n="s5.c1d">What we build, break and measure — AI agents in production, security, and provable compliance. The same seal the inspector above just verified.</p>
       </a>
-      <a class="lm" href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">
-        <span class="cat"><span data-i18n="s5.c2cat">Regulatory mapping • clause by clause</span><span>↗</span></span>
-        <h3 data-i18n="s5.c2t">COMPLIANCE-EU.md</h3>
-        <p data-i18n="s5.c2d">From GDPR, AI Act and eIDAS requirements to shipped features — with what NoireBox cannot prove stated just as plainly.</p>
+      <a class="door" href="client.html">
+        <span class="ghost" aria-hidden="true">02</span>
+        <div class="door-top"><span>PORT_02 // FOR_EVERYONE_ELSE</span></div>
+        <div>
+          <h2 data-en="Not tech at all">Pas du tout tech</h2>
+          <p data-en="Perfect. Zero jargon: what a black box for AI agents changes for your business, your clients and your audits — in plain words, with a demo you can try yourself.">Parfait. Zéro jargon : ce qu’une boîte noire pour agents IA change pour votre boîte, vos clients et vos audits — en mots simples, avec une démo à essayer vous-même.</p>
+        </div>
+        <div class="dfoot">
+          <span data-en="TRUST · AUDITS · PROOF">CONFIANCE · AUDITS · PREUVES</span>
+          <span data-en="[ enter <span class='kbd'>2</span> ]">[ entrer <span class="kbd">2</span> ]</span>
+        </div>
       </a>
     </div>
+    <p class="hintline" data-en="or press 1 / 2 — both doors lead to proof.">ou appuyez sur 1 ou 2 — les deux portes mènent à la preuve.</p>
   </div>
-</section>
+</main>
 
 <footer>
-  <div class="wrap">
-    <div class="fgrid">
-      <div class="fcol">
-        <div class="fbrand">NOIRE<em>BOX</em></div>
-        <p class="fnote" data-i18n="f.note">Black boxes for systems nobody can fully trust. Built in the EU. Verifiable everywhere.</p>
-        <span class="fstatus" id="f-status"><span style="width:7px;height:7px;border-radius:50%;background:#10b981"></span><span id="f-status-t">blog seal: verifying…</span></span>
-      </div>
-      <div class="fcol">
-        <h4 data-i18n="f.project">Project</h4>
-        <a href="https://code.noirebox.eu/">Developer reference</a>
-        <a href="https://blog.noirebox.eu/">Blog</a>
-        <a href="https://github.com/noirebox/noirebox" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">PyPI</a>
-      </div>
-      <div class="fcol">
-        <h4 data-i18n="f.comp">Compliance &amp; trust</h4>
-        <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>
-        <a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">Art. 12 mapping</a>
-        <a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">30 public ADRs</a>
-        <a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a>
-        <a href=".well-known/security.txt">security.txt</a>
-      </div>
-      <div class="fcol">
-        <h4 data-i18n="f.press">Press</h4>
-        <a class="l-en" href="press.html">Press kit</a>
-        <a class="l-fr" href="presse.html" style="display:none">Dossier de presse</a>
-        <a href="article-50.html" data-i18n="f.pressArt">The Article 50 story</a>
-      </div>
-      <div class="fcol">
-        <h4 data-i18n="f.legal">Legal</h4>
-        <a href="legal.html" data-i18n="f.legalLink">Legal &amp; privacy</a>
-        <a href="https://github.com/noirebox/noirebox/blob/main/LICENSE" target="_blank" rel="noopener">Licence MIT</a>
-        <a href="mailto:sam@slabb.dev">sam@slabb.dev</a>
-      </div>
-    </div>
-    <div class="fbase">
-      <span>© 2026 Sam LABBE — noirebox.eu</span>
-      <span id="f-fp">root fingerprint: —</span>
-      <span data-i18n="f.alliance">Member of the Apply AI Alliance (European Commission, Futurium)</span>
-    </div>
+  <div class="wrap foot">
+    <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-en="legal &amp; privacy">mentions légales &amp; rgpd</a></span>
+    <span data-en="whichever door — the proof is live · © 2026 Sam LABBE">peu importe la porte — la preuve est en direct · © 2026 Sam LABBE</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  /* ── i18n ─────────────────────────────────── */
-  var FR = {
-    'nav.proof':'Architecture','nav.bench':'Benchmarks (0,17 ms)','nav.specs':'Spécifications','nav.compliance':'Conformité UE','nav.cta':'Sceller maintenant',
-    'hero.eyebrow':'Piste d’audit cryptographique • AI Act UE art. 12 mappé',
-    'hero.h1':'L’enregistreur de vol des agents IA.',
-    'hero.lede':'Un journal infalsifiable où chaque décision d’un agent est <strong>scellée, signée et horodatée par des témoins externes</strong> — et n’importe qui peut rejouer la preuve <strong>hors-ligne, sans faire confiance à l’opérateur</strong>, pour <code>0,17&nbsp;ms</code> par événement scellé.',
-    'hero.pill1':'Signé Ed25519','hero.pill2':'Chaîné SHA-256','hero.pill3':'Vérifiable hors-ligne','hero.pill4':'Horodatage RFC 3161 + Bitcoin',
-    'hero.cta1':'Inspecter le sceau en direct',
-    'ins.listTitle':'Fichiers scellés — cliquer pour inspecter','ins.manifestHash':'Hash scellé (manifest)','ins.computedHash':'Recalculé ici, maintenant (SHA-256)',
-    'ins.excerpt':'Premiers octets du fichier en direct',
-    'ins.note':'Ce n’est pas une maquette. Les fichiers sont chargés en direct depuis <b>blog.noirebox.eu</b> et hachés dans <b>votre navigateur</b> — rien n’est envoyé nulle part, aucun compte, aucune confiance requise. Changez un octet n’importe où et le hash recalculé diverge du hash scellé.',
-    's1.kicker':'01 / Architecture &amp; confiance','s1.title':'La preuve, pas les promesses.',
-    's1.lede':'Rien ici ne demande de la confiance. Chaque affirmation de cette page pointe vers un artefact que vous pouvez inspecter, rejouer ou casser exprès — <strong>l’inspecteur ci-dessus est le produit, en direct</strong>.',
-    's1.r1t':'Infalsifiable par construction',
-    's1.r1d':'Chaque appendice scellé prolonge une <strong>chaîne de hachage SHA-256</strong>. Changez un octet n’importe où dans l’historique et la chaîne casse — visiblement, au rejeu. Aucune option pour la désactiver.',
-    's1.r2t':'Témoin depuis l’extérieur',
-    's1.r2d':'Signatures <strong>Ed25519</strong>, RFC 3161 multi-TSA et OpenTimestamps (Bitcoin). Le dossier est ancré à quelque chose que personne — opérateur inclus — ne peut réécrire ensuite.',
-    's1.r3t':'Vérifiable hors-ligne, pour toujours',
-    's1.r3d':'Les auditeurs rejouent n’importe quel dossier sur un <strong>laptop air-gapped</strong> : <code>verify.py</code> ne dépend que de la stdlib, la page navigateur ci-dessus est sans dépendance. Zéro appel réseau pour vérifier, zéro dépendance à l’infrastructure NoireBox.',
-    's1.r4t':'Un périmètre honnête, mappé au droit UE',
-    's1.r4d':'NoireBox prouve qu’un dossier n’a <strong>pas été altéré</strong> et <strong>quand il a existé</strong>. Il ne prouve pas que le dossier était vrai au moment de l’écriture — <em>indécidable</em> est un résultat de première classe, jamais fondu dans un check vert. Chaque exigence UE est mappée à une fonctionnalité livrée dans <strong>COMPLIANCE-EU.md</strong>.',
-    's2.kicker':'02 / Performance &amp; overhead','s2.title':'Assez rapide pour tout sceller.',
-    's2.lede':'par appendice scellé — benchmark public, reproductible avec <b class="mono" style="font-size:13px">make bench</b>. Votre agent scelle chaque décision, pas seulement celles dont il se souvient.',
-    's2.th1':'Chiffre vérifié','s2.th2':'Valeur','s2.th3':'Ce que ça couvre','s2.th4':'Comment vérifier',
-    's2.r1m':'Appendice scellé','s2.r1c':'Écriture de la chaîne, en process',
-    's2.r2m':'Tests automatisés','s2.r2c':'CI à chaque push — 0 en échec',
-    's2.r3m':'Décisions d’architecture','s2.r3c':'Publiques, chacune avec les alternatives rejetées',
-    's2.r4m':'Versions','s2.r4c':'Toutes dans le changelog depuis la 0.1.0',
-    's2.r5m':'Fixtures d’attaque rejouées','s2.r5c':'Ids 43, 45, 89, 110, 114 — 16 tests',
-    's2.r6m':'Familles de records',
-    's2.r7m':'Cryptographie','s2.r7c':'RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)',
-    's2.foot':'// chaque ligne pointe vers l’artefact, pas vers une affirmation sur l’artefact.',
-    's3.kicker':'03 / Fiche technique','s3.title':'Toute la boîte, sur une page.',
-    's3.d1k':'Quoi','s3.d1v':'<strong>Journal infalsifiable + garde-fous + preuve vérifiable</strong> pour agents IA — infrastructure de redevabilité pour l’IA agentique, open source',
-    's3.d2k':'Statut','s3.d2v':'Disponible — version courante <strong>0.24.0</strong> (21 octobre 2026) ; première version 0.1.0 le 19 septembre 2026',
-    's3.d3k':'Garde-fous','s3.d3v':'Français + anglais — regex, micro-modèles entraînés, juge LLM local',
-    's3.d4k':'Post-quantique','s3.d4v':'Chemin de migration documenté (ADR 027)',
-    's3.d5k':'Conformité','s3.d5v':'RGPD art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, annexe IV · eIDAS art. 41',
-    's3.d6k':'Intégrations','s3.d6v':'CLI · API Python · serveur MCP · <strong>noirebox-verify</strong> GitHub Action · extension VS Code (Marketplace + Open VSX)',
-    's3.d7k':'Distribution','s3.d7v':'PyPI (<strong>pip install noirebox</strong>) · Docker sur GHCR · miroir en lecture seule sur Codeberg',
-    's3.d8k':'Licence','s3.d8v':'<strong>MIT</strong> — open source, sans condition',
-    's3.d9k':'Membres','s3.d9v':'Apply AI Alliance (Commission européenne, Futurium)',
-    'sq.kicker':'04 / Presse — citations','sq.title':'Citez librement.','sq.lede':'Quatre lignes, déjà publiques. Attribution telle quelle.',
-    'q1':'La prévention varie selon la stack. La preuve est universelle.',
-    'q2':'Un DAG de Makefile prouve un ordre topologique, pas l’authenticité d’une preuve — un agent ne peut jamais être le notaire de sa propre écriture.',
-    'q3':'NoireBox prouve qu’un dossier n’a pas été altéré et quand il a existé. Il ne prouve pas que le dossier était vrai au moment de l’écriture. Un outil de preuve, pas un talisman.',
-    'q4':'Le journal reste local — le dépôt livre la méthode. La vérification reste gratuite, pour toujours.',
-    's4.kicker':'05 / Conformité UE — article par article','s4.title':'Une conformité vérifiable.',
-    's4.lede':'Le mapping est public et tenu ligne par ligne : <strong>chaque article pointe vers un mécanisme livré</strong> — et ce que NoireBox ne peut pas prouver est énoncé dans le même document, pas dans une note de bas de page.',
-    's4.th1':'Article','s4.th2':'Ce qu’il exige','s4.th3':'Ce que NoireBox livre','s4.th4':'Preuve',
-    's4.r1d':'Journalisation automatique de chaque décision — infalsifiable, conservée',
-    's4.r1s':'Journal chaîné SHA-256, appendice scellé en 0,17&nbsp;ms, horodatage externe',
-    's4.r2d':'Records de supervision humaine et de transparence',
-    's4.r2s':'Familles de records receipt / decision / admission',
-    's4.r3d':'Documentation technique du système',
-    's4.r3s':'Exports d’attestation vérifiables, rejouables hors-ligne',
-    's4.r4d':'Redevabilité — pouvoir démontrer la conformité',
-    's4.r4s':'Journal signé Ed25519, témoigné par TSA / Bitcoin',
-    's4.r5d':'Accès aux dossiers et portabilité',
-    's4.r5s':'Exports autonomes qu’un tiers peut re-vérifier seul',
-    's4.r6d':'Horodatage qualifié',
-    's4.r6s':'RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)',
-    's4.foot':'// six articles, six mécanismes livrés — le document de mapping nomme aussi les manques.',
-    's4.note':'Licence MIT, sans inscription, sans téléphone à la maison · mapping complet dans <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>',
-    's5.kicker':'06 / Aller plus loin','s5.title':'Publications &amp; sources.',
-    's5.c1cat':'Journal d’équipe • scellé &amp; vérifiable','s5.c1t':'Le blog — chaque page chaînée',
-    's5.c1d':'Ce qu’on construit, casse et mesure — les agents IA en production, la sécurité et la conformité prouvable. Le même sceau que l’inspecteur ci-dessus vient de vérifier.',
-    's5.c2cat':'Mapping réglementaire • article par article','s5.c2t':'COMPLIANCE-EU.md',
-    's5.c2d':'Des exigences RGPD, AI Act et eIDAS vers les fonctionnalités livrées — avec ce que NoireBox ne peut pas prouver énoncé aussi clairement.',
-    'f.note':'Des boîtes noires pour les systèmes envers qui personne ne peut avoir pleinement confiance. Conçu dans l’UE. Vérifiable partout.',
-    'f.project':'Projet','f.comp':'Conformité &amp; confiance','f.press':'Presse','f.legal':'Légal',
-    'f.pressArt':'L’histoire de l’Article 50','f.legalLink':'Mentions légales &amp; confidentialité',
-    'f.alliance':'Membre de l’Apply AI Alliance (Commission européenne, Futurium)'
-  };
-  var LANG='en';
-  window.setLang=function(l){
-    LANG=l;
-    document.documentElement.lang=l;
-    document.getElementById('lang-en').className = l==='en' ? 'on' : '';
-    document.getElementById('lang-fr').className = l==='fr' ? 'on' : '';
-    var els=document.querySelectorAll('[data-i18n],[data-i18n-html]');
-    for(var i=0;i<els.length;i++){
-      var el=els[i], k=el.getAttribute('data-i18n')||el.getAttribute('data-i18n-html');
-      if(l==='en'){ var orig=el.getAttribute('data-en-orig'); if(orig!==null){el.innerHTML=orig;} continue; }
-      if(el.getAttribute('data-en-orig')===null){ el.setAttribute('data-en-orig', el.innerHTML); }
-      if(FR[k]!==undefined){ el.innerHTML=FR[k]; }
-    }
-    var lf=document.querySelectorAll('.l-fr'), ln=document.querySelectorAll('.l-en');
-    for(var j=0;j<lf.length;j++) lf[j].style.display = (l==='fr')?'':'none';
-    for(var m=0;m<ln.length;m++) ln[m].style.display = (l==='fr')?'none':'';
-    var tb=document.getElementById('tamper-btn');
-    tb.textContent = tampered ? 'Restaurer & revérifier' : 'Simuler une altération d’1 octet';
-    if(MANIFEST){
-      var b=document.getElementById('chain-text').textContent;
-      if(b.indexOf('SEAL LOADED')===0) setBadge('', 'SCEAU CHARGÉ • '+MANIFEST.files.length+' FICHIERS SCELLÉS — vérifiez pour confirmer');
-    }
-  };
-  if(/^fr/i.test(navigator.language||'')) setLang('fr');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* head réel du sceau du blog */
+  fetch('https://blog.noirebox.eu/manifest.json').then(function(r){return r.json()}).then(function(m){
+    var el=document.getElementById('pillhead'); if(el) el.textContent=m.head.slice(0,10)+'…';
+    window.NBFILES=m.files.length;
+  }).catch(function(){});
 
-  /* ── install selector ─────────────────────── */
-  var CMDS={pip:'pip install noirebox', docker:'docker pull ghcr.io/noirebox/noirebox', action:'uses: noirebox/noirebox-verify@v1'};
-  window.updInstall=function(){ document.getElementById('install-cmd').textContent=CMDS[document.getElementById('sdk').value]; };
-  window.copyInstall=function(){
-    var b=document.getElementById('copybtn'), t=CMDS[document.getElementById('sdk').value];
-    function done(){ b.textContent='✓'; setTimeout(function(){ b.textContent='copy'; },1200); }
-    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,done); } else done();
-  };
-
-  /* ── live cryptographic inspector ─────────── */
-  var BLOG='https://blog.noirebox.eu/';
-  var MANIFEST=null, selected=-1, tampered=false, cache=null, cacheRaw=null;
-  var verified={};
-  var $=function(id){ return document.getElementById(id); };
-
-  function hex(buf){ return [].map.call(new Uint8Array(buf), function(b){ return ('0'+b.toString(16)).slice(-2); }).join(''); }
-  function sha256(buf){ return crypto.subtle.digest('SHA-256', buf).then(hex); }
-  function setBadge(cls, txt){ var b=$('chain-badge'); b.className='badge '+cls; $('chain-text').textContent=txt; }
-  function countVerified(){ var n=0; for(var k in verified) if(verified[k]) n++; return n; }
-
-  function verdict(ok, why){
-    var v=$('d-verdict');
-    v.className='vbadge '+(ok?'ok':'ko');
-    v.innerHTML='<span class="t">verdict:</span> '+(ok?'✓ VALID':'✗ BROKEN')+' — '+why;
+  /* boot log — les vraies lignes du sceau */
+  var boot=document.getElementById('boot');
+  function flines(){
+    var n=(window.NBFILES||39);
+    return [
+      '$ noirebox --verify blog.noirebox.eu',
+      '✓ '+n+' fichiers hachés · SHA-256',
+      '✓ chaîne valide · genesis blog-noirebox-genesis',
+      '@✓ sceau Ed25519 · fingerprint sha256:7a513360… — vérifié dans votre navigateur'
+    ];
   }
-
-  fetch(BLOG+'manifest.json').then(function(r){ return r.json(); }).then(function(m){
-    MANIFEST=m;
-    $('chain-meta').innerHTML='genesis: <strong>'+m.genesis+'</strong> • built: <strong>'+m.built_at.slice(0,10)+'</strong> • files: <strong>'+m.files.length+'</strong>';
-    $('d-head').textContent=m.head.slice(0,24)+'…';
-    $('d-fp').textContent=m.fingerprint;
-    $('f-fp').textContent='root fingerprint: '+m.fingerprint;
-    var list=$('evt-list'); list.innerHTML='';
-    m.files.forEach(function(f,i){
-      var b=document.createElement('button'); b.type='button'; b.className='ievt'; b.id='evt'+i;
-      b.onclick=function(){ select(i); };
-      b.innerHTML='<div style="min-width:0"><div class="nm">'+f.name+'</div><div class="hs">sha256:'+f.sha256.slice(0,22)+'…</div></div><span class="sz">'+f.bytes+' B</span>';
-      list.appendChild(b);
-    });
-    setBadge('', 'SEAL LOADED • '+m.files.length+' FILES SEALED — verify to confirm');
-    select(0);
-  }).catch(function(){
-    setBadge('broken','MANIFEST UNREACHABLE — a seal never lies about a network');
-  });
-
-  function markList(i, brok){
-    var el=$('evt'+i); if(!el) return;
-    el.className='ievt'+(i===selected?' sel':'')+(brok?' brok':'');
-  }
-
-  function select(i){
-    if(!MANIFEST) return;
-    selected=i; tampered=false; resetTamperBtn();
-    for(var k=0;k<MANIFEST.files.length;k++) markList(k,false);
-    var f=MANIFEST.files[i];
-    var el=$('evt'+i); if(el) el.classList.add('sel');
-    $('d-seq').textContent='#'+(i+1)+'/'+MANIFEST.files.length;
-    $('d-name').textContent=f.name;
-    $('d-sealed').textContent='sha256:'+f.sha256;
-    $('d-art').textContent='seal v1 — SHA-256 chain + Ed25519';
-    $('d-comp').textContent='computing…';
-    $('d-comp-box').className='hbox';
-    $('d-payload').textContent='fetching '+f.name+' …';
-    $('d-size').textContent=f.bytes+' bytes';
-    $('d-verdict').innerHTML='<span class="t">verdict:</span> pending';
-    $('d-verdict').className='vbadge';
-    $('d-timing').textContent='';
-    fetch(BLOG+f.name).then(function(r){ return r.arrayBuffer(); }).then(function(buf){
-      if(selected!==i) return;
-      cacheRaw=buf; tampered=false; resetTamperBtn();
-      var t0=performance.now();
-      return sha256(buf).then(function(h){
-        var ms=(performance.now()-t0);
-        cache=h;
-        var ok=(h===f.sha256);
-        verified[i]=ok;
-        $('d-comp').textContent='sha256:'+h;
-        $('d-comp-box').className='hbox '+(ok?'ok':'ko');
-        $('d-timing').textContent='SHA-256 computed locally in '+ms.toFixed(2)+' ms (WebCrypto)';
-        verdict(ok, ok?'hash matches the sealed manifest':'hash diverges — file altered?');
-        renderPayload();
-        var n=countVerified();
-        setBadge(ok?'':'broken', ok?('SEAL INTACT • '+n+'/'+MANIFEST.files.length+' verified in this visit'):'TAMPER DETECTED on '+f.name);
-        if(ok && n===MANIFEST.files.length) sealFooter(true);
-      });
-    }).catch(function(){
-      $('d-payload').textContent='network error — could not fetch '+f.name;
-    });
-  }
-
-  function renderPayload(){
-    if(!cacheRaw) return;
-    var txt=new TextDecoder().decode(cacheRaw.slice(0,360));
-    if(tampered) txt='[+] 1 byte flipped in memory at offset 42 — watch the recomputed hash:\n\n'+txt;
-    $('d-payload').textContent=txt;
-  }
-
-  function resetTamperBtn(){
-    var b=$('tamper-btn');
-    b.textContent = tampered ? (LANG==='fr'?'Restaurer & revérifier':'Restore & re-verify') : (LANG==='fr'?'Simuler une altération d’1 octet':'Simulate 1-byte tamper');
-  }
-
-  window.toggleTamper=function(){
-    if(!cacheRaw || selected<0) return;
-    tampered=!tampered;
-    resetTamperBtn();
-    var f=MANIFEST.files[selected];
-    if(tampered){
-      var mod=new Uint8Array(cacheRaw.slice(0));
-      mod[42] = mod[42] ^ 0x01;
-      var t0=performance.now();
-      sha256(mod).then(function(h){
-        var ms=(performance.now()-t0);
-        $('d-comp').textContent='sha256:'+h;
-        $('d-comp-box').className='hbox ko';
-        $('d-timing').textContent='SHA-256 computed locally in '+ms.toFixed(2)+' ms (WebCrypto)';
-        verdict(false, '1 flipped byte → completely different hash. Every seal downstream is invalid.');
-        renderPayload();
-        markList(selected,true);
-        setBadge('broken','TAMPER SIMULATED on '+f.name+' — chain broken, exactly as designed');
-        sealFooter(false);
-      });
-    } else {
-      select(selected);
-    }
-  };
-
-  window.verifyAll=function(){
-    if(!MANIFEST) return;
-    setBadge('wait','VERIFYING ALL '+MANIFEST.files.length+' FILES LOCALLY…');
-    verified={};
-    var chain=Promise.resolve();
-    MANIFEST.files.forEach(function(f,idx){
-      chain=chain.then(function(){
-        return fetch(BLOG+f.name).then(function(r){ return r.arrayBuffer(); }).then(function(buf){
-          return sha256(buf).then(function(h){
-            verified[idx]=(h===f.sha256);
-            markList(idx, !verified[idx]);
-            if(idx===selected){
-              $('d-comp').textContent='sha256:'+h;
-              $('d-comp-box').className='hbox '+(verified[idx]?'ok':'ko');
-              verdict(verified[idx], verified[idx]?'hash matches the sealed manifest':'hash diverges — file altered?');
-            }
-          });
-        });
-      });
-    });
-    chain.then(function(){
-      var n=countVerified(), total=MANIFEST.files.length;
-      if(n===total){
-        setBadge('','SEAL INTACT • '+total+'/'+total+' FILES VERIFIED LIVE IN YOUR BROWSER');
-        sealFooter(true);
-      } else {
-        setBadge('broken','SEAL BROKEN • only '+n+'/'+total+' files match');
-        sealFooter(false);
+  if(reduced){
+    boot.innerHTML=flines().map(function(l){return l.replace(/^@/,'').replace(/^✓/,'<span class="ok">✓</span>')}).join('<br>');
+  }else{
+    var lines=flines(),li=0,ci=0,out='';
+    setTimeout(function type(){
+      var l=lines[li];
+      if(ci<l.length){ out+=(l[ci]==='@'?'':l[ci]); ci++;
+        boot.innerHTML=out.replace(/^✓/,'<span class="ok">✓</span>').replace(/\n✓/g,'\n<span class="ok">✓</span>');
+        setTimeout(type,7);
+      }else{
+        li++;ci=0;out+='\n';
+        if(li<lines.length) setTimeout(type,110);
+        else boot.innerHTML=out.split('\n').map(function(x){return x.replace(/^✓/,'<span class="ok">✓</span>')}).join('<br>');
       }
-    });
-  };
-
-  function sealFooter(ok){
-    var t=$('f-status-t');
-    if(ok) t.textContent = LANG==='fr' ? 'sceau du blog : vérifié en direct ✓' : 'blog seal: verified live ✓';
-    else t.textContent = LANG==='fr' ? 'sceau du blog : ALTÉRÉ ✗' : 'blog seal: BROKEN ✗';
+    },350);
   }
+
+  /* décodage hex du titre */
+  var t=document.getElementById('title');
+  if(t&&t.dataset.txt&&!reduced){
+    var fin=t.dataset.txt,CH='0123456789abcdef',f=0;
+    (function dec(){
+      f++;var p=f/46,o='';
+      for(var j=0;j<fin.length;j++){var c=fin[j];o+=(c===' '||j<p*fin.length)?c:CH[Math.floor(Math.random()*16)];}
+      t.textContent=o;
+      if(p<1)requestAnimationFrame(dec);else t.textContent=fin;
+    })();
+  }
+
+  /* pluie de hex violette */
+  var cv=document.getElementById('rain');
+  if(cv&&cv.getContext&&!reduced){
+    var ctx=cv.getContext('2d'),cols=[],FS=13;
+    function size(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;cols=[];for(var x=0;x<cv.width/FS;x++)cols.push(Math.random()*-60)}
+    size();window.addEventListener('resize',size);
+    var GLYPH='0123456789abcdef';
+    setInterval(function(){
+      ctx.fillStyle='rgba(248,250,252,0.14)';ctx.fillRect(0,0,cv.width,cv.height);
+      ctx.font=FS+'px monospace';
+      for(var i=0;i<cols.length;i++){
+        ctx.fillStyle=Math.random()<0.02?'rgba(109,40,217,0.5)':'rgba(109,40,217,0.10)';
+        ctx.fillText(GLYPH[Math.floor(Math.random()*16)],i*FS,cols[i]*FS);
+        cols[i]=(cols[i]*FS>cv.height&&Math.random()>0.975)?0:cols[i]+1;
+      }
+    },66);
+  }
+
+  /* toggle FR/EN + auto-détection */
+  var en=false,lb=document.getElementById('langBtn');
+  lb.addEventListener('click',function(){
+    en=!en;
+    var nodes=document.querySelectorAll('[data-en]');
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      if(en){ if(!n.getAttribute('data-fr')) n.setAttribute('data-fr',n.innerHTML); n.innerHTML=n.getAttribute('data-en'); }
+      else{ n.innerHTML=n.getAttribute('data-fr'); }
+    }
+    document.documentElement.lang=en?'en':'fr';
+    lb.textContent=en?'FR':'EN';lb.setAttribute('aria-pressed',en?'true':'false');
+  });
+  if(!/^fr/i.test(navigator.language||'fr')) setTimeout(function(){lb.click()},1400);
+
+  /* raccourcis clavier 1 / 2 */
+  window.addEventListener('keydown',function(e){
+    if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName))return;
+    if(e.key==='1'||e.key==='2'){var d=document.querySelectorAll('a.door')[e.key-1];if(d)window.location.href=d.href}
+  });
 })();
 </script>
 </body>
