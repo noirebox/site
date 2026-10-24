@@ -45,7 +45,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 .langb button{border:0;background:none;padding:3px 5px;cursor:pointer;opacity:.35;filter:grayscale(1);border-radius:6px;line-height:0;transition:opacity .15s,filter .15s}
 .langb button:hover{opacity:.7}
 .langb button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(109,40,217,.28)}
-.langb svg{width:21px;height:14px;border-radius:2px;display:block}
+.eusvg{width:15px;height:15px;display:block;border-radius:50%}
+.langb button{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:999px;line-height:1}
+.langb button b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;font-weight:700;color:var(--ink)}
 
 .hero{position:relative;text-align:center;padding:96px 0 84px;border-bottom:1px solid var(--line);background-size:40px 40px;background-image:linear-gradient(to right,rgba(226,232,240,.5) 1px,transparent 1px),linear-gradient(to bottom,rgba(226,232,240,.5) 1px,transparent 1px);overflow:hidden}
 .hero::before{content:"";position:absolute;top:-220px;left:50%;transform:translateX(-50%);width:820px;height:520px;background:radial-gradient(closest-side,rgba(109,40,217,.13),transparent 70%);pointer-events:none}
@@ -178,8 +180,8 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
     <a class="brand" href="index.html"><span class="cube"></span>NOIRE<em>BOX</em></a>
     <div class="nright">
       <div class="langb" id="langBtn" role="group" aria-label="Language">
-        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></button>
-        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ED2939"/></svg></button>
+        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg class="eusvg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euC-en" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euC-en" transform="rotate(30 50 50)"/><use href="#euC-en" transform="rotate(60 50 50)"/><use href="#euC-en" transform="rotate(90 50 50)"/><use href="#euC-en" transform="rotate(120 50 50)"/><use href="#euC-en" transform="rotate(150 50 50)"/><use href="#euC-en" transform="rotate(180 50 50)"/><use href="#euC-en" transform="rotate(210 50 50)"/><use href="#euC-en" transform="rotate(240 50 50)"/><use href="#euC-en" transform="rotate(270 50 50)"/><use href="#euC-en" transform="rotate(300 50 50)"/><use href="#euC-en" transform="rotate(330 50 50)"/></svg><b>EN</b></button>
+        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg class="eusvg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euC-fr" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euC-fr" transform="rotate(30 50 50)"/><use href="#euC-fr" transform="rotate(60 50 50)"/><use href="#euC-fr" transform="rotate(90 50 50)"/><use href="#euC-fr" transform="rotate(120 50 50)"/><use href="#euC-fr" transform="rotate(150 50 50)"/><use href="#euC-fr" transform="rotate(180 50 50)"/><use href="#euC-fr" transform="rotate(210 50 50)"/><use href="#euC-fr" transform="rotate(240 50 50)"/><use href="#euC-fr" transform="rotate(270 50 50)"/><use href="#euC-fr" transform="rotate(300 50 50)"/><use href="#euC-fr" transform="rotate(330 50 50)"/></svg><b>FR</b></button>
       </div>
       <a class="pillb" href="tech.html" data-fr="Je suis tech →">I am tech →</a>
     </div>

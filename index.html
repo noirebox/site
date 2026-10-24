@@ -40,19 +40,20 @@ header{border-bottom:1px solid var(--line);position:relative;z-index:5}
 .pillhead{font-family:var(--mono);font-size:.72rem;color:var(--dim);border:1px solid var(--line);padding:6px 13px;border-radius:999px}
 .pillhead b{color:var(--violet);font-weight:400}
 .langbtn{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:3px}
-.langbtn button{border:0;background:none;padding:3px 5px;cursor:pointer;opacity:.35;filter:grayscale(1);border-radius:6px;line-height:0;transition:opacity .15s,filter .15s}
+.langbtn button{border:0;background:none;display:inline-flex;align-items:center;gap:5px;padding:4px 9px;cursor:pointer;opacity:.35;filter:grayscale(1);border-radius:999px;transition:opacity .15s,filter .15s}
+.langbtn button b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;font-weight:700;color:var(--ink,#0f172a);line-height:1}
+.eusvg{width:15px;height:15px;display:block;border-radius:50%}
 .langbtn button:hover{opacity:.7}
 .langbtn button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(109,40,217,.28)}
 .langbtn svg{width:21px;height:14px;border-radius:2px;display:block}
 
 .gate{flex:1;position:relative;padding:44px 0 64px}
-#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
 .gate .wrap{position:relative;z-index:2}
 .bootlog{font-family:var(--mono);font-size:.74rem;color:var(--muted);min-height:96px;white-space:pre-line;margin-bottom:34px}
 .bootlog .ok{color:var(--violet);font-weight:600}
 .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);margin-bottom:16px}
 h1{font-size:clamp(2.5rem,7.5vw,4.8rem);font-weight:600;letter-spacing:-.03em;line-height:1.05}
-.euo{display:inline-block;width:.62em;height:.62em;border-radius:50%;margin:0 .02em}
+.euo{display:inline-block;width:.54em;height:.54em;border-radius:50%;margin:0 .02em}
 .euo svg{display:block;width:100%;height:100%}
 
 .doors{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:52px;background:rgba(255,255,255,.75);backdrop-filter:blur(4px)}
@@ -85,15 +86,14 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     <div class="barright">
       <span class="pillhead"><span data-fr="sealed · Ed25519 ✓">sealed · Ed25519 ✓</span> · <b id="pillhead">blog-noirebox…</b></span>
       <div class="langbtn" id="langBtn" role="group" aria-label="Language">
-        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3.5"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></svg></button>
-        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg viewBox="0 0 60 40" aria-hidden="true"><rect width="20" height="40" fill="#002395"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ED2939"/></svg></button>
+        <button type="button" data-l="en" class="on" title="English" aria-label="English"><svg class="eusvg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euA-en" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euA-en" transform="rotate(30 50 50)"/><use href="#euA-en" transform="rotate(60 50 50)"/><use href="#euA-en" transform="rotate(90 50 50)"/><use href="#euA-en" transform="rotate(120 50 50)"/><use href="#euA-en" transform="rotate(150 50 50)"/><use href="#euA-en" transform="rotate(180 50 50)"/><use href="#euA-en" transform="rotate(210 50 50)"/><use href="#euA-en" transform="rotate(240 50 50)"/><use href="#euA-en" transform="rotate(270 50 50)"/><use href="#euA-en" transform="rotate(300 50 50)"/><use href="#euA-en" transform="rotate(330 50 50)"/></svg><b>EN</b></button>
+        <button type="button" data-l="fr" title="Français" aria-label="Français"><svg class="eusvg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euA-fr" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euA-fr" transform="rotate(30 50 50)"/><use href="#euA-fr" transform="rotate(60 50 50)"/><use href="#euA-fr" transform="rotate(90 50 50)"/><use href="#euA-fr" transform="rotate(120 50 50)"/><use href="#euA-fr" transform="rotate(150 50 50)"/><use href="#euA-fr" transform="rotate(180 50 50)"/><use href="#euA-fr" transform="rotate(210 50 50)"/><use href="#euA-fr" transform="rotate(240 50 50)"/><use href="#euA-fr" transform="rotate(270 50 50)"/><use href="#euA-fr" transform="rotate(300 50 50)"/><use href="#euA-fr" transform="rotate(330 50 50)"/></svg><b>FR</b></button>
       </div>
     </div>
   </div>
 </header>
 
 <main class="gate">
-  <canvas id="rain" aria-hidden="true"></canvas>
   <div class="wrap">
     <p class="bootlog" id="boot"></p>
     <p class="kicker" data-fr="// noirebox.eu — l’enregistreur de vol des agents IA">// noirebox.eu — the flight data recorder for AI agents</p>
@@ -157,7 +157,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     var bs=lb.querySelectorAll('button');
     for(var j=0;j<bs.length;j++) bs[j].className=(bs[j].getAttribute('data-l')===(fr?'fr':'en'))?'on':'';
     if(bootDone) renderBootLines(flines());
-    decodeTitle();
+    decodeTitle(); /* le titre se re-décode dans la langue choisie */
   }
   var bs0=lb.querySelectorAll('button');
   for(var q=0;q<bs0.length;q++){
@@ -209,6 +209,24 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Désormais, vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI decides. Now you can prove it.'); }
   var EU_O='<span class="euo" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euo-star" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euo-star" transform="rotate(30 50 50)"/><use href="#euo-star" transform="rotate(60 50 50)"/><use href="#euo-star" transform="rotate(90 50 50)"/><use href="#euo-star" transform="rotate(120 50 50)"/><use href="#euo-star" transform="rotate(150 50 50)"/><use href="#euo-star" transform="rotate(180 50 50)"/><use href="#euo-star" transform="rotate(210 50 50)"/><use href="#euo-star" transform="rotate(240 50 50)"/><use href="#euo-star" transform="rotate(270 50 50)"/><use href="#euo-star" transform="rotate(300 50 50)"/><use href="#euo-star" transform="rotate(330 50 50)"/></svg></span>';
   function finalTitle(f){ return fr ? f : f.replace('prove', 'pr'+EU_O+'ve'); }
+  function fitFlagO(){
+    var e=t.querySelector('.euo'); if(!e) return;
+    var c=document.createElement('canvas').getContext('2d');
+    c.font=getComputedStyle(t).font;
+    var m=c.measureText('o');
+    var h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+    if(h<=0) return;
+    e.style.width=h+'px'; e.style.height=h+'px'; e.style.verticalAlign='0px';
+    /* baseline réelle du titre : un inline-block vide pose son bas sur la baseline */
+    var mk=document.createElement('span');
+    mk.style.cssText='display:inline-block;width:0;height:0;overflow:hidden';
+    t.appendChild(mk);
+    var bl=mk.getBoundingClientRect().bottom;
+    t.removeChild(mk);
+    var fb=e.getBoundingClientRect();
+    e.style.verticalAlign=((bl+m.actualBoundingBoxDescent)-fb.bottom)+'px';
+  }
+  window.addEventListener('resize',function(){ if(t.querySelector('.euo')) fitFlagO(); });
   function decodeTitle(){
     animId++; var my=animId, fin=titleFor();
     if(reduced||!fin){ t.innerHTML=finalTitle(fin); return; }
@@ -219,29 +237,11 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
       var p=Math.min(1,(ts-t0)/dur), o='';
       for(var j=0;j<fin.length;j++){var c=fin[j];o+=(c===' '||j<p*fin.length)?c:CH[Math.floor(Math.random()*16)];}
       t.textContent=o;
-      if(p<1)requestAnimationFrame(step);else t.innerHTML=finalTitle(fin);
+      if(p<1)requestAnimationFrame(step);else { t.innerHTML=finalTitle(fin); fitFlagO(); }
     }
     requestAnimationFrame(step);
   }
   decodeTitle();
-
-  /* pluie de hex violette */
-  var cv=document.getElementById('rain');
-  if(cv&&cv.getContext&&!reduced){
-    var ctx=cv.getContext('2d'),cols=[],FS=13;
-    function size(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;cols=[];for(var x=0;x<cv.width/FS;x++)cols.push(Math.random()*-60)}
-    size();window.addEventListener('resize',size);
-    var GLYPH='0123456789abcdef';
-    setInterval(function(){
-      ctx.fillStyle='rgba(248,250,252,0.14)';ctx.fillRect(0,0,cv.width,cv.height);
-      ctx.font=FS+'px monospace';
-      for(var i=0;i<cols.length;i++){
-        ctx.fillStyle=Math.random()<0.02?'rgba(109,40,217,0.5)':'rgba(109,40,217,0.10)';
-        ctx.fillText(GLYPH[Math.floor(Math.random()*16)],i*FS,cols[i]*FS);
-        cols[i]=(cols[i]*FS>cv.height&&Math.random()>0.975)?0:cols[i]+1;
-      }
-    },66);
-  }
 
   /* FR si le navigateur est français — appliqué immédiatement, sans flash */
   if(fr) apply();
