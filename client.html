@@ -129,9 +129,9 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .card p strong{color:var(--ink);font-weight:600}
 
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
-.num{text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 12px}
-.num b{display:block;font-family:var(--mono);font-size:clamp(26px,3.4vw,38px);font-weight:700;color:var(--violet);letter-spacing:-.02em}
-.num span{color:var(--muted);font-size:13px}
+.num{text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 12px 28px}
+.num b{display:block;font-family:var(--mono);font-size:clamp(40px,5.5vw,64px);font-weight:700;color:var(--violet);letter-spacing:-.03em;line-height:1.1}
+.num span{display:block;margin-top:8px;color:var(--muted);font-size:13.5px}
 
 .sov{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .sovtag{font-family:var(--mono);font-size:12.5px;background:#fff;border:1px solid var(--line-strong);border-radius:999px;padding:9px 18px;color:var(--dim)}
@@ -192,7 +192,7 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
     <h1 data-fr-html="Votre agent IA décide tout seul.<br><span class='p'>Désormais, vous pouvez le prouver.</span>">Your AI agent decides on its own.<br><span class="p">Now you can prove it.</span></h1>
     <p class="lede" data-fr-html="NoireBox est la boîte noire des agents IA : chaque décision est <strong>scellée, signée et horodatée</strong> — comme l’enregistreur de vol d’un avion. N’importe qui peut contrôler la trace, <strong>sans devoir faire confiance à personne</strong>.">NoireBox is the black box for AI agents: every decision is <strong>sealed, signed and time-stamped</strong> — like a plane’s flight recorder. Anyone can check the record, <strong>without trusting anyone</strong>.</p>
     <div class="ctas">
-      <a class="btn primary" href="#demo" data-fr="Essayez de tricher — 30 secondes">Try to cheat — 30 seconds</a>
+      <a class="btn primary" href="#demo" data-fr="Voir la démo — 30 secondes">See the demo — 30 seconds</a>
       <a class="btn" href="tech.html" data-fr="Je suis tech — montrez-moi la mécanique">I am tech — show me the mechanics</a>
     </div>
   </div>
@@ -244,11 +244,8 @@ log:    coverage_advised = "theft_included"</pre>
     <div class="ctl reveal"><button class="dbtn" id="scnBtn"></button></div>
     <div class="verdict" id="scnVerdict"></div>
 
-    <div style="margin-top:76px">
-      <p class="sec-kicker reveal" data-fr="Le mécanisme, maillon par maillon">The mechanism, link by link</p>
-      <h2 class="reveal" data-fr="Essayez de tricher.">Try to cheat.</h2>
-      <p class="sec-lede reveal" data-fr="Une matinée de travail d’un agent IA, scellée maillon par maillon — comme une chaîne. Appuyez sur « modifiez une étape » et regardez ce que la chaîne raconte.">One morning of an AI agent’s work, sealed link by link — like a chain. Press “modify a step” and watch what the chain shows.</p>
-
+    <div style="margin-top:56px">
+      <p class="sec-kicker reveal" data-fr="Cette même journée, scellée maillon par maillon">That same morning, sealed link by link</p>
       <div class="chain reveal" id="chain">
       <div class="linkn" data-i="0">
         <div class="n">01</div><div class="ic">📥</div>
@@ -366,7 +363,7 @@ log:    coverage_advised = "theft_included"</pre>
 (function(){
   /* ── i18n : EN par défaut dans le HTML ; FR via data-fr, appliqué immédiatement ── */
   var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
-  var fr = savedL ? savedL==='fr' : /^fr/i.test(navigator.language||'');
+  var fr = savedL==='fr';
   var langGroup=document.getElementById('langBtn');
 
   function apply(){
@@ -417,30 +414,22 @@ log:    coverage_advised = "theft_included"</pre>
   },{threshold:.5});
   for(var k=0;k<nums.length;k++) nio.observe(nums[k]);
 
-  /* ── la chaîne : tricher / réparer ── */
+  /* ── la chaîne : visualisation scellée de la journée, pilotée par le scénario ── */
   var links=document.querySelectorAll('.linkn'),
-      bBreak=document.getElementById('btnBreak'),
-      bFix=document.getElementById('btnFix'),
-      v=document.getElementById('verdict'),
-      broken=false;
-  var BROKEN_HASH='sha256:FF00AA…BROKEN';
+      BROKEN_HASH='sha256:FF00AA…BROKEN';
   var ORIG=[];
   for(var m=0;m<links.length;m++) ORIG.push(links[m].querySelector('.h').textContent);
 
   function resetTamperBtn(){
-    bBreak.textContent = fr ? 'Modifiez une étape — et mentez' : 'Modify a step — and lie';
-    bFix.textContent = fr ? 'Réparez la chaîne' : 'Repair the chain';
+    for(var i=0;i<links.length;i++){
+      links[i].classList.remove('broke','down','fixed');
+      links[i].querySelector('.h').textContent=ORIG[i];
+      var t=links[i].querySelector('.t');
+      if(t.getAttribute('data-tmp')){ t.textContent=t.getAttribute('data-tmp'); t.removeAttribute('data-tmp'); }
+    }
   }
 
-  function clearStates(){
-    for(var i=0;i<links.length;i++){ links[i].classList.remove('broke','down','fixed'); links[i].querySelector('.h').textContent=ORIG[i]; }
-  }
-  bBreak.addEventListener('click',function(){
-    if(broken) return;
-    broken=true;
-    bBreak.style.display='none'; bFix.style.display='inline-block';
-    v.className='verdict'; v.style.display='none';
-    clearStates();
+  function breakChain(){
     var second=links[1];
     second.querySelector('.t').setAttribute('data-tmp',second.querySelector('.t').textContent);
     second.querySelector('.t').textContent = fr ? 'Documents consultés — « modifiée après coup »' : 'Documents read — “modified afterwards”';
@@ -449,36 +438,21 @@ log:    coverage_advised = "theft_included"</pre>
     setTimeout(function(){ links[2].classList.add('down'); links[2].querySelector('.h').textContent='sha256:UNVERIFIABLE'; },620);
     setTimeout(function(){ links[3].classList.add('down'); links[3].querySelector('.h').textContent='sha256:UNVERIFIABLE'; },900);
     setTimeout(function(){ links[4].classList.add('down'); links[4].querySelector('.h').textContent='sha256:UNVERIFIABLE'; },1180);
-    setTimeout(function(){
-      v.className='verdict bad show';
-      v.textContent = fr
-        ? '✗ ALTÉRÉ — une seule étape modifiée invalide tout ce qui suit. La chaîne rend la triche visible. C’est exactement ce que NoireBox fait aux vrais journaux.'
-        : '✗ ALTERED — one modified step invalidates everything downstream. The chain makes cheating visible. That is exactly what NoireBox does to real logs.';
-    },1500);
-  });
-  bFix.addEventListener('click',function(){
-    if(!broken) return;
-    broken=false;
-    bFix.style.display='none'; bBreak.style.display='inline-block';
-    var second=links[1];
-    var t2=second.querySelector('.t');
-    if(t2.getAttribute('data-tmp')){ t2.textContent=t2.getAttribute('data-tmp'); t2.removeAttribute('data-tmp'); }
+  }
+
+  function proveChain(){
     for(var i=0;i<links.length;i++){
       (function(idx){
         setTimeout(function(){
           links[idx].classList.remove('down','broke');
           links[idx].classList.add('fixed');
           links[idx].querySelector('.h').textContent=ORIG[idx];
+          var t=links[idx].querySelector('.t');
+          if(t.getAttribute('data-tmp')){ t.textContent=t.getAttribute('data-tmp'); t.removeAttribute('data-tmp'); }
         }, idx*220);
       })(i);
     }
-    setTimeout(function(){
-      v.className='verdict good show';
-      v.textContent = fr
-        ? '✓ INTÈGRE — la chaîne prouve que rien n’a bougé. N’importe qui peut relancer ce contrôle, à tout moment, sans demander la permission.'
-        : '✓ INTACT — the chain proves that nothing moved. Anyone can re-run this check, anytime, without asking permission.';
-    }, links.length*220+150);
-  });
+  }
 
   /* ── la dispute : avec / sans ── */
   var tabW=document.getElementById('tabWithout'),
@@ -496,6 +470,7 @@ log:    coverage_advised = "theft_included"</pre>
     scnStep=0; scnV.className='verdict'; scnV.style.display='none';
     scnLog.innerHTML=LOG_ORIG;
     scnSeal.style.display='none';
+    resetTamperBtn();
     tabW.className='wtab'+(scnMode==='without'?' on':'');
     tabV.className='wtab'+(scnMode==='with'?' on good':'');
     scnBtn.style.display='inline-block';
@@ -510,6 +485,7 @@ log:    coverage_advised = "theft_included"</pre>
     if(scnMode==='without'){
       if(scnStep===1){
         scnLog.innerHTML=LOG_EDITED;
+        breakChain();
         scnBtn.textContent = fr ? 'Continuer — le client se plaint' : 'Continue — the client complains';
         scnV.className='verdict show';
         v.className='verdict';
@@ -531,6 +507,7 @@ log:    coverage_advised = "theft_included"</pre>
           ? 'copie scellée · ancree le 12 oct 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intacte</span><br>rejeu après modification → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence détectée</span>'
           : 'sealed copy · anchored Oct 12 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intact</span><br>replay after edit → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence detected</span>';
         scnBtn.textContent = fr ? 'Vérifier le sceau' : 'Verify the seal';
+        proveChain();
         scnV.className='verdict show';
         scnV.style.display='block';
         scnV.style.borderColor='var(--line-strong)'; scnV.style.background='#fff'; scnV.style.color='var(--dim)';

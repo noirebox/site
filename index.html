@@ -140,7 +140,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
 
   /* ── i18n : EN par défaut dans le HTML ; FR via data-fr ── */
   var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
-  var fr = savedL ? savedL==='fr' : /^fr/i.test(navigator.language||'');
+  var fr = savedL==='fr';
   var lb=document.getElementById('langBtn');
   function apply(){
     var nodes=document.querySelectorAll('[data-fr],[data-fr-html]');

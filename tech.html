@@ -684,7 +684,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     }
   };
   var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
-  setLang(savedL ? savedL : (/^fr/i.test(navigator.language||'') ? 'fr' : 'en'));
+  setLang(savedL ? savedL : 'en');
 
   /* ── install selector ─────────────────────── */
   var CMDS={pip:'pip install noirebox', docker:'docker pull ghcr.io/noirebox/noirebox', action:'uses: noirebox/noirebox-verify@v1'};
