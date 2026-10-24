@@ -208,7 +208,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   var t=document.getElementById('title'), animId=0;
   function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Désormais, vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI decides. Now you can prove it.'); }
   var EU_O='<span class="euo" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euo-star" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euo-star" transform="rotate(30 50 50)"/><use href="#euo-star" transform="rotate(60 50 50)"/><use href="#euo-star" transform="rotate(90 50 50)"/><use href="#euo-star" transform="rotate(120 50 50)"/><use href="#euo-star" transform="rotate(150 50 50)"/><use href="#euo-star" transform="rotate(180 50 50)"/><use href="#euo-star" transform="rotate(210 50 50)"/><use href="#euo-star" transform="rotate(240 50 50)"/><use href="#euo-star" transform="rotate(270 50 50)"/><use href="#euo-star" transform="rotate(300 50 50)"/><use href="#euo-star" transform="rotate(330 50 50)"/></svg></span>';
-  function finalTitle(f){ return fr ? f : f.replace('Now', 'N'+EU_O+'w'); }
+  function finalTitle(f){ return fr ? f : f.replace('prove', 'pr'+EU_O+'ve'); }
   function decodeTitle(){
     animId++; var my=animId, fin=titleFor();
     if(reduced||!fin){ t.innerHTML=finalTitle(fin); return; }
