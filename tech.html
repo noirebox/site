@@ -255,7 +255,20 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
   .lm + .lm { padding-left: 0; border-left: none; }
   .fgrid { grid-template-columns: 1fr 1fr; }
   .sec { padding: 56px 0; }
-  th:nth-child(4), td:nth-child(4) { display: none; }
+  /* tables: scroll horizontally instead of overflowing or hiding the evidence column */
+  table { display: block; width: max-content; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  th { padding: 0 14px 8px 0; }
+  td { padding: 10px 14px 10px 0; }
+}
+@media (max-width: 640px) {
+  .fgrid { grid-template-columns: 1fr; gap: 20px; }
+  .calc { padding: 16px 14px; }
+  .calc-out { gap: 14px 22px; }
+  .calc-out .co strong { font-size: 17px; }
+  .bignum b { font-size: clamp(40px, 12vw, 64px); }
+  .bignum span { font-size: 13.5px; }
+  .startswiss { padding: 64px 0 68px; }
+  .wordmark { letter-spacing: .04em; }
 }
 </style>
 </head>
