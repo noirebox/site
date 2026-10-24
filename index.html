@@ -95,7 +95,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   <div class="wrap">
     <p class="bootlog" id="boot"></p>
     <p class="kicker" data-fr="// noirebox.eu — l’enregistreur de vol des agents IA">// noirebox.eu — the flight data recorder for AI agents</p>
-    <h1 id="title" data-txt="Your AI decides. You can prove it." data-fr="Votre IA décide. Vous pouvez le prouver.">Your AI decides. You can prove it.</h1>
+    <h1 id="title" data-txt="Your AI decides. Now you can prove it." data-fr="Votre IA décide. Désormais, vous pouvez le prouver.">Your AI decides. Now you can prove it.</h1>
 
     <div class="doors">
       <a class="door" href="tech.html">
@@ -204,7 +204,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
 
   /* décodage hex du titre — annulable, relancé à chaque changement de langue */
   var t=document.getElementById('title'), animId=0;
-  function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI decides. You can prove it.'); }
+  function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre IA décide. Désormais, vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI decides. Now you can prove it.'); }
   function decodeTitle(){
     animId++; var my=animId, fin=titleFor();
     if(reduced||!fin){ t.textContent=fin; return; }
