@@ -56,19 +56,19 @@ h1{font-size:clamp(2.5rem,7.5vw,4.8rem);font-weight:600;letter-spacing:-.03em;li
 .euo svg{display:block;width:100%;height:100%}
 
 .doors{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:52px;background:rgba(255,255,255,.75);backdrop-filter:blur(4px)}
-.door{position:relative;min-height:400px;padding:52px 48px 44px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+.door{position:relative;padding:44px 48px 40px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
 .door + .door{border-left:1px solid var(--line)}
 .door:hover,.door:focus-visible{background:var(--surface)}
 .door-top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
-.ghost{position:absolute;top:88px;right:44px;font-family:var(--mono);font-size:clamp(3.4rem,7vw,5.4rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--line);transition:opacity .3s,-webkit-text-stroke-color .3s;pointer-events:none}
+.ghost{position:absolute;top:40px;right:44px;font-family:var(--mono);font-size:clamp(3.4rem,7vw,5.4rem);line-height:1;color:transparent;-webkit-text-stroke:1px var(--line);transition:opacity .3s,-webkit-text-stroke-color .3s;pointer-events:none}
 .door:hover .ghost,.door:focus-visible .ghost{-webkit-text-stroke-color:var(--violet);opacity:.45}
-.door h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.02em;margin:96px 0 14px;max-width:14ch}
+.door h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:600;letter-spacing:-.02em;margin:54px 0 14px;max-width:14ch}
 .door p{color:var(--dim);max-width:36ch;font-size:.96rem}
 .dfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px dashed var(--line);padding-top:18px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
 .door:hover .dfoot span:last-child,.door:focus-visible .dfoot span:last-child{color:var(--violet)}
 .kbd{border:1px solid var(--line);padding:1px 7px;border-radius:4px;font-size:.66rem;color:var(--dim)}
 .hintline{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:18px}
-@media (max-width:860px){.doors{grid-template-columns:1fr}.door + .door{border-left:none;border-top:1px solid var(--line)}.door{min-height:0;padding:36px 30px 30px}.door h2{margin-top:64px}}
+@media (max-width:860px){.doors{grid-template-columns:1fr}.door + .door{border-left:none;border-top:1px solid var(--line)}.door{padding:36px 30px 30px}.door h2{margin-top:48px}}
 
 footer{border-top:1px solid var(--line);position:relative;z-index:2}
 .foot{padding:26px 28px 32px;font-family:var(--mono);font-size:.76rem;color:var(--dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
@@ -95,7 +95,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
 <main class="gate">
   <div class="wrap">
     <p class="bootlog" id="boot"></p>
-    <p class="kicker">noirebox.eu</p>
+    <p class="kicker" data-fr="Pour les fournisseurs et déployeurs de systèmes d’IA dans l’UE · Règlement (UE) 2024/1689">For providers &amp; deployers of AI systems in the EU · Regulation (EU) 2024/1689</p>
     <h1 id="title" data-txt="Your AI agent decides on its own.|Now you can prove it." data-fr="Votre agent IA décide tout seul.|Désormais, vous pouvez le prouver.">Your AI agent decides on its own.<br>Now you can prove it.</h1>
 
     <div class="doors">
