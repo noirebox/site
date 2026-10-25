@@ -9,8 +9,7 @@
 <meta property="og:description" content="The black box for AI agents: every decision sealed, signed, time-stamped — auditable without trusting anyone. Built in the EU.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noirebox.eu/client.html">
-<meta property="og:image" content="https://noirebox.eu/assets/banner.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
 <style>
 :root{
@@ -94,7 +93,6 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .ticket{max-width:640px;margin:0 auto 20px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;padding:16px 20px}
 .ticket .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
 .ticket p{font-size:15.5px;color:var(--ink);margin:0}
-.logbox{max-width:760px;margin:0 auto;background:var(--ink);border-radius:12px;padding:18px 22px;text-align:left}
 .logh{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:10px}
 .logp{font-family:var(--mono);font-size:12px;line-height:1.7;color:#e2e8f0;white-space:pre-wrap;margin:0}
 .logp .chg{color:#fb7185;font-weight:700}
@@ -119,6 +117,18 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .linkn.fixed .h{color:var(--good)}
 .linkn.fixed::after{background:var(--good-line)}
 .ctl{display:flex;justify-content:center;gap:12px;margin-top:34px;flex-wrap:wrap}
+.dossier{max-width:680px;margin:0 auto;background:#fff;border:1px solid var(--line-strong);border-radius:16px;padding:24px 28px;text-align:left;position:relative}
+.dossier .dh{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.drow{display:flex;justify-content:space-between;gap:22px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.drow:last-of-type{border-bottom:none}
+.drow span{color:var(--muted);flex:none}
+.drow b{font-weight:600;color:var(--ink);text-align:right;min-width:0}
+.drow b.warn{color:var(--bad)}
+.drow b.ok{color:var(--good)}
+.drow b.no{color:var(--faint)}
+.drow b .chg{color:var(--bad)}
+.dstamp{margin-top:14px;background:var(--good-bg);border:1px solid var(--good-line);border-radius:10px;padding:12px 16px;font-family:var(--mono);font-size:11.5px;line-height:1.8;color:var(--good)}
+.dstamp .bad2{color:var(--bad)}
 .dbtn{font-family:var(--mono);font-size:13px;font-weight:600;padding:12px 22px;border-radius:9px;cursor:pointer;border:1px solid var(--bad-line);background:#fff;color:var(--bad)}
 .dbtn:hover{background:var(--bad-bg)}
 .dbtn.fix{border-color:var(--violet);background:var(--violet);color:#fff;display:none}
@@ -175,7 +185,6 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
   .act{gap:24px}
   .finecard{flex-direction:column;align-items:flex-start;gap:6px;padding:16px 18px}
   .linkn{width:100%}
-  .logbox{padding:14px 14px;font-size:12.5px}
   .sealedbox{padding:16px 14px}
   .ctas{width:100%}
   .ctas .btn{width:100%;justify-content:center}
@@ -252,14 +261,13 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
       <p data-fr="« Votre chatbot m’a dit que le vol était couvert. Ma réclamation a été rejetée. C’est faux. »">“Your chatbot told me theft was covered. My claim was rejected. That's false.”</p>
     </div>
 
-    <div class="logbox reveal">
-      <div class="logh" data-fr="la seule preuve existante : le log de l’agent">the only evidence that exists: the agent's log</div>
-      <pre class="logp" id="scnLog">Oct 12 14:02:11 · chat-conv-8841
-user:   "does the basic plan cover theft?"
-agent:  "Yes — theft is included in the basic plan."
-log:    coverage_advised = "theft_included"</pre>
+    <div class="dossier reveal" id="dossier">
+      <div class="dh" id="dossierHead">What you can hand over when the claim lands</div>
+      <div class="drow"><span data-fr="Décision de l’agent">Agent decision</span><b id="dAnswer">“Theft is included in the basic plan.”</b></div>
+      <div class="drow"><span data-fr="Intégrité de la trace">Record integrity</span><b id="dIntegrity" class="warn" data-fr="éditable — n’importe qui avec le disque peut la changer">editable — anyone with the disk can change it</b></div>
+      <div class="drow"><span data-fr="Dossier exportable">Exportable dossier</span><b class="no" data-fr="aucun — rien de crédible à donner à l’auditeur">none — nothing credible to hand the auditor</b></div>
+      <div class="dstamp" id="dStamp" style="display:none"></div>
     </div>
-    <div class="sealedbox mono" id="scnSeal" style="display:none"></div>
 
     <div class="ctl reveal"><button class="dbtn" id="scnBtn"></button></div>
     <div class="verdict" id="scnVerdict"></div>
@@ -472,19 +480,25 @@ log:    coverage_advised = "theft_included"</pre>
   /* ── la dispute : avec / sans ── */
   var tabW=document.getElementById('tabWithout'),
       tabV=document.getElementById('tabWith'),
-      scnLog=document.getElementById('scnLog'),
-      scnSeal=document.getElementById('scnSeal'),
+      dHead=document.getElementById('dossierHead'),
+      dAnswer=document.getElementById('dAnswer'),
+      dIntegrity=document.getElementById('dIntegrity'),
+      dStamp=document.getElementById('dStamp'),
       scnBtn=document.getElementById('scnBtn'),
       scnV=document.getElementById('scnVerdict'),
       scnMode='without', scnStep=0;
 
-  var LOG_ORIG='Oct 12 14:02:11 · chat-conv-8841\nuser:   "does the basic plan cover theft?"\nagent:  "Yes — theft is included in the basic plan."\nlog:    coverage_advised = "theft_included"';
-  var LOG_EDITED='Oct 12 14:02:11 · chat-conv-8841\nuser:   "does the basic plan cover theft?"\nagent:  "Yes — theft is included in the basic plan."\nlog:    coverage_advised = <span class="chg">"theft — NOT included"</span>   <span class="chg">← edited by admin, 09:41</span>';
+  var ANSWER_ORIG='“Theft is included in the basic plan.”';
+  var ANSWER_EDITED='<span class="chg">“Theft — NOT included”</span> <span class="chg">← edited by admin, 09:41</span>';
 
   function scnRender(){
     scnStep=0; scnV.className='verdict'; scnV.style.display='none';
-    scnLog.innerHTML=LOG_ORIG;
-    scnSeal.style.display='none';
+    dAnswer.textContent='';
+    dAnswer.innerHTML=ANSWER_ORIG;
+    dIntegrity.className='warn';
+    dIntegrity.textContent = fr ? 'éditable — n’importe qui avec le disque peut la changer' : 'editable — anyone with the disk can change it';
+    dStamp.style.display='none';
+    dHead.textContent = fr ? 'Ce que vous pouvez présenter quand la réclamation arrive' : 'What you can hand over when the claim lands';
     resetTamperBtn();
     tabW.className='wtab'+(scnMode==='without'?' on':'');
     tabV.className='wtab'+(scnMode==='with'?' on good':'');
@@ -499,14 +513,16 @@ log:    coverage_advised = "theft_included"</pre>
     scnStep++;
     if(scnMode==='without'){
       if(scnStep===1){
-        scnLog.innerHTML=LOG_EDITED;
+        dAnswer.innerHTML=ANSWER_EDITED;
+        dIntegrity.className='warn';
+        dIntegrity.textContent = fr ? 'éditable — et éditée, sans laisser de trace' : 'editable — and edited, without leaving a trace';
         breakChain();
         scnBtn.textContent = fr ? 'Continuer — le client se plaint' : 'Continue — the client complains';
         scnV.className='verdict show';
         v.className='verdict';
         scnV.style.display='block';
         scnV.style.borderColor='var(--line-strong)'; scnV.style.background='#fff'; scnV.style.color='var(--dim)';
-        scnV.textContent = fr ? 'Enregistré. Aucune trace. Aucune alarme. Le log dit maintenant ce qui arrange — personne ne peut le savoir.' : 'Saved. No trace. No alarm. The log now says whatever is convenient — and nobody can tell.';
+        scnV.textContent = fr ? 'Enregistré. Aucune trace. Aucune alarme. Le dossier que vous pourriez exporter dit maintenant ce qui arrange — et personne ne peut le savoir.' : 'Saved. No trace. No alarm. Any dossier you could export now says whatever is convenient — and nobody can tell.';
       }else{
         scnBtn.style.display='none';
         scnV.className='verdict bad show';
@@ -516,11 +532,13 @@ log:    coverage_advised = "theft_included"</pre>
       }
     }else{
       if(scnStep===1){
-        scnLog.innerHTML=LOG_EDITED;
-        scnSeal.style.display='block';
-        scnSeal.innerHTML = fr
-          ? 'copie scellée · ancree le 12 oct 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intacte</span><br>rejeu après modification → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence détectée</span>'
-          : 'sealed copy · anchored Oct 12 14:02:12 · sha256:77b1…f0dd <span class="okl">✓ intact</span><br>replay after edit → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence detected</span>';
+        dAnswer.innerHTML = fr ? '“Le vol est inclus dans l’offre de base.”' : ANSWER_ORIG;
+        dIntegrity.className='ok';
+        dIntegrity.textContent = fr ? 'scellée — le sceau garantit que la décision de 14:02 n’a pas bougé' : 'sealed — the seal guarantees the 14:02 decision has not moved';
+        dStamp.style.display='block';
+        dStamp.innerHTML = fr
+          ? 'DOSSIER GÉNÉRÉ AUTOMATIQUEMENT · exporté en un clic · le 12 oct 14:02<br>copie scellée · sha256:77b1…f0dd <span class="okl">✓ intacte</span><br>rejeu de la copie modifiée → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence détectée — et c’est le dossier qui gagne</span>'
+          : 'DOSSIER GENERATED AUTOMATICALLY · one-click export · Oct 12, 14:02<br>sealed copy · sha256:77b1…f0dd <span class="okl">✓ intact</span><br>replay of the edited copy → sha256:FF00AA…BROKEN <span class="bad2">✗ divergence detected — and the dossier wins</span>';
         scnBtn.textContent = fr ? 'Vérifier le sceau' : 'Verify the seal';
         proveChain();
         scnV.className='verdict show';
@@ -532,7 +550,7 @@ log:    coverage_advised = "theft_included"</pre>
         scnV.className='verdict good show';
         scnV.textContent = fr
           ? '✓ PROUVÉ. La frame scellée de 14:02:11 dit toujours exactement ce que l’agent a dit — signée, horodatée, revérifiable par n’importe qui. Le litige se règle en un coup de fil.'
-          : '✓ PROVEN. The sealed frame from 14:02:11 still says exactly what the agent said — signed, time-stamped, re-verifiable by anyone. The dispute ends in one phone call.';
+          : '✓ PROVEN. You hand over the dossier: the sealed decision from 14:02 still says exactly what the agent said — signed, time-stamped, re-verifiable by anyone, no access to your systems needed. The dispute ends in one phone call.';
       }
     }
   });
