@@ -77,6 +77,10 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .act .fine a:hover{color:var(--violet)}
 .bigfine{display:flex;flex-direction:column;gap:12px}
 .finecard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:flex;align-items:baseline;gap:14px}
+.jumbo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+.jumbo .finecard{flex-direction:column;align-items:flex-start;gap:10px;padding:32px 30px 28px;border-radius:16px}
+.jumbo .finecard b{font-family:var(--mono);font-size:clamp(44px,5.5vw,68px);font-weight:700;color:#6d28d9;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+.jumbo .finecard span{font-size:15px;line-height:1.5}
 .laws{margin-top:38px;text-align:center}
 .law{display:inline-block;border:1px solid var(--line-strong);background:#fff;border-radius:999px;padding:9px 18px;margin:0 5px 10px;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.05em;color:var(--ink)}
 .laws-note{max-width:720px;margin:14px auto 0;color:var(--dim);font-size:14.5px}
@@ -159,6 +163,7 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 
 @media (max-width:900px){
   .act{grid-template-columns:1fr}
+  .jumbo{grid-template-columns:1fr;gap:14px}
   .cards{grid-template-columns:1fr}
   .nums{grid-template-columns:1fr 1fr}
   .hero{padding:64px 0 60px}
@@ -195,7 +200,7 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
 <header class="hero">
   <div class="wrap">
     <p class="kicker" data-fr="Pour les fournisseurs et déployeurs de systèmes d’IA dans l’UE · Règlement (UE) 2024/1689">For providers &amp; deployers of AI systems in the EU · Regulation (EU) 2024/1689</p>
-    <h1 data-fr-html="Votre agent IA décide tout seul.<br><span class='p'>Désormais, vous pouvez le prouver.</span>">Your AI agent decides on its own.<br><span class="p">Now you can prove it.</span></h1>
+    <h1 data-fr-html="Votre agent IA décide.<br><span class='p'>Désormais, vous pouvez le prouver.</span>">Your AI agent decides.<br><span class="p">Now you can prove it.</span></h1>
     <p class="lede" data-fr-html="NoireBox est la boîte noire des agents IA : chaque décision est <strong>scellée, signée et horodatée</strong> — comme l’enregistreur de vol d’un avion. N’importe qui peut contrôler la trace, <strong>sans devoir faire confiance à personne</strong>.">NoireBox is the black box for AI agents: every decision is <strong>sealed, signed and time-stamped</strong> — like a plane’s flight recorder. Anyone can check the record, <strong>without trusting anyone</strong>.</p>
     <div class="ctas">
       <a class="btn primary" href="#demo" data-fr="Voir la démo — 30 secondes">See the demo — 30 seconds</a>
@@ -213,11 +218,11 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
         <p class="sec-lede" data-fr-html="Le règlement européen sur l’IA impose la <strong>journalisation automatique de chaque décision</strong> de vos IA (art. 12). Un fichier de log n’est pas une preuve : quiconque tient le disque peut le modifier. NoireBox rend la trace <strong>impossible à réécrire discrètement</strong> — c’est ce qui transforme une obligation en preuve.">The EU AI Act requires <strong>automatic logging of every decision</strong> your AI makes (art. 12). A log file is not proof: anyone with the disk can edit it. NoireBox makes the record <strong>impossible to rewrite silently</strong> — that is what turns an obligation into evidence.</p>
         <p class="fine" data-fr-html="Sources : AI Act art. 12 · RGPD art. 5(2) · le mapping complet est public — <a href='https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md' target='_blank' rel='noopener'>COMPLIANCE-EU.md</a>">Sources: AI Act art. 12 · GDPR art. 5(2) · the full mapping is public — <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
       </div>
-      <div class="bigfine">
-        <div class="finecard"><b>35&nbsp;M€</b><span data-fr="ou 7&nbsp;% du chiffre d’affaires mondial — l’amende maximale prévue par l’AI Act.">or 7% of worldwide turnover — the maximum fine under the EU AI Act.</span></div>
-        <div class="finecard"><b>art.&nbsp;12</b><span data-fr="journalisation automatique des décisions — déjà en vigueur pour les systèmes les plus à risque.">automatic logging of decisions — already in force for the highest-risk systems.</span></div>
-        <div class="finecard"><b>6&nbsp;mois</b><span data-fr="de conservation minimale des journaux que vous devez savoir produire.">minimum retention of the logs you must be able to produce.</span></div>
-      </div>
+    </div>
+    <div class="jumbo reveal">
+      <div class="finecard"><b>35&nbsp;M€</b><span data-fr="ou 7&nbsp;% du chiffre d’affaires mondial — l’amende maximale prévue par l’AI Act.">or 7% of worldwide turnover — the maximum fine under the EU AI Act.</span></div>
+      <div class="finecard"><b>art.&nbsp;12</b><span data-fr="journalisation automatique des décisions — déjà en vigueur pour les systèmes les plus à risque.">automatic logging of decisions — already in force for the highest-risk systems.</span></div>
+      <div class="finecard"><b>6&nbsp;mois</b><span data-fr="de conservation minimale des journaux que vous devez savoir produire.">minimum retention of the logs you must be able to produce.</span></div>
     </div>
     <div class="laws reveal">
       <span class="law">EU AI Act</span>
