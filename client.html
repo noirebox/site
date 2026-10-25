@@ -77,13 +77,16 @@ h2{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;line-hei
 .act .fine a:hover{color:var(--violet)}
 .bigfine{display:flex;flex-direction:column;gap:12px}
 .finecard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:flex;align-items:baseline;gap:14px}
+.laws{margin-top:38px;text-align:center}
+.law{display:inline-block;border:1px solid var(--line-strong);background:#fff;border-radius:999px;padding:9px 18px;margin:0 5px 10px;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.05em;color:var(--ink)}
+.laws-note{max-width:720px;margin:14px auto 0;color:var(--dim);font-size:14.5px}
+.laws-note a{color:var(--ink)}
 .finecard b{font-family:var(--mono);font-size:26px;color:var(--violet);letter-spacing:-.02em;white-space:nowrap}
 .finecard span{color:var(--dim);font-size:14.5px}
 
 .wswitch{display:flex;justify-content:center;gap:0;margin:36px auto 26px;max-width:560px;border:1px solid var(--line-strong);border-radius:999px;padding:4px;background:#fff}
 .wtab{flex:1;border:0;background:none;font-family:var(--mono);font-size:13px;font-weight:700;padding:11px 10px;border-radius:999px;cursor:pointer;color:var(--muted);transition:all .2s}
-.wtab.on{background:var(--bad);color:#fff}
-.wtab.on.good{background:var(--good)}
+.wtab.on{background:var(--ink);color:#fff}
 .ticket{max-width:640px;margin:0 auto 20px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;padding:16px 20px}
 .ticket .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
 .ticket p{font-size:15.5px;color:var(--ink);margin:0}
@@ -216,6 +219,15 @@ footer a:hover{color:var(--violet);border-color:var(--violet)}
         <div class="finecard"><b>6&nbsp;mois</b><span data-fr="de conservation minimale des journaux que vous devez savoir produire.">minimum retention of the logs you must be able to produce.</span></div>
       </div>
     </div>
+    <div class="laws reveal">
+      <span class="law">EU AI Act</span>
+      <span class="law">GDPR</span>
+      <span class="law">eIDAS</span>
+      <span class="law">Art. 12 · 14(5) · 50(2) · 55(1)(c)</span>
+      <span class="law">GDPR art. 5(2) · 15 · 20</span>
+      <span class="law">eIDAS art. 41</span>
+      <p class="laws-note" data-fr-html="Chaque clause que le journal répond est mappée <strong>publiquement, ligne par ligne</strong> — et les limites sont dites dans le même document, pas en note de bas de page : <a href='https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md' target='_blank' rel='noopener'>COMPLIANCE-EU.md</a>">Every clause the journal answers is mapped <strong>publicly, line by line</strong> — and the limits are stated in the same document, not in a footnote: <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></p>
+    </div>
   </div>
 </section>
 
@@ -340,11 +352,11 @@ log:    coverage_advised = "theft_included"</pre>
 <section class="band alt end">
   <div class="wrap">
     <p class="sec-kicker" data-fr="Commencez aujourd’hui">Start today</p>
-    <h2 data-fr-html="Votre première décision scellée est à une ligne.">Your first sealed decision is one line away.</h2>
-    <p class="lede" data-fr="Installez-la avec votre équipe, scellez un premier agent, et montrez la preuve à qui la demande — auditeur, client ou assureur.">Install it with your team, seal a first agent, and show the proof to whoever asks — auditor, client or insurer.</p>
+    <h2 data-fr-html="Soyez l’entreprise qui peut le prouver.">Be the company that can prove it.</h2>
+    <p class="lede" data-fr="Un pilote prend des jours, pas des mois : scellez un premier agent, et montrez la preuve à qui la demande — auditeur, client ou assureur.">A pilot takes days, not months: seal one agent, and show the proof to whoever asks — auditor, client or insurer.</p>
     <div class="ctas">
-      <a class="btn primary mono" href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">$ pip install noirebox</a>
-      <a class="btn" href="https://code.noirebox.eu/" data-fr="Lire la documentation">Read the documentation</a>
+      <a class="btn primary" href="mailto:sam@slabb.dev?subject=NoireBox%20%E2%80%94%20start%20today" data-fr="Commencez aujourd’hui">Start today</a>
+      <a class="btn" href="#demo" data-fr="Revoir la démo — 30 secondes">See the demo — 30 seconds</a>
     </div>
     <p class="endnote" data-fr-html="Une question ? Un humain répond : <a href='mailto:sam@slabb.dev'>sam@slabb.dev</a>">A question? A human answers: <a href="mailto:sam@slabb.dev">sam@slabb.dev</a></p>
   </div>
