@@ -15,7 +15,7 @@
 <style>
 :root{
   --bg:#f8fafc; --surface:#ffffff; --surface2:#f1f5f9; --fg:#0f172a; --dim:#475569; --muted:#94a3b8;
-  --line:#e2e8f0; --violet:#6d28d9; --violet-dark:#5b21b6; --violet-soft:#6d28d9;
+  --line:#e2e8f0; --violet:#003399; --violet-dark:#002b7f; --violet-soft:#003399;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
 }
@@ -23,7 +23,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:60;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
-::selection{background:rgba(109,40,217,.16)}
+::selection{background:rgba(0,51,153,.16)}
 a{color:var(--fg);text-decoration:none}
 :focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1280px;margin:0 auto;padding:0 28px;width:100%}
@@ -44,7 +44,7 @@ header{border-bottom:1px solid var(--line);position:relative;z-index:5}
 .langbtn button b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;font-weight:700;color:var(--ink,#0f172a);line-height:1}
 .eusvg{width:15px;height:15px;display:block;border-radius:50%}
 .langbtn button:hover{opacity:.7}
-.langbtn button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(109,40,217,.28)}
+.langbtn button.on{opacity:1;filter:none;box-shadow:0 0 0 2px rgba(0,51,153,.28)}
 .langbtn svg{width:21px;height:14px;border-radius:2px;display:block}
 
 .gate{flex:1;position:relative;padding:44px 0 64px}
