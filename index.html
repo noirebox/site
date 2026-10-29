@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NoireBox — your AI agent decides. Now you can prove it.</title>
+<title>NoireBox, your AI agent decides. Now you can prove it.</title>
 <meta name="description" content="Enter through the tech door (live seal inspector, benchmarks, docs) or the plain-words door (what it changes for your business).">
-<meta property="og:title" content="NoireBox — your AI agent decides. Now you can prove it.">
+<meta property="og:title" content="NoireBox, your AI agent decides. Now you can prove it.">
 <meta property="og:description" content="Two doors, one proof: the cryptographic inspector or plain words for everyone else.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noirebox.eu/">
@@ -104,7 +104,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
         <div class="door-top"><span>PORT_01 // FOR_ENGINEERS</span></div>
         <div>
           <h2 data-fr="Je suis tech">I am tech</h2>
-          <p data-fr="Dev, CTO, DPO, hacker curieux — l’inspector du sceau en direct, le benchmark 0,17 ms, 30 ADR publics et le mapping conformité UE. Montrez-moi la mécanique.">Dev, CTO, DPO, curious hacker — the live cryptographic seal inspector, the 0.17 ms benchmark, 30 public ADRs and the EU compliance mapping. Show me the mechanics.</p>
+          <p data-fr="Dev, CTO, DPO, hacker curieux, l’inspector du sceau en direct, le benchmark 0,17 ms, 30 ADR publics et le mapping conformité UE. Montrez-moi la mécanique.">Dev, CTO, DPO, curious hacker, the live cryptographic seal inspector, the 0.17 ms benchmark, 30 public ADRs and the EU compliance mapping. Show me the mechanics.</p>
         </div>
         <div class="dfoot">
           <span>SHA-256 · ED25519 · AI ACT</span>
@@ -116,7 +116,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
         <div class="door-top"><span>PORT_02 // FOR_EVERYONE_ELSE</span></div>
         <div>
           <h2 data-fr="Pas du tout tech">Not tech at all</h2>
-          <p data-fr="Parfait. Zéro jargon : ce qu’une boîte noire pour agents IA change pour votre boîte, vos clients et vos audits — en mots simples, avec une démo à essayer vous-même.">Perfect. Zero jargon: what a black box for AI agents changes for your business, your clients and your audits — in plain words, with a demo you can try yourself.</p>
+          <p data-fr="Parfait. Zéro jargon : ce qu’une boîte noire pour agents IA change pour votre boîte, vos clients et vos audits, en mots simples, avec une démo à essayer vous-même.">Perfect. Zero jargon: what a black box for AI agents changes for your business, your clients and your audits, in plain words, with a demo you can try yourself.</p>
         </div>
         <div class="dfoot">
           <span>TRUST · AUDITS · PROOF</span>
@@ -124,14 +124,14 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
         </div>
       </a>
     </div>
-    <p class="hintline" data-fr="ou appuyez sur 1 ou 2 — les deux portes mènent à la preuve.">or press 1 / 2 — both doors lead to proof.</p>
+    <p class="hintline" data-fr="ou appuyez sur 1 ou 2, les deux portes mènent à la preuve.">or press 1 / 2, both doors lead to proof.</p>
   </div>
 </main>
 
 <footer>
   <div class="wrap foot">
     <span>⬛ black boxes for systems nobody can fully trust · <a href="legal.html" data-fr="mentions légales &amp; rgpd">legal &amp; privacy</a></span>
-    <span data-fr="peu importe la porte — la preuve est en direct · © 2026 Sam LABBE">whichever door — the proof is live · © 2026 Sam LABBE</span>
+    <span data-fr="peu importe la porte, la preuve est en direct · © 2026 Sam LABBE">whichever door, the proof is live · © 2026 Sam LABBE</span>
   </div>
 </footer>
 
@@ -170,7 +170,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     redrawBoot();
   }).catch(function(){});
 
-  /* boot log — EN toujours (c'est un terminal) */
+  /* boot log, EN toujours (c'est un terminal) */
   var boot=document.getElementById('boot'), bootDone=false;
   function flines(){
     var n=(window.NBFILES||39);
@@ -178,7 +178,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
       '$ noirebox --verify blog.noirebox.eu',
       '✓ '+n+' files hashed · SHA-256',
       '✓ chain valid · genesis blog-noirebox-genesis',
-      '@✓ Ed25519 seal · fingerprint sha256:7a513360… — verified in your browser'
+      '@✓ Ed25519 seal · fingerprint sha256:7a513360…, verified in your browser'
     ];
   }
   function renderBootLines(ls){
@@ -203,7 +203,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
     },350);
   }
 
-  /* décodage hex du titre — annulable, relancé à chaque changement de langue */
+  /* décodage hex du titre, annulable, relancé à chaque changement de langue */
   var t=document.getElementById('title'), animId=0;
   function titleFor(){ return fr ? (t.getAttribute('data-fr')||'Votre agent IA décide tout seul.|Désormais, vous pouvez le prouver.') : (t.getAttribute('data-txt')||'Your AI agent decides on its own.|Now you can prove it.'); }
   var EU_O='<span class="euo" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#003399"/><path id="euo-star" fill="#FFCC00" d="M50 9 52.23 14.93 58.56 15.22 53.61 19.17 55.29 25.28 50 21.8 44.71 25.28 46.39 19.17 41.44 15.22 47.77 14.93 Z"/><use href="#euo-star" transform="rotate(30 50 50)"/><use href="#euo-star" transform="rotate(60 50 50)"/><use href="#euo-star" transform="rotate(90 50 50)"/><use href="#euo-star" transform="rotate(120 50 50)"/><use href="#euo-star" transform="rotate(150 50 50)"/><use href="#euo-star" transform="rotate(180 50 50)"/><use href="#euo-star" transform="rotate(210 50 50)"/><use href="#euo-star" transform="rotate(240 50 50)"/><use href="#euo-star" transform="rotate(270 50 50)"/><use href="#euo-star" transform="rotate(300 50 50)"/><use href="#euo-star" transform="rotate(330 50 50)"/></svg></span>';
@@ -242,7 +242,7 @@ footer{border-top:1px solid var(--line);position:relative;z-index:2}
   }
   decodeTitle();
 
-  /* FR si le navigateur est français — appliqué immédiatement, sans flash */
+  /* FR si le navigateur est français, appliqué immédiatement, sans flash */
   if(fr) apply();
 
   /* raccourcis clavier 1 / 2 */

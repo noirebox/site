@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NoireBox — the flight data recorder for AI agents | EU AI Act compliance</title>
-<meta name="description" content="NoireBox: the open-source flight data recorder for AI agents. Every decision sealed, signed and time-stamped by external witnesses — verifiable offline, without trusting the operator.">
-<meta property="og:title" content="NoireBox — the flight data recorder for AI agents">
+<title>NoireBox, the flight data recorder for AI agents | EU AI Act compliance</title>
+<meta name="description" content="NoireBox: the open-source flight data recorder for AI agents. Every decision sealed, signed and time-stamped by external witnesses, verifiable offline, without trusting the operator.">
+<meta property="og:title" content="NoireBox, the flight data recorder for AI agents">
 <meta property="og:description" content="Tamper-evident journal for AI agents, verifiable offline without trusting the operator.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://noirebox.eu/">
@@ -283,8 +283,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
 
 <div class="topbar" aria-hidden="true">
   <div class="topbar-track">
-    <b>+++</b> EU AI Act art. 12 — automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0 — 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below — in your browser, right now <b>+++</b>&nbsp;
-    <b>+++</b> EU AI Act art. 12 — automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0 — 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below — in your browser, right now <b>+++</b>&nbsp;
+    <b>+++</b> EU AI Act art. 12, automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0, 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below, in your browser, right now <b>+++</b>&nbsp;
+    <b>+++</b> EU AI Act art. 12, automatic logging obligations are in force <b>+++</b> NoireBox v0.24.0, 473 tests, 0 failing <b>+++</b> 0.17 ms per sealed append, public benchmark <b>+++</b> verify the live seal below, in your browser, right now <b>+++</b>&nbsp;
   </div>
 </div>
 
@@ -314,7 +314,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">Cryptographic audit trail • EU AI Act art. 12 mapped</span></div>
     <div class="wordmark">NOIRE<em>BOX</em></div>
     <h1 data-i18n="hero.h1">The flight data recorder for AI agents.</h1>
-    <p class="lede" data-i18n-html="hero.lede">A tamper-evident journal where every decision an agent takes is <strong>sealed, signed and time-stamped by external witnesses</strong> — and anyone can replay the proof <strong>offline, without trusting the operator</strong>, for <code>0.17&nbsp;ms</code> per sealed event.</p>
+    <p class="lede" data-i18n-html="hero.lede">A tamper-evident journal where every decision an agent takes is <strong>sealed, signed and time-stamped by external witnesses</strong>, and anyone can replay the proof <strong>offline, without trusting the operator</strong>, for <code>0.17&nbsp;ms</code> per sealed event.</p>
     <div class="pills">
       <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.6-4A11.96 11.96 0 0112 2.9 11.96 11.96 0 013 9c0 5.6 3.8 10.3 9 11.6 5.2-1.3 9-6 9-11.6 0-1-.1-2-.4-3"/></svg><span data-i18n="hero.pill1">Ed25519 signed</span></span>
       <span class="pill"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.8 10.2a4 4 0 00-5.6 0l-4 4a4 4 0 105.6 5.6l1.1-1.1m-.7-4.9a4 4 0 005.6 0l4-4a4 4 0 00-5.6-5.6l-1.1 1.1"/></svg><span data-i18n="hero.pill2">SHA-256 hash-chained</span></span>
@@ -350,31 +350,31 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     </div>
     <div class="ibody">
       <div class="ilist">
-        <div class="ilist-h"><span data-i18n="ins.listTitle">Sealed files — click to inspect</span><span>seal v1</span></div>
+        <div class="ilist-h"><span data-i18n="ins.listTitle">Sealed files, click to inspect</span><span>seal v1</span></div>
         <div id="evt-list"></div>
       </div>
       <div class="idetail">
         <div class="idetail-h">
-          <div><span class="seq" id="d-seq">—</span><span class="tt" id="d-name">no file selected</span></div>
+          <div><span class="seq" id="d-seq">· </span><span class="tt" id="d-name">no file selected</span></div>
           <span class="art" id="d-art">SHA-256 hash chain</span>
         </div>
         <div class="hashes">
-          <div class="hbox"><div class="lbl" data-i18n="ins.manifestHash">Sealed hash (manifest)</div><div class="hv" id="d-sealed">—</div></div>
-          <div class="hbox" id="d-comp-box"><div class="lbl" data-i18n="ins.computedHash">Recomputed here, now (SHA-256)</div><div class="hv" id="d-comp">—</div></div>
+          <div class="hbox"><div class="lbl" data-i18n="ins.manifestHash">Sealed hash (manifest)</div><div class="hv" id="d-sealed">· </div></div>
+          <div class="hbox" id="d-comp-box"><div class="lbl" data-i18n="ins.computedHash">Recomputed here, now (SHA-256)</div><div class="hv" id="d-comp">· </div></div>
         </div>
         <div class="verdict">
-          <span class="vbadge" id="d-verdict"><span class="t">verdict:</span> —</span>
+          <span class="vbadge" id="d-verdict"><span class="t">verdict:</span> ·</span>
           <span class="mono" style="font-size:10.5px;color:var(--muted)" id="d-timing"></span>
         </div>
         <div class="payload-lbl"><span data-i18n="ins.excerpt">First bytes of the live file</span><span id="d-size"></span></div>
         <pre class="payload" id="d-payload">Select a sealed file on the left.</pre>
         <div class="ifoot">
-          <span>head: <b id="d-head">—</b></span>
+          <span>head: <b id="d-head">· </b></span>
           <span>sig: <b>ed25519</b> <span id="d-fp"></span></span>
         </div>
       </div>
     </div>
-    <div class="inote" data-i18n-html="ins.note">This is not a mockup. The files are fetched live from <b>blog.noirebox.eu</b> and hashed in <b>your browser</b> — nothing is sent anywhere, no account, no trust required. Change one byte anywhere in a file and the recomputed hash diverges from the sealed one.</div>
+    <div class="inote" data-i18n-html="ins.note">This is not a mockup. The files are fetched live from <b>blog.noirebox.eu</b> and hashed in <b>your browser</b>, nothing is sent anywhere, no account, no trust required. Change one byte anywhere in a file and the recomputed hash diverges from the sealed one.</div>
   </div>
 </section>
 
@@ -382,16 +382,16 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
   <div class="wrap">
     <p class="kicker" data-i18n="s1.kicker">01 / Architecture &amp; trust</p>
     <h2 data-i18n="s1.title">Proof, not promises.</h2>
-    <p class="sec-lede" data-i18n-html="s1.lede">Nothing here asks for trust. Every claim on this page maps to an artifact you can inspect, replay, or break on purpose — <strong>the inspector above is the product, running live</strong>.</p>
+    <p class="sec-lede" data-i18n-html="s1.lede">Nothing here asks for trust. Every claim on this page maps to an artifact you can inspect, replay, or break on purpose, <strong>the inspector above is the product, running live</strong>.</p>
     <div class="rows">
       <div class="row">
         <div><span class="n">01</span><h3 data-i18n="s1.r1t">Tamper-evident by construction</h3></div>
-        <div><p data-i18n-html="s1.r1d">Every sealed append extends a <strong>SHA-256 hash chain</strong>. Change one byte anywhere in the history and the chain breaks — visibly, on replay. No configuration, no option to disable.</p>
+        <div><p data-i18n-html="s1.r1d">Every sealed append extends a <strong>SHA-256 hash chain</strong>. Change one byte anywhere in the history and the chain breaks, visibly, on replay. No configuration, no option to disable.</p>
         <span class="formula">H(n) = SHA256( H(n-1) ‖ SHA256(bytes_n) )</span></div>
       </div>
       <div class="row">
         <div><span class="n">02</span><h3 data-i18n="s1.r2t">Witnessed from the outside</h3></div>
-        <div><p data-i18n-html="s1.r2d"><strong>Ed25519 signatures</strong>, RFC 3161 multi-TSA and OpenTimestamps (Bitcoin). The record is anchored to something nobody — including the operator — can rewrite later.</p>
+        <div><p data-i18n-html="s1.r2d"><strong>Ed25519 signatures</strong>, RFC 3161 multi-TSA and OpenTimestamps (Bitcoin). The record is anchored to something nobody, including the operator, can rewrite later.</p>
         <span class="formula">RFC 8032 Ed25519 • RFC 3161 • OpenTimestamps → Bitcoin L1</span></div>
       </div>
       <div class="row">
@@ -401,7 +401,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       </div>
       <div class="row">
         <div><span class="n">04</span><h3 data-i18n="s1.r4t">An honest scope, mapped to EU law</h3></div>
-        <div><p data-i18n-html="s1.r4d">NoireBox proves a record was <strong>not altered</strong> and <strong>when it existed</strong>. It does not prove the record was true when written — <em>undecidable</em> is a first-class outcome, never folded into a green check. Every EU requirement is mapped to a shipped feature in <strong>COMPLIANCE-EU.md</strong>.</p>
+        <div><p data-i18n-html="s1.r4d">NoireBox proves a record was <strong>not altered</strong> and <strong>when it existed</strong>. It does not prove the record was true when written, <em>undecidable</em> is a first-class outcome, never folded into a green check. Every EU requirement is mapped to a shipped feature in <strong>COMPLIANCE-EU.md</strong>.</p>
         <div class="tags">
           <span class="tag">AI Act art. 12</span><span class="tag">art. 14(5)</span><span class="tag">art. 50(2)</span><span class="tag">art. 55(1)(c)</span><span class="tag">art. 73</span><span class="tag">GDPR art. 5(2)/15/20</span><span class="tag">eIDAS art. 41</span>
         </div></div>
@@ -418,18 +418,18 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       <div class="benchhead">
         <div class="bignum"><b>0.17<small>&nbsp;ms</small></b></div>
         <div>
-          <p class="bh" data-i18n="s2.bh">Median time to seal one event — hash + Ed25519 signature + SQLite commit.</p>
-          <p class="bs" data-i18n-html="s2.bs">A typical LLM call takes <strong>450–2,500&nbsp;ms</strong> to produce its first token. Sealing the decision costs <strong>~0.04&nbsp;%</strong> of that — and it happens on <strong>every</strong> decision, not just the ones anyone remembers. Reproducible with <code>make bench</code>, on your own hardware.</p>
+          <p class="bh" data-i18n="s2.bh">Median time to seal one event, hash + Ed25519 signature + SQLite commit.</p>
+          <p class="bs" data-i18n-html="s2.bs">A typical LLM call takes <strong>450–2,500&nbsp;ms</strong> to produce its first token. Sealing the decision costs <strong>~0.04&nbsp;%</strong> of that, and it happens on <strong>every</strong> decision, not just the ones anyone remembers. Reproducible with <code>make bench</code>, on your own hardware.</p>
         </div>
       </div>
       <table>
       <thead><tr><th data-i18n="s2.th1">Verified number</th><th data-i18n="s2.th2">Value</th><th data-i18n="s2.th3">What it covers</th><th data-i18n="s2.th4">How to check</th></tr></thead>
       <tbody>
         <tr><td class="m" data-i18n="s2.r1m">Sealed append</td><td class="v">0.17 ms</td><td data-i18n="s2.r1c">Hash-chain write, in process</td><td><a href="https://github.com/noirebox/noirebox/blob/main/Makefile" target="_blank" rel="noopener">make bench</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r2m">Automated tests</td><td class="v">473</td><td data-i18n="s2.r2c">CI on every push — 0 failing</td><td><a href="https://github.com/noirebox/noirebox/actions" target="_blank" rel="noopener">CI runs</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r2m">Automated tests</td><td class="v">473</td><td data-i18n="s2.r2c">CI on every push, 0 failing</td><td><a href="https://github.com/noirebox/noirebox/actions" target="_blank" rel="noopener">CI runs</a></td></tr>
         <tr><td class="m" data-i18n="s2.r3m">Architecture decisions</td><td class="v">30 ADRs</td><td data-i18n="s2.r3c">Public, each with rejected alternatives</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ADRs.md" target="_blank" rel="noopener">docs/adr</a></td></tr>
         <tr><td class="m" data-i18n="s2.r4m">Releases</td><td class="v">22</td><td data-i18n="s2.r4c">Every one in the changelog since 0.1.0</td><td><a href="https://github.com/noirebox/noirebox/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a></td></tr>
-        <tr><td class="m" data-i18n="s2.r5m">Attack fixtures replayed</td><td class="v">5 SCAR ids</td><td data-i18n="s2.r5c">Ids 43, 45, 89, 110, 114 — 16 tests</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a></td></tr>
+        <tr><td class="m" data-i18n="s2.r5m">Attack fixtures replayed</td><td class="v">5 SCAR ids</td><td data-i18n="s2.r5c">Ids 43, 45, 89, 110, 114, 16 tests</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/SCAR-BENCH.md" target="_blank" rel="noopener">SCAR-BENCH</a></td></tr>
         <tr><td class="m" data-i18n="s2.r6m">Record families</td><td class="v">7</td><td>receipt/0.2.2, decision/0.1, admission/0.1, marking/0.1, retention/0.1, writer/0.1, spec/0.1</td><td><a href="https://code.noirebox.eu/" target="_blank" rel="noopener">reference</a></td></tr>
         <tr><td class="m" data-i18n="s2.r7m">Cryptography</td><td class="v">SHA-256 · Ed25519</td><td data-i18n="s2.r7c">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
       </tbody>
@@ -445,7 +445,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         <div class="co"><span data-i18n="s2.calcSize">Journal size (uncompressed)</span><strong id="calc-size">1.9 GB / day</strong></div>
         <div class="co"><span data-i18n="s2.calcCall">Overhead vs one LLM call</span><strong class="g">~0.04 %</strong></div>
       </div>
-      <p class="calc-note" data-i18n="s2.calcNote">// sealing compute is exact: 0.17 ms × events (make bench). journal size assumes ~2 KB per sealed event, uncompressed — measure yours.</p>
+      <p class="calc-note" data-i18n="s2.calcNote">// sealing compute is exact: 0.17 ms × events (make bench). journal size assumes ~2 KB per sealed event, uncompressed, measure yours.</p>
     </div>
   </div>
 </section>
@@ -455,58 +455,58 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     <p class="kicker" data-i18n="s3.kicker">03 / Technical specification</p>
     <h2 data-i18n="s3.title">The whole box, on one page.</h2>
     <dl class="dl">
-      <div class="dl-row"><dt data-i18n="s3.d1k">What</dt><dd data-i18n-html="s3.d1v"><strong>Tamper-evident journal + guardrails + verifiable proof</strong> for AI agents — accountability infrastructure for agentic AI, open source</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d2k">Status</dt><dd data-i18n-html="s3.d2v">Generally available — current version <strong>0.24.0</strong> (21 October 2026); first release 0.1.0 on 19 September 2026</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d3k">Guardrails</dt><dd data-i18n-html="s3.d3v">French + English — regex, trained micro-models, local LLM judge</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d1k">What</dt><dd data-i18n-html="s3.d1v"><strong>Tamper-evident journal + guardrails + verifiable proof</strong> for AI agents, accountability infrastructure for agentic AI, open source</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d2k">Status</dt><dd data-i18n-html="s3.d2v">Generally available, current version <strong>0.24.0</strong> (21 October 2026); first release 0.1.0 on 19 September 2026</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d3k">Guardrails</dt><dd data-i18n-html="s3.d3v">French + English, regex, trained micro-models, local LLM judge</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d4k">Post-quantum</dt><dd data-i18n-html="s3.d4v">Migration path documented (ADR 027)</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d5k">Compliance</dt><dd data-i18n-html="s3.d5v">GDPR art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, Annex IV · eIDAS art. 41</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d6k">Integrations</dt><dd data-i18n-html="s3.d6v">CLI · Python API · MCP server · <strong>noirebox-verify</strong> GitHub Action · VS Code extension (Marketplace + Open VSX)</dd></div>
       <div class="dl-row"><dt data-i18n="s3.d7k">Distribution</dt><dd data-i18n-html="s3.d7v">PyPI (<strong>pip install noirebox</strong>) · Docker on GHCR · read-only mirror on Codeberg</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d8k">Licence</dt><dd data-i18n-html="s3.d8v"><strong>MIT</strong> — open source, no strings</dd></div>
-      <div class="dl-row"><dt data-i18n="s3.d9k">Presented at</dt><dd data-i18n-html="s3.d9v">Apply AI Alliance (European Commission, Futurium) — project presented, not a membership</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d8k">Licence</dt><dd data-i18n-html="s3.d8v"><strong>MIT</strong>, open source, no strings</dd></div>
+      <div class="dl-row"><dt data-i18n="s3.d9k">Presented at</dt><dd data-i18n-html="s3.d9v">Apply AI Alliance (European Commission, Futurium), project presented, not a membership</dd></div>
     </dl>
   </div>
 </section>
 
 <section class="sec" id="quotes">
   <div class="wrap">
-    <p class="kicker" data-i18n="sq.kicker">04 / Press — quotes</p>
+    <p class="kicker" data-i18n="sq.kicker">04 / Press, quotes</p>
     <h2 data-i18n="sq.title">Quote freely.</h2>
     <p class="sec-lede" data-i18n="sq.lede">Four lines, already public. Attributed as shown.</p>
     <div class="qs">
-      <blockquote class="q"><p data-i18n="q1">Prevention varies per stack. Proof is universal.</p><cite>— Sam LABBE, README</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q2">A Makefile DAG proves topological ordering, not evidence authenticity — an agent can never be the notary of its own handwriting.</p><cite>— Sam LABBE; the line Randal L. Schwartz named “Sam LABBE’s Corollary”</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q3">NoireBox proves a record was not altered and when it existed. It does not prove the record was true when written. A proof tool, not a talisman.</p><cite>— Sam LABBE, project positioning</cite></blockquote>
-      <blockquote class="q"><p data-i18n="q4">The journal stays local — the repo ships the method. Verification stays free, forever.</p><cite>— Sam LABBE, project motto</cite></blockquote>
+      <blockquote class="q"><p data-i18n="q1">Prevention varies per stack. Proof is universal.</p><cite>·  Sam LABBE, README</cite></blockquote>
+      <blockquote class="q"><p data-i18n="q2">A Makefile DAG proves topological ordering, not evidence authenticity, an agent can never be the notary of its own handwriting.</p><cite>·  Sam LABBE; the line Randal L. Schwartz named “Sam LABBE’s Corollary”</cite></blockquote>
+      <blockquote class="q"><p data-i18n="q3">NoireBox proves a record was not altered and when it existed. It does not prove the record was true when written. A proof tool, not a talisman.</p><cite>·  Sam LABBE, project positioning</cite></blockquote>
+      <blockquote class="q"><p data-i18n="q4">The journal stays local, the repo ships the method. Verification stays free, forever.</p><cite>·  Sam LABBE, project motto</cite></blockquote>
     </div>
   </div>
 </section>
 
 <section class="sec sec-alt" id="use" style="border-bottom:none;padding-bottom:56px">
   <div class="wrap">
-    <p class="kicker" data-i18n="s4.kicker">05 / EU compliance — clause by clause</p>
+    <p class="kicker" data-i18n="s4.kicker">05 / EU compliance, clause by clause</p>
     <h2 data-i18n="s4.title">Compliance you can check.</h2>
-    <p class="sec-lede" data-i18n-html="s4.lede">The mapping is public and maintained line by line: <strong>every clause points at a shipped mechanism</strong> — and what NoireBox cannot prove is stated in the same document, not in a footnote.</p>
+    <p class="sec-lede" data-i18n-html="s4.lede">The mapping is public and maintained line by line: <strong>every clause points at a shipped mechanism</strong>, and what NoireBox cannot prove is stated in the same document, not in a footnote.</p>
     <table style="margin-top:32px">
       <thead><tr><th data-i18n="s4.th1">Clause</th><th data-i18n="s4.th2">What it demands</th><th data-i18n="s4.th3">What NoireBox ships</th><th data-i18n="s4.th4">Evidence</th></tr></thead>
       <tbody>
-        <tr><td class="m">AI Act art. 12</td><td data-i18n="s4.r1d">Automatic logging of every decision — tamper-proof, retained</td><td data-i18n="s4.r1s">Hash-chained journal, 0.17&nbsp;ms sealed append, external timestamps</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
+        <tr><td class="m">AI Act art. 12</td><td data-i18n="s4.r1d">Automatic logging of every decision, tamper-proof, retained</td><td data-i18n="s4.r1s">Hash-chained journal, 0.17&nbsp;ms sealed append, external timestamps</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/ART12-MAPPING.md" target="_blank" rel="noopener">ART12-MAPPING.md</a></td></tr>
         <tr><td class="m">AI Act art. 14(5) · 50(2)</td><td data-i18n="s4.r2d">Human-oversight and transparency records</td><td data-i18n="s4.r2s">receipt / decision / admission record families</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
         <tr><td class="m">AI Act art. 55(1)(c) · Annex IV</td><td data-i18n="s4.r3d">Technical documentation of the system</td><td data-i18n="s4.r3s">Verifiable attestation exports, replayable offline</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
-        <tr><td class="m">GDPR art. 5(2)</td><td data-i18n="s4.r4d">Accountability — be able to demonstrate compliance</td><td data-i18n="s4.r4s">Ed25519-signed journal, witnessed by TSA / Bitcoin</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
+        <tr><td class="m">GDPR art. 5(2)</td><td data-i18n="s4.r4d">Accountability, be able to demonstrate compliance</td><td data-i18n="s4.r4s">Ed25519-signed journal, witnessed by TSA / Bitcoin</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
         <tr><td class="m">GDPR art. 15 · 20</td><td data-i18n="s4.r5d">Access to, and portability of, the records</td><td data-i18n="s4.r5s">Self-contained exports a third party can re-verify alone</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
         <tr><td class="m">eIDAS art. 41</td><td data-i18n="s4.r6d">Trusted timestamping</td><td data-i18n="s4.r6s">RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)</td><td><a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a></td></tr>
       </tbody>
     </table>
-    <p class="tfoot" data-i18n="s4.foot">// six clauses, six shipped mechanisms — the mapping document names the gaps too.</p>
+    <p class="tfoot" data-i18n="s4.foot">// six clauses, six shipped mechanisms, the mapping document names the gaps too.</p>
   </div>
 </section>
 
 <div class="startswiss swiss-grid" id="start">
   <div class="wrap">
-    <div class="startpill" data-i18n="s4.pill">Regulation (EU) 2024/1689 — art. 12 logging deadline · 2 December 2027</div>
+    <div class="startpill" data-i18n="s4.pill">Regulation (EU) 2024/1689, art. 12 logging deadline · 2 December 2027</div>
     <h2 data-i18n="s4.startTitle">Start sealing.</h2>
-    <p class="sec-lede" data-i18n-html="s4.startLede">Your agent’s first sealed decision is <strong>one line of code away</strong> — on your machines, at your pace, with the compliance mapping already public.</p>
+    <p class="sec-lede" data-i18n-html="s4.startLede">Your agent’s first sealed decision is <strong>one line of code away</strong>, on your machines, at your pace, with the compliance mapping already public.</p>
     <div class="ctas2" style="margin-top:34px">
       <a class="btn2 primary" href="https://pypi.org/project/noirebox/" target="_blank" rel="noopener">$ pip install noirebox</a>
       <a class="btn2" href="https://code.noirebox.eu/">Read the docs</a>
@@ -522,13 +522,13 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     <div class="learn">
       <a class="lm" href="https://blog.noirebox.eu/">
         <span class="cat"><span data-i18n="s5.c1cat">Team journal • sealed &amp; verifiable</span><span>↗</span></span>
-        <h3 data-i18n="s5.c1t">The blog — every page hash-chained</h3>
-        <p data-i18n="s5.c1d">What we build, break and measure — AI agents in production, security, and provable compliance. The same seal the inspector above just verified.</p>
+        <h3 data-i18n="s5.c1t">The blog, every page hash-chained</h3>
+        <p data-i18n="s5.c1d">What we build, break and measure, AI agents in production, security, and provable compliance. The same seal the inspector above just verified.</p>
       </a>
       <a class="lm" href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">
         <span class="cat"><span data-i18n="s5.c2cat">Regulatory mapping • clause by clause</span><span>↗</span></span>
         <h3 data-i18n="s5.c2t">COMPLIANCE-EU.md</h3>
-        <p data-i18n="s5.c2d">From GDPR, AI Act and eIDAS requirements to shipped features — with what NoireBox cannot prove stated just as plainly.</p>
+        <p data-i18n="s5.c2d">From GDPR, AI Act and eIDAS requirements to shipped features, with what NoireBox cannot prove stated just as plainly.</p>
       </a>
     </div>
   </div>
@@ -571,8 +571,8 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       </div>
     </div>
     <div class="fbase">
-      <span>© 2026 Sam LABBE — noirebox.eu</span>
-      <span id="f-fp">root fingerprint: —</span>
+      <span>© 2026 Sam LABBE, noirebox.eu</span>
+      <span id="f-fp">root fingerprint: ·</span>
       <span data-i18n="f.alliance">Project presented at the Apply AI Alliance (European Commission, Futurium)</span>
     </div>
   </div>
@@ -585,77 +585,77 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     'nav.plain':'Version sans jargon','nav.proof':'Architecture','nav.bench':'Benchmarks (0,17 ms)','nav.specs':'Spécifications','nav.compliance':'Conformité UE','nav.cta':'Sceller maintenant',
     'hero.eyebrow':'Piste d’audit cryptographique • AI Act UE art. 12 mappé',
     'hero.h1':'L’enregistreur de vol des agents IA.',
-    'hero.lede':'Un journal infalsifiable où chaque décision d’un agent est <strong>scellée, signée et horodatée par des témoins externes</strong> — et n’importe qui peut rejouer la preuve <strong>hors-ligne, sans faire confiance à l’opérateur</strong>, pour <code>0,17&nbsp;ms</code> par événement scellé.',
+    'hero.lede':'Un journal infalsifiable où chaque décision d’un agent est <strong>scellée, signée et horodatée par des témoins externes</strong>, et n’importe qui peut rejouer la preuve <strong>hors-ligne, sans faire confiance à l’opérateur</strong>, pour <code>0,17&nbsp;ms</code> par événement scellé.',
     'hero.pill1':'Signé Ed25519','hero.pill2':'Chaîné SHA-256','hero.pill3':'Vérifiable hors-ligne','hero.pill4':'Horodatage RFC 3161 + Bitcoin',
     'hero.cta1':'Inspecter le sceau en direct',
-    'ins.listTitle':'Fichiers scellés — cliquer pour inspecter','ins.manifestHash':'Hash scellé (manifest)','ins.computedHash':'Recalculé ici, maintenant (SHA-256)',
+    'ins.listTitle':'Fichiers scellés, cliquer pour inspecter','ins.manifestHash':'Hash scellé (manifest)','ins.computedHash':'Recalculé ici, maintenant (SHA-256)',
     'ins.excerpt':'Premiers octets du fichier en direct',
-    'ins.note':'Ce n’est pas une maquette. Les fichiers sont chargés en direct depuis <b>blog.noirebox.eu</b> et hachés dans <b>votre navigateur</b> — rien n’est envoyé nulle part, aucun compte, aucune confiance requise. Changez un octet n’importe où et le hash recalculé diverge du hash scellé.',
+    'ins.note':'Ce n’est pas une maquette. Les fichiers sont chargés en direct depuis <b>blog.noirebox.eu</b> et hachés dans <b>votre navigateur</b>, rien n’est envoyé nulle part, aucun compte, aucune confiance requise. Changez un octet n’importe où et le hash recalculé diverge du hash scellé.',
     's1.kicker':'01 / Architecture &amp; confiance','s1.title':'La preuve, pas les promesses.',
-    's1.lede':'Rien ici ne demande de la confiance. Chaque affirmation de cette page pointe vers un artefact que vous pouvez inspecter, rejouer ou casser exprès — <strong>l’inspecteur ci-dessus est le produit, en direct</strong>.',
+    's1.lede':'Rien ici ne demande de la confiance. Chaque affirmation de cette page pointe vers un artefact que vous pouvez inspecter, rejouer ou casser exprès, <strong>l’inspecteur ci-dessus est le produit, en direct</strong>.',
     's1.r1t':'Infalsifiable par construction',
-    's1.r1d':'Chaque appendice scellé prolonge une <strong>chaîne de hachage SHA-256</strong>. Changez un octet n’importe où dans l’historique et la chaîne casse — visiblement, au rejeu. Aucune option pour la désactiver.',
+    's1.r1d':'Chaque appendice scellé prolonge une <strong>chaîne de hachage SHA-256</strong>. Changez un octet n’importe où dans l’historique et la chaîne casse, visiblement, au rejeu. Aucune option pour la désactiver.',
     's1.r2t':'Témoin depuis l’extérieur',
-    's1.r2d':'Signatures <strong>Ed25519</strong>, RFC 3161 multi-TSA et OpenTimestamps (Bitcoin). Le dossier est ancré à quelque chose que personne — opérateur inclus — ne peut réécrire ensuite.',
+    's1.r2d':'Signatures <strong>Ed25519</strong>, RFC 3161 multi-TSA et OpenTimestamps (Bitcoin). Le dossier est ancré à quelque chose que personne, opérateur inclus, ne peut réécrire ensuite.',
     's1.r3t':'Vérifiable hors-ligne, pour toujours',
     's1.r3d':'Les auditeurs rejouent n’importe quel dossier sur un <strong>laptop air-gapped</strong> : <code>verify.py</code> ne dépend que de la stdlib, la page navigateur ci-dessus est sans dépendance. Zéro appel réseau pour vérifier, zéro dépendance à l’infrastructure NoireBox.',
     's1.r4t':'Un périmètre honnête, mappé au droit UE',
-    's1.r4d':'NoireBox prouve qu’un dossier n’a <strong>pas été altéré</strong> et <strong>quand il a existé</strong>. Il ne prouve pas que le dossier était vrai au moment de l’écriture — <em>indécidable</em> est un résultat de première classe, jamais fondu dans un check vert. Chaque exigence UE est mappée à une fonctionnalité livrée dans <strong>COMPLIANCE-EU.md</strong>.',
-    's2.bh':'Temps médian pour sceller un événement — hachage + signature Ed25519 + commit SQLite.',
-    's2.bs':'Un appel LLM typique prend <strong>450–2&nbsp;500&nbsp;ms</strong> avant son premier token. Sceller la décision coûte <strong>~0,04&nbsp;%</strong> de ça — et ça se produit sur <strong>chaque</strong> décision, pas seulement celles dont quelqu’un se souvient. Reproductible avec <code>make bench</code>, sur votre matériel.',
+    's1.r4d':'NoireBox prouve qu’un dossier n’a <strong>pas été altéré</strong> et <strong>quand il a existé</strong>. Il ne prouve pas que le dossier était vrai au moment de l’écriture, <em>indécidable</em> est un résultat de première classe, jamais fondu dans un check vert. Chaque exigence UE est mappée à une fonctionnalité livrée dans <strong>COMPLIANCE-EU.md</strong>.',
+    's2.bh':'Temps médian pour sceller un événement, hachage + signature Ed25519 + commit SQLite.',
+    's2.bs':'Un appel LLM typique prend <strong>450–2&nbsp;500&nbsp;ms</strong> avant son premier token. Sceller la décision coûte <strong>~0,04&nbsp;%</strong> de ça, et ça se produit sur <strong>chaque</strong> décision, pas seulement celles dont quelqu’un se souvient. Reproductible avec <code>make bench</code>, sur votre matériel.',
     's2.kicker':'02 / Performance &amp; overhead','s2.title':'Assez rapide pour tout sceller.',
-    's2.lede':'par appendice scellé — benchmark public, reproductible avec <b class="mono" style="font-size:13px">make bench</b>. Votre agent scelle chaque décision, pas seulement celles dont il se souvient.',
+    's2.lede':'par appendice scellé, benchmark public, reproductible avec <b class="mono" style="font-size:13px">make bench</b>. Votre agent scelle chaque décision, pas seulement celles dont il se souvient.',
     's2.th1':'Chiffre vérifié','s2.th2':'Valeur','s2.th3':'Ce que ça couvre','s2.th4':'Comment vérifier',
     's2.r1m':'Appendice scellé','s2.r1c':'Écriture de la chaîne, en process',
-    's2.r2m':'Tests automatisés','s2.r2c':'CI à chaque push — 0 en échec',
+    's2.r2m':'Tests automatisés','s2.r2c':'CI à chaque push, 0 en échec',
     's2.r3m':'Décisions d’architecture','s2.r3c':'Publiques, chacune avec les alternatives rejetées',
     's2.r4m':'Versions','s2.r4c':'Toutes dans le changelog depuis la 0.1.0',
-    's2.r5m':'Fixtures d’attaque rejouées','s2.r5c':'Ids 43, 45, 89, 110, 114 — 16 tests',
+    's2.r5m':'Fixtures d’attaque rejouées','s2.r5c':'Ids 43, 45, 89, 110, 114, 16 tests',
     's2.r6m':'Familles de records',
     's2.r7m':'Cryptographie','s2.r7c':'RFC 3161 multi-TSA + OpenTimestamps (Bitcoin)',
     's2.foot':'// chaque ligne pointe vers l’artefact, pas vers une affirmation sur l’artefact.',
     's2.calcLabel':'Estimateur de charge d’une flotte : <b id="calc-events-fr">1&nbsp;000&nbsp;000</b> événements / jour',
     's2.calcCompute':'Calcul de scellement par jour','s2.calcSize':'Taille du journal (non compressé)','s2.calcCall':'Overhead vs un appel LLM',
-    's2.calcNote':'// le calcul de scellement est exact : 0,17 ms × événements (make bench). la taille suppose ~2 Ko par événement scellé, non compressé — mesurez la vôtre.',
+    's2.calcNote':'// le calcul de scellement est exact : 0,17 ms × événements (make bench). la taille suppose ~2 Ko par événement scellé, non compressé, mesurez la vôtre.',
     's3.kicker':'03 / Fiche technique','s3.title':'Toute la boîte, sur une page.',
-    's3.d1k':'Quoi','s3.d1v':'<strong>Journal infalsifiable + garde-fous + preuve vérifiable</strong> pour agents IA — infrastructure de redevabilité pour l’IA agentique, open source',
-    's3.d2k':'Statut','s3.d2v':'Disponible — version courante <strong>0.24.0</strong> (21 octobre 2026) ; première version 0.1.0 le 19 septembre 2026',
-    's3.d3k':'Garde-fous','s3.d3v':'Français + anglais — regex, micro-modèles entraînés, juge LLM local',
+    's3.d1k':'Quoi','s3.d1v':'<strong>Journal infalsifiable + garde-fous + preuve vérifiable</strong> pour agents IA, infrastructure de redevabilité pour l’IA agentique, open source',
+    's3.d2k':'Statut','s3.d2v':'Disponible, version courante <strong>0.24.0</strong> (21 octobre 2026) ; première version 0.1.0 le 19 septembre 2026',
+    's3.d3k':'Garde-fous','s3.d3v':'Français + anglais, regex, micro-modèles entraînés, juge LLM local',
     's3.d4k':'Post-quantique','s3.d4v':'Chemin de migration documenté (ADR 027)',
     's3.d5k':'Conformité','s3.d5v':'RGPD art. 5(2)/15/20 · AI Act art. 12, 14(5), 50(2), 55(1)(c), 73, annexe IV · eIDAS art. 41',
     's3.d6k':'Intégrations','s3.d6v':'CLI · API Python · serveur MCP · <strong>noirebox-verify</strong> GitHub Action · extension VS Code (Marketplace + Open VSX)',
     's3.d7k':'Distribution','s3.d7v':'PyPI (<strong>pip install noirebox</strong>) · Docker sur GHCR · miroir en lecture seule sur Codeberg',
-    's3.d8k':'Licence','s3.d8v':'<strong>MIT</strong> — open source, sans condition',
-    's3.d9k':'Présenté à','s3.d9v':'Apply AI Alliance (Commission européenne, Futurium) — projet présenté, pas une adhésion',
-    'sq.kicker':'04 / Presse — citations','sq.title':'Citez librement.','sq.lede':'Quatre lignes, déjà publiques. Attribution telle quelle.',
+    's3.d8k':'Licence','s3.d8v':'<strong>MIT</strong>, open source, sans condition',
+    's3.d9k':'Présenté à','s3.d9v':'Apply AI Alliance (Commission européenne, Futurium), projet présenté, pas une adhésion',
+    'sq.kicker':'04 / Presse, citations','sq.title':'Citez librement.','sq.lede':'Quatre lignes, déjà publiques. Attribution telle quelle.',
     'q1':'La prévention varie selon la stack. La preuve est universelle.',
-    'q2':'Un DAG de Makefile prouve un ordre topologique, pas l’authenticité d’une preuve — un agent ne peut jamais être le notaire de sa propre écriture.',
+    'q2':'Un DAG de Makefile prouve un ordre topologique, pas l’authenticité d’une preuve, un agent ne peut jamais être le notaire de sa propre écriture.',
     'q3':'NoireBox prouve qu’un dossier n’a pas été altéré et quand il a existé. Il ne prouve pas que le dossier était vrai au moment de l’écriture. Un outil de preuve, pas un talisman.',
-    'q4':'Le journal reste local — le dépôt livre la méthode. La vérification reste gratuite, pour toujours.',
-    's4.pill':'Règlement (UE) 2024/1689 — échéance journalisation art. 12 · 2 décembre 2027','s4.startTitle':'Commencez à sceller.',
-    's4.startLede':'La première décision scellée de votre agent est à <strong>une ligne de code</strong> — sur vos machines, à votre rythme, avec le mapping de conformité déjà public.',
-    's4.kicker':'05 / Conformité UE — article par article','s4.title':'Une conformité vérifiable.',
-    's4.lede':'Le mapping est public et tenu ligne par ligne : <strong>chaque article pointe vers un mécanisme livré</strong> — et ce que NoireBox ne peut pas prouver est énoncé dans le même document, pas dans une note de bas de page.',
+    'q4':'Le journal reste local, le dépôt livre la méthode. La vérification reste gratuite, pour toujours.',
+    's4.pill':'Règlement (UE) 2024/1689, échéance journalisation art. 12 · 2 décembre 2027','s4.startTitle':'Commencez à sceller.',
+    's4.startLede':'La première décision scellée de votre agent est à <strong>une ligne de code</strong>, sur vos machines, à votre rythme, avec le mapping de conformité déjà public.',
+    's4.kicker':'05 / Conformité UE, article par article','s4.title':'Une conformité vérifiable.',
+    's4.lede':'Le mapping est public et tenu ligne par ligne : <strong>chaque article pointe vers un mécanisme livré</strong>, et ce que NoireBox ne peut pas prouver est énoncé dans le même document, pas dans une note de bas de page.',
     's4.th1':'Article','s4.th2':'Ce qu’il exige','s4.th3':'Ce que NoireBox livre','s4.th4':'Preuve',
-    's4.r1d':'Journalisation automatique de chaque décision — infalsifiable, conservée',
+    's4.r1d':'Journalisation automatique de chaque décision, infalsifiable, conservée',
     's4.r1s':'Journal chaîné SHA-256, appendice scellé en 0,17&nbsp;ms, horodatage externe',
     's4.r2d':'Records de supervision humaine et de transparence',
     's4.r2s':'Familles de records receipt / decision / admission',
     's4.r3d':'Documentation technique du système',
     's4.r3s':'Exports d’attestation vérifiables, rejouables hors-ligne',
-    's4.r4d':'Redevabilité — pouvoir démontrer la conformité',
+    's4.r4d':'Redevabilité, pouvoir démontrer la conformité',
     's4.r4s':'Journal signé Ed25519, témoigné par TSA / Bitcoin',
     's4.r5d':'Accès aux dossiers et portabilité',
     's4.r5s':'Exports autonomes qu’un tiers peut re-vérifier seul',
     's4.r6d':'Horodatage qualifié',
     's4.r6s':'RFC 3161 multi-TSA + OpenTimestamps (Bitcoin L1)',
-    's4.foot':'// six articles, six mécanismes livrés — le document de mapping nomme aussi les manques.',
+    's4.foot':'// six articles, six mécanismes livrés, le document de mapping nomme aussi les manques.',
     's4.note':'Licence MIT, sans inscription, sans téléphone à la maison · mapping complet dans <a href="https://github.com/noirebox/noirebox/blob/main/docs/COMPLIANCE-EU.md" target="_blank" rel="noopener">COMPLIANCE-EU.md</a>',
     's5.kicker':'06 / Aller plus loin','s5.title':'Publications &amp; sources.',
-    's5.c1cat':'Journal d’équipe • scellé &amp; vérifiable','s5.c1t':'Le blog — chaque page chaînée',
-    's5.c1d':'Ce qu’on construit, casse et mesure — les agents IA en production, la sécurité et la conformité prouvable. Le même sceau que l’inspecteur ci-dessus vient de vérifier.',
+    's5.c1cat':'Journal d’équipe • scellé &amp; vérifiable','s5.c1t':'Le blog, chaque page chaînée',
+    's5.c1d':'Ce qu’on construit, casse et mesure, les agents IA en production, la sécurité et la conformité prouvable. Le même sceau que l’inspecteur ci-dessus vient de vérifier.',
     's5.c2cat':'Mapping réglementaire • article par article','s5.c2t':'COMPLIANCE-EU.md',
-    's5.c2d':'Des exigences RGPD, AI Act et eIDAS vers les fonctionnalités livrées — avec ce que NoireBox ne peut pas prouver énoncé aussi clairement.',
+    's5.c2d':'Des exigences RGPD, AI Act et eIDAS vers les fonctionnalités livrées, avec ce que NoireBox ne peut pas prouver énoncé aussi clairement.',
     'f.note':'Des boîtes noires pour les systèmes envers qui personne ne peut avoir pleinement confiance. Conçu dans l’UE. Vérifiable partout.',
     'f.project':'Projet','f.comp':'Conformité &amp; confiance','f.press':'Presse','f.legal':'Légal',
     'f.pressArt':'L’histoire de l’Article 50','f.legalLink':'Mentions légales &amp; confidentialité',
@@ -683,7 +683,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     tb.textContent = tampered ? 'Restaurer & revérifier' : 'Simuler une altération d’1 octet';
     if(MANIFEST){
       var b=document.getElementById('chain-text').textContent;
-      if(b.indexOf('SEAL LOADED')===0) setBadge('', 'SCEAU CHARGÉ • '+MANIFEST.files.length+' FICHIERS SCELLÉS — vérifiez pour confirmer');
+      if(b.indexOf('SEAL LOADED')===0) setBadge('', 'SCEAU CHARGÉ • '+MANIFEST.files.length+' FICHIERS SCELLÉS, vérifiez pour confirmer');
     }
   };
   var savedL=null; try{ savedL=localStorage.getItem('nblang'); }catch(e){}
@@ -712,7 +712,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
   function verdict(ok, why){
     var v=$('d-verdict');
     v.className='vbadge '+(ok?'ok':'ko');
-    v.innerHTML='<span class="t">verdict:</span> '+(ok?'✓ VALID':'✗ BROKEN')+' — '+why;
+    v.innerHTML='<span class="t">verdict:</span> '+(ok?'✓ VALID':'✗ BROKEN')+', '+why;
   }
 
   fetch(BLOG+'manifest.json').then(function(r){ return r.json(); }).then(function(m){
@@ -728,10 +728,10 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
       b.innerHTML='<div style="min-width:0"><div class="nm">'+f.name+'</div><div class="hs">sha256:'+f.sha256.slice(0,22)+'…</div></div><span class="sz">'+f.bytes+' B</span>';
       list.appendChild(b);
     });
-    setBadge('', 'SEAL LOADED • '+m.files.length+' FILES SEALED — verify to confirm');
+    setBadge('', 'SEAL LOADED • '+m.files.length+' FILES SEALED, verify to confirm');
     select(0);
   }).catch(function(){
-    setBadge('broken','MANIFEST UNREACHABLE — a seal never lies about a network');
+    setBadge('broken','MANIFEST UNREACHABLE, a seal never lies about a network');
   });
 
   function markList(i, brok){
@@ -748,7 +748,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
     $('d-seq').textContent='#'+(i+1)+'/'+MANIFEST.files.length;
     $('d-name').textContent=f.name;
     $('d-sealed').textContent='sha256:'+f.sha256;
-    $('d-art').textContent='seal v1 — SHA-256 chain + Ed25519';
+    $('d-art').textContent='seal v1, SHA-256 chain + Ed25519';
     $('d-comp').textContent='computing…';
     $('d-comp-box').className='hbox';
     $('d-payload').textContent='fetching '+f.name+' …';
@@ -768,21 +768,21 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         $('d-comp').textContent='sha256:'+h;
         $('d-comp-box').className='hbox '+(ok?'ok':'ko');
         $('d-timing').textContent='SHA-256 computed locally in '+ms.toFixed(2)+' ms (WebCrypto)';
-        verdict(ok, ok?'hash matches the sealed manifest':'hash diverges — file altered?');
+        verdict(ok, ok?'hash matches the sealed manifest':'hash diverges, file altered?');
         renderPayload();
         var n=countVerified();
         setBadge(ok?'':'broken', ok?('SEAL INTACT • '+n+'/'+MANIFEST.files.length+' verified in this visit'):'TAMPER DETECTED on '+f.name);
         if(ok && n===MANIFEST.files.length) sealFooter(true);
       });
     }).catch(function(){
-      $('d-payload').textContent='network error — could not fetch '+f.name;
+      $('d-payload').textContent='network error, could not fetch '+f.name;
     });
   }
 
   function renderPayload(){
     if(!cacheRaw) return;
     var txt=new TextDecoder().decode(cacheRaw.slice(0,360));
-    if(tampered) txt='[+] 1 byte flipped in memory at offset 42 — watch the recomputed hash:\n\n'+txt;
+    if(tampered) txt='[+] 1 byte flipped in memory at offset 42, watch the recomputed hash:\n\n'+txt;
     $('d-payload').textContent=txt;
   }
 
@@ -808,7 +808,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
         verdict(false, '1 flipped byte → completely different hash. Every seal downstream is invalid.');
         renderPayload();
         markList(selected,true);
-        setBadge('broken','TAMPER SIMULATED on '+f.name+' — chain broken, exactly as designed');
+        setBadge('broken','TAMPER SIMULATED on '+f.name+', chain broken, exactly as designed');
         sealFooter(false);
       });
     } else {
@@ -830,7 +830,7 @@ footer { background: var(--paper-2); padding: 52px 0 36px; border-top: 1px solid
             if(idx===selected){
               $('d-comp').textContent='sha256:'+h;
               $('d-comp-box').className='hbox '+(verified[idx]?'ok':'ko');
-              verdict(verified[idx], verified[idx]?'hash matches the sealed manifest':'hash diverges — file altered?');
+              verdict(verified[idx], verified[idx]?'hash matches the sealed manifest':'hash diverges, file altered?');
             }
           });
         });
